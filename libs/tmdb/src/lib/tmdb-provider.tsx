@@ -17,14 +17,11 @@ export interface TMDBProviderProps {
 
 function useAxiosInterceptors(props: TMDBProviderProps) {
   useEffect(() => {
-    const id = AXIOS_INSTANCE.interceptors.request.use(config => {
-      console.log({ config });
-      return {
-        ...config,
-        baseURL: props.baseURL,
-        headers: { ...config.headers, Authorization: `Bearer ${props.accessToken}` },
-      };
-    });
+    const id = AXIOS_INSTANCE.interceptors.request.use(config => ({
+      ...config,
+      baseURL: props.baseURL,
+      headers: { ...config.headers, Authorization: `Bearer ${props.accessToken}` },
+    }));
 
     return () => AXIOS_INSTANCE.interceptors.request.eject(id);
   }, [props.accessToken, props.baseURL]);
