@@ -1,2 +1,2 @@
-export * from './default/default';
-export * from './model';
+export * from './generated';
+export * from './lib/tmdb-provider';

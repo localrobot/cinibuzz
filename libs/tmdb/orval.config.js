@@ -2,8 +2,8 @@ module.exports = {
   tmdb: {
     output: {
       mode: 'tags-split',
-      target: 'src/tmdb.ts',
-      schemas: 'src/model',
+      target: 'src/generated/tmdb.ts',
+      schemas: 'src/generated/model',
       client: 'react-query',
       mock: false,
     },

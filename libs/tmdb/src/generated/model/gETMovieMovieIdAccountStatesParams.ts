@@ -11,4 +11,4 @@ No Description
  * OpenAPI spec version: 3
  */
 
-export type GETMovieMovieIdAccountStatesParams = { session_id: string; guest_session_id?: string; session_id?: string };
+export type GETMovieMovieIdAccountStatesParams = { guest_session_id?: string; session_id?: string };
