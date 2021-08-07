@@ -10,221 +10,222 @@ To get started designing/documenting this API, select a version on the left. # T
 No Description
  * OpenAPI spec version: 3
  */
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { useQuery, useMutation, UseQueryOptions, UseMutationOptions } from 'react-query';
+import { useMutation, UseMutationOptions, useQuery, UseQueryOptions } from 'react-query';
+
+import { customInstance } from '../../axios';
 import type {
-  GETTvTvIdSeasonSeasonNumberAccountStates200,
-  TraitSessionErrors401Response,
-  TraitStandardErrors404Response,
-  GETTvTvIdSeasonSeasonNumberAccountStatesParams,
-  GETTvTvIdAlternativeTitles200,
-  TraitStandardErrors401Response,
-  GETDiscoverTv200,
-  GETDiscoverTvParams,
-  POSTAuthenticationSessionNew200,
-  POSTAuthenticationSessionNewBody,
-  POSTAuthenticationSessionConvert4200,
-  POSTAuthenticationSessionConvert4Body,
-  POSTListListIdAddItem201,
-  POSTListListIdAddItemBody,
-  POSTListListIdAddItemParams,
-  GETTvTvIdAggregateCredits200,
-  GETMovieMovieIdTranslations200,
-  GETMovieMovieIdTranslationsParams,
-  GETConfigurationJobs200Item,
-  GETConfigurationJobsParams,
-  GETCompanyCompanyId200,
-  GETTvTvIdSimilar200,
-  GETSearchKeyword200,
-  GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberExternalIds200,
-  POSTAccountAccountIdWatchlist201,
-  POSTAccountAccountIdWatchlistBody,
-  POSTAccountAccountIdWatchlistParams,
-  GETTvTvIdContentRatings200,
-  GETConfiguration200,
-  GETConfigurationParams,
-  GETConfigurationTimezones200Item,
-  GETConfigurationTimezonesParams,
-  GETPersonPersonIdExternalIds200,
-  GETPersonPersonIdCombinedCredits200,
-  GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberVideos200,
-  GETTvTvIdTranslations200,
-  GETPersonPersonIdChanges200,
-  GETKeywordKeywordId200,
-  GETAuthenticationTokenNew200,
-  DELETETvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRating200,
-  DELETETvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRatingParams,
-  POSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRating201,
-  POSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRatingBodyBody,
-  POSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRatingParams,
-  GETListListId200,
+  DELETEAuthenticationSession200,
+  DELETEAuthenticationSessionBody,
   DELETEListListId201,
   DELETEListListIdParams,
+  DELETEMovieMovieIdRating200,
+  DELETEMovieMovieIdRatingParams,
+  DELETETvTvIdRating200,
+  DELETETvTvIdRatingParams,
+  DELETETvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRating200,
+  DELETETvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRatingParams,
+  GETAccount200,
+  GETAccountAccountIdFavoriteMovies200,
+  GETAccountAccountIdFavoriteMoviesParams,
+  GETAccountAccountIdFavoriteTv200,
+  GETAccountAccountIdFavoriteTvParams,
+  GETAccountAccountIdLists200,
+  GETAccountAccountIdListsParams,
+  GETAccountAccountIdRatedMovies200,
+  GETAccountAccountIdRatedMoviesParams,
+  GETAccountAccountIdRatedTv200,
+  GETAccountAccountIdRatedTvEpisodes200,
+  GETAccountAccountIdRatedTvEpisodesParams,
+  GETAccountAccountIdRatedTvParams,
+  GETAccountAccountIdWatchlistMovies200,
+  GETAccountAccountIdWatchlistMoviesParams,
+  GETAccountAccountIdWatchlistTv200,
+  GETAccountAccountIdWatchlistTvParams,
+  GETAccountParams,
+  GETAuthenticationGuestSessionNew200,
+  GETAuthenticationTokenNew200,
+  GETCertificationMovieList200,
+  GETCertificationTvList200,
+  GETCollectionCollectionId200,
+  GETCollectionCollectionIdImages200,
+  GETCollectionCollectionIdTranslations200,
+  GETCompanyCompanyId200,
+  GETCompanyCompanyIdAlternativeNames200,
+  GETCompanyCompanyIdImages200,
+  GETConfiguration200,
+  GETConfigurationCountries200Item,
+  GETConfigurationCountriesParams,
+  GETConfigurationJobs200Item,
+  GETConfigurationJobsParams,
+  GETConfigurationLanguages200Item,
+  GETConfigurationLanguagesParams,
+  GETConfigurationParams,
+  GETConfigurationPrimaryTranslationsParams,
+  GETConfigurationTimezones200Item,
+  GETConfigurationTimezonesParams,
+  GETCreditCreditId200,
+  GETDiscoverMovie200,
+  GETDiscoverMovieParams,
+  GETDiscoverTv200,
+  GETDiscoverTvParams,
+  GETFindExternalId200,
+  GETFindExternalIdParams,
+  GETGenreMovieList200,
+  GETGenreMovieListParams,
+  GETGenreTvList200,
+  GETGuestSessionGuestSessionIdRatedMovies200,
+  GETGuestSessionGuestSessionIdRatedTv200,
+  GETGuestSessionGuestSessionIdRatedTvEpisodes200,
+  GETKeywordKeywordId200,
+  GETKeywordKeywordIdMovies200,
+  GETListListId200,
+  GETListListIdItemStatus200,
+  GETListListIdItemStatusParams,
+  GETMovieChanges200,
+  GETMovieLatest200,
+  GETMovieMovieId200,
+  GETMovieMovieIdAccountStates200,
+  GETMovieMovieIdAccountStatesParams,
+  GETMovieMovieIdAlternativeTitles200,
+  GETMovieMovieIdAlternativeTitlesParams,
+  GETMovieMovieIdChanges200,
+  GETMovieMovieIdCredits200,
+  GETMovieMovieIdExternalIds200,
+  GETMovieMovieIdExternalIdsParams,
+  GETMovieMovieIdImages200,
+  GETMovieMovieIdImagesParams,
+  GETMovieMovieIdKeywords200,
+  GETMovieMovieIdKeywordsParams,
+  GETMovieMovieIdLists200,
+  GETMovieMovieIdListsParams,
+  GETMovieMovieIdRecommendations200,
+  GETMovieMovieIdRecommendationsParams,
+  GETMovieMovieIdReleaseDates200,
+  GETMovieMovieIdReleaseDatesParams,
+  GETMovieMovieIdReviews200,
+  GETMovieMovieIdReviewsParams,
+  GETMovieMovieIdSimilar200,
+  GETMovieMovieIdSimilarParams,
+  GETMovieMovieIdTranslations200,
+  GETMovieMovieIdTranslationsParams,
+  GETMovieMovieIdVideos200,
+  GETMovieMovieIdVideosParams,
+  GETMovieMovieIdWatchProviders200,
+  GETMovieMovieIdWatchProvidersParams,
+  GETMovieNowPlaying200,
+  GETMoviePopular200,
+  GETMovieTopRated200,
+  GETMovieUpcoming200,
+  GETNetworkNetworkId200,
+  GETNetworkNetworkIdAlternativeNames200,
+  GETNetworkNetworkIdImages200,
+  GETPersonChanges200,
+  GETPersonLatest200,
+  GETPersonPersonId200,
+  GETPersonPersonIdChanges200,
+  GETPersonPersonIdCombinedCredits200,
+  GETPersonPersonIdExternalIds200,
+  GETPersonPersonIdImages200,
+  GETPersonPersonIdMovieCredits200,
+  GETPersonPersonIdTaggedImages200,
+  GETPersonPersonIdTranslations200,
+  GETPersonPersonIdTvCredits200,
+  GETPersonPopular200,
+  GETReviewReviewId200,
+  GETSearchCollection200,
+  GETSearchCompany200,
+  GETSearchKeyword200,
+  GETSearchMovie200,
+  GETSearchMovieParams,
+  GETSearchMulti200,
+  GETSearchPerson200,
+  GETSearchTv200,
+  GETSearchTvParams,
+  GETTrendingMediaTypeTimeWindow200,
+  GETTvAiringToday200,
+  GETTvChanges200,
+  GETTvEpisodeEpisodeIdChanges200,
+  GETTvEpisodeGroupId200,
+  GETTvLatest200,
+  GETTvOnTheAir200,
+  GETTvPopular200,
+  GETTvSeasonSeasonIdChanges200,
+  GETTvTopRated200,
+  GETTvTvId200,
   GETTvTvIdAccountStates200,
   GETTvTvIdAccountStatesParams,
+  GETTvTvIdAggregateCredits200,
+  GETTvTvIdAlternativeTitles200,
+  GETTvTvIdChanges200,
+  GETTvTvIdContentRatings200,
+  GETTvTvIdCredits200,
+  GETTvTvIdEpisodeGroups200,
+  GETTvTvIdExternalIds200,
+  GETTvTvIdImages200,
+  GETTvTvIdKeywords200,
+  GETTvTvIdRecommendations200,
+  GETTvTvIdReviews200,
+  GETTvTvIdScreenedTheatrically200,
+  GETTvTvIdSeasonSeasonNumber200,
+  GETTvTvIdSeasonSeasonNumberAccountStates200,
+  GETTvTvIdSeasonSeasonNumberAccountStatesParams,
+  GETTvTvIdSeasonSeasonNumberAggregateCredits200,
+  GETTvTvIdSeasonSeasonNumberCredits200,
+  GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumber200,
+  GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberAccountStates200,
+  GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberAccountStatesParams,
+  GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberCredits200,
+  GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberExternalIds200,
+  GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberImages200,
+  GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberTranslations200,
+  GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberVideos200,
+  GETTvTvIdSeasonSeasonNumberExternalIds200,
+  GETTvTvIdSeasonSeasonNumberImages200,
+  GETTvTvIdSeasonSeasonNumberTranslations200,
+  GETTvTvIdSeasonSeasonNumberVideos200,
+  GETTvTvIdSimilar200,
+  GETTvTvIdTranslations200,
+  GETTvTvIdVideos200,
+  GETTvTvIdWatchProviders200,
+  GETWatchProvidersMovie200,
+  GETWatchProvidersMovieParams,
+  GETWatchProvidersRegions200,
+  GETWatchProvidersTv200,
+  GETWatchProvidersTvParams,
   POSTAccountAccountIdFavorite201,
   POSTAccountAccountIdFavoriteBody,
   POSTAccountAccountIdFavoriteParams,
-  GETMovieMovieIdExternalIds200,
-  GETMovieMovieIdExternalIdsParams,
+  POSTAccountAccountIdWatchlist201,
+  POSTAccountAccountIdWatchlistBody,
+  POSTAccountAccountIdWatchlistParams,
+  POSTAuthenticationSessionConvert4Body,
+  POSTAuthenticationSessionConvert4200,
+  POSTAuthenticationSessionNew200,
+  POSTAuthenticationSessionNewBody,
+  POSTAuthenticationTokenValidateWithLogin200,
+  POSTAuthenticationTokenValidateWithLoginBody,
+  POSTList201,
+  POSTListBody,
+  POSTListListIdAddItem201,
+  POSTListListIdAddItemBody,
+  POSTListListIdAddItemParams,
+  POSTListListIdClear201,
+  POSTListListIdClearParams,
   POSTListListIdRemoveItem200,
   POSTListListIdRemoveItemBody,
   POSTListListIdRemoveItemParams,
-  GETMovieMovieIdChanges200,
-  GETMovieNowPlaying200,
+  POSTListParams,
   POSTMovieMovieIdRating201,
   POSTMovieMovieIdRatingBody,
   POSTMovieMovieIdRatingParams,
-  DELETEMovieMovieIdRating200,
-  DELETEMovieMovieIdRatingParams,
-  GETTvTopRated200,
-  GETMoviePopular200,
-  GETMovieMovieIdAlternativeTitles200,
-  GETMovieMovieIdAlternativeTitlesParams,
-  GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberAccountStates200,
-  GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberAccountStatesParams,
   POSTTvTvIdRating201,
   POSTTvTvIdRatingParams,
-  DELETETvTvIdRating200,
-  DELETETvTvIdRatingParams,
-  GETTvTvIdEpisodeGroups200,
-  GETNetworkNetworkIdAlternativeNames200,
-  GETTvTvIdSeasonSeasonNumberAggregateCredits200,
-  GETMovieMovieIdVideos200,
-  GETMovieMovieIdVideosParams,
-  GETTrendingMediaTypeTimeWindow200,
-  GETMovieMovieIdAccountStates200,
-  GETMovieMovieIdAccountStatesParams,
-  GETMovieUpcoming200,
-  GETPersonLatest200,
-  GETCertificationMovieList200,
-  GETTvTvIdSeasonSeasonNumberVideos200,
-  GETDiscoverMovie200,
-  GETDiscoverMovieParams,
-  GETSearchPerson200,
-  GETAccount200,
-  GETAccountParams,
-  GETTvLatest200,
-  GETCompanyCompanyIdImages200,
-  GETMovieMovieIdLists200,
-  GETMovieMovieIdListsParams,
-  GETSearchCollection200,
-  POSTListListIdClear201,
-  POSTListListIdClearParams,
-  GETWatchProvidersRegions200,
-  GETReviewReviewId200,
-  GETTvTvIdImages200,
-  GETPersonPersonIdTvCredits200,
-  GETNetworkNetworkId200,
-  GETTvChanges200,
-  GETTvEpisodeGroupId200,
-  GETSearchCompany200,
-  GETWatchProvidersTv200,
-  GETWatchProvidersTvParams,
-  GETListListIdItemStatus200,
-  GETListListIdItemStatusParams,
-  GETTvTvIdReviews200,
-  GETAccountAccountIdWatchlistTv200,
-  GETAccountAccountIdWatchlistTvParams,
-  GETMovieLatest200,
-  GETAuthenticationGuestSessionNew200,
-  GETTvTvIdSeasonSeasonNumber200,
-  GETAccountAccountIdRatedMovies200,
-  GETAccountAccountIdRatedMoviesParams,
-  GETTvPopular200,
-  GETGuestSessionGuestSessionIdRatedTvEpisodes200,
-  GETPersonPersonIdMovieCredits200,
-  GETCollectionCollectionId200,
-  GETTvOnTheAir200,
-  GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberTranslations200,
-  GETTvSeasonSeasonIdChanges200,
-  GETCollectionCollectionIdImages200,
-  GETCollectionCollectionIdTranslations200,
-  GETConfigurationCountries200Item,
-  GETConfigurationCountriesParams,
-  GETTvTvIdWatchProviders200,
-  GETTvTvId200,
-  GETMovieTopRated200,
-  GETTvTvIdSeasonSeasonNumberExternalIds200,
-  POSTAuthenticationTokenValidateWithLogin200,
-  POSTAuthenticationTokenValidateWithLoginBody,
-  GETPersonPersonIdTranslations200,
-  GETSearchTv200,
-  GETSearchTvParams,
-  GETTvAiringToday200,
-  GETAccountAccountIdFavoriteTv200,
-  GETAccountAccountIdFavoriteTvParams,
-  GETWatchProvidersMovie200,
-  GETWatchProvidersMovieParams,
-  GETConfigurationPrimaryTranslationsParams,
-  GETMovieMovieIdSimilar200,
-  GETMovieMovieIdSimilarParams,
-  GETMovieMovieIdRecommendations200,
-  GETMovieMovieIdRecommendationsParams,
-  GETMovieChanges200,
-  GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberCredits200,
-  GETPersonChanges200,
-  GETTvTvIdVideos200,
-  POSTList201,
-  POSTListBody,
-  POSTListParams,
-  GETTvTvIdSeasonSeasonNumberCredits200,
-  GETTvTvIdKeywords200,
-  GETAccountAccountIdRatedTvEpisodes200,
-  GETAccountAccountIdRatedTvEpisodesParams,
-  GETCompanyCompanyIdAlternativeNames200,
-  GETPersonPersonIdTaggedImages200,
-  GETKeywordKeywordIdMovies200,
-  GETMovieMovieIdWatchProviders200,
-  GETMovieMovieIdWatchProvidersParams,
-  GETSearchMovie200,
-  GETSearchMovieParams,
-  GETNetworkNetworkIdImages200,
-  GETAccountAccountIdWatchlistMovies200,
-  GETAccountAccountIdWatchlistMoviesParams,
-  GETTvTvIdExternalIds200,
-  GETMovieMovieIdKeywords200,
-  GETMovieMovieIdKeywordsParams,
-  GETTvTvIdSeasonSeasonNumberImages200,
-  GETMovieMovieIdReleaseDates200,
-  GETMovieMovieIdReleaseDatesParams,
-  GETPersonPersonIdImages200,
-  GETMovieMovieId200,
-  GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumber200,
-  GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberImages200,
-  DELETEAuthenticationSession200,
-  DELETEAuthenticationSessionBody,
-  GETPersonPersonId200,
-  GETGuestSessionGuestSessionIdRatedTv200,
-  GETMovieMovieIdReviews200,
-  GETMovieMovieIdReviewsParams,
-  GETTvTvIdChanges200,
-  GETCreditCreditId200,
-  GETConfigurationLanguages200Item,
-  GETConfigurationLanguagesParams,
-  GETGenreMovieList200,
-  GETGenreMovieListParams,
-  GETTvTvIdCredits200,
-  GETAccountAccountIdRatedTv200,
-  GETAccountAccountIdRatedTvParams,
-  GETMovieMovieIdCredits200,
-  GETGenreTvList200,
-  GETTvEpisodeEpisodeIdChanges200,
-  GETAccountAccountIdLists200,
-  GETAccountAccountIdListsParams,
-  GETGuestSessionGuestSessionIdRatedMovies200,
-  GETTvTvIdSeasonSeasonNumberTranslations200,
-  GETTvTvIdScreenedTheatrically200,
-  GETPersonPopular200,
-  GETTvTvIdRecommendations200,
-  GETFindExternalId200,
-  GETFindExternalIdParams,
-  GETCertificationTvList200,
-  GETMovieMovieIdImages200,
-  GETMovieMovieIdImagesParams,
-  GETSearchMulti200,
-  GETAccountAccountIdFavoriteMovies200,
-  GETAccountAccountIdFavoriteMoviesParams,
+  POSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRating201,
+  POSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRatingBodyBody,
+  POSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRatingParams,
+  TraitSessionErrors401Response,
+  TraitStandardErrors401Response,
+  TraitStandardErrors404Response,
 } from '.././model';
 
 type AsyncReturnType<T extends (...args: any) => Promise<any>, U = unknown> = T extends (
@@ -235,19 +236,20 @@ type AsyncReturnType<T extends (...args: any) => Promise<any>, U = unknown> = T 
     : R
   : any;
 
-export const gETTvTvIdSeasonSeasonNumberAccountStates = <
-  TData = AxiosResponse<GETTvTvIdSeasonSeasonNumberAccountStates200>
->(
+type SecondParameter<T extends (...args: any) => any> = T extends (config: any, args: infer P) => any ? P : never;
+
+export const gETTvTvIdSeasonSeasonNumberAccountStates = <TData = GETTvTvIdSeasonSeasonNumberAccountStates200>(
   tvid: number,
   seasonnumber: number,
   params?: GETTvTvIdSeasonSeasonNumberAccountStatesParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/season/${seasonnumber}/account_states`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/season/${seasonnumber}/account_states`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdSeasonSeasonNumberAccountStatesQueryKey = (
   tvid: number,
@@ -258,7 +260,7 @@ export const getGETTvTvIdSeasonSeasonNumberAccountStatesQueryKey = (
 export const useGETTvTvIdSeasonSeasonNumberAccountStates = <
   TQueryFnData = AsyncReturnType<
     typeof gETTvTvIdSeasonSeasonNumberAccountStates,
-    AxiosResponse<GETTvTvIdSeasonSeasonNumberAccountStates200>
+    GETTvTvIdSeasonSeasonNumberAccountStates200
   >,
   TError = TraitSessionErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
@@ -266,16 +268,16 @@ export const useGETTvTvIdSeasonSeasonNumberAccountStates = <
   tvid: number,
   seasonnumber: number,
   params?: GETTvTvIdSeasonSeasonNumberAccountStatesParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey =
     queryOptions?.queryKey ?? getGETTvTvIdSeasonSeasonNumberAccountStatesQueryKey(tvid, seasonnumber, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdSeasonSeasonNumberAccountStates<TQueryFnData>(tvid, seasonnumber, params, axiosOptions),
+    () => gETTvTvIdSeasonSeasonNumberAccountStates<TQueryFnData>(tvid, seasonnumber, params, requestOptions),
     { enabled: !!(tvid && seasonnumber), ...queryOptions }
   );
 
@@ -285,30 +287,34 @@ export const useGETTvTvIdSeasonSeasonNumberAccountStates = <
   };
 };
 
-export const gETTvTvIdAlternativeTitles = <TData = AxiosResponse<GETTvTvIdAlternativeTitles200>>(
+export const gETTvTvIdAlternativeTitles = <TData = GETTvTvIdAlternativeTitles200>(
   tvid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/alternative_titles`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/alternative_titles`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdAlternativeTitlesQueryKey = (tvid: number) => [`/tv/${tvid}/alternative_titles`];
 
 export const useGETTvTvIdAlternativeTitles = <
-  TQueryFnData = AsyncReturnType<typeof gETTvTvIdAlternativeTitles, AxiosResponse<GETTvTvIdAlternativeTitles200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvTvIdAlternativeTitles, GETTvTvIdAlternativeTitles200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdAlternativeTitlesQueryKey(tvid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdAlternativeTitles<TQueryFnData>(tvid, axiosOptions),
+    () => gETTvTvIdAlternativeTitles<TQueryFnData>(tvid, requestOptions),
     { enabled: !!tvid, ...queryOptions }
   );
 
@@ -318,33 +324,34 @@ export const useGETTvTvIdAlternativeTitles = <
   };
 };
 
-export const gETDiscoverTv = <TData = AxiosResponse<GETDiscoverTv200>>(
+export const gETDiscoverTv = <TData = GETDiscoverTv200>(
   params?: GETDiscoverTvParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/discover/tv`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/discover/tv`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETDiscoverTvQueryKey = (params?: GETDiscoverTvParams) => [`/discover/tv`, ...(params ? [params] : [])];
 
 export const useGETDiscoverTv = <
-  TQueryFnData = AsyncReturnType<typeof gETDiscoverTv, AxiosResponse<GETDiscoverTv200>>,
+  TQueryFnData = AsyncReturnType<typeof gETDiscoverTv, GETDiscoverTv200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   params?: GETDiscoverTvParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETDiscoverTvQueryKey(params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETDiscoverTv<TQueryFnData>(params, axiosOptions),
+    () => gETDiscoverTv<TQueryFnData>(params, requestOptions),
     queryOptions
   );
 
@@ -354,69 +361,75 @@ export const useGETDiscoverTv = <
   };
 };
 
-export const pOSTAuthenticationSessionNew = <TData = AxiosResponse<POSTAuthenticationSessionNew200>>(
+export const pOSTAuthenticationSessionNew = <TData = POSTAuthenticationSessionNew200>(
   pOSTAuthenticationSessionNewBody: POSTAuthenticationSessionNewBody,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.post(`/authentication/session/new`, pOSTAuthenticationSessionNewBody, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/authentication/session/new`, method: 'post', data: pOSTAuthenticationSessionNewBody },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const usePOSTAuthenticationSessionNew = <
-  TData = AsyncReturnType<typeof pOSTAuthenticationSessionNew, AxiosResponse<POSTAuthenticationSessionNew200>>,
+  TData = AsyncReturnType<typeof pOSTAuthenticationSessionNew, POSTAuthenticationSessionNew200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<TData, TError, { data: POSTAuthenticationSessionNewBody }, TContext>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { mutation: mutationOptions, axios: axiosOptions } = options || {};
+  const { mutation: mutationOptions, request: requestOptions } = options || {};
 
   return useMutation<TData, TError, { data: POSTAuthenticationSessionNewBody }, TContext>(props => {
     const { data } = props || {};
 
-    return pOSTAuthenticationSessionNew<TData>(data, axiosOptions);
+    return pOSTAuthenticationSessionNew<TData>(data, requestOptions);
   }, mutationOptions);
 };
-export const pOSTAuthenticationSessionConvert4 = <TData = AxiosResponse<POSTAuthenticationSessionConvert4200>>(
+export const pOSTAuthenticationSessionConvert4 = <TData = POSTAuthenticationSessionConvert4200>(
   pOSTAuthenticationSessionConvert4Body: POSTAuthenticationSessionConvert4Body,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.post(`/authentication/session/convert/4`, pOSTAuthenticationSessionConvert4Body, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/authentication/session/convert/4`, method: 'post', data: pOSTAuthenticationSessionConvert4Body },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const usePOSTAuthenticationSessionConvert4 = <
-  TData = AsyncReturnType<
-    typeof pOSTAuthenticationSessionConvert4,
-    AxiosResponse<POSTAuthenticationSessionConvert4200>
-  >,
+  TData = AsyncReturnType<typeof pOSTAuthenticationSessionConvert4, POSTAuthenticationSessionConvert4200>,
   TError = TraitSessionErrors401Response | TraitStandardErrors404Response,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<TData, TError, { data: POSTAuthenticationSessionConvert4Body }, TContext>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { mutation: mutationOptions, axios: axiosOptions } = options || {};
+  const { mutation: mutationOptions, request: requestOptions } = options || {};
 
   return useMutation<TData, TError, { data: POSTAuthenticationSessionConvert4Body }, TContext>(props => {
     const { data } = props || {};
 
-    return pOSTAuthenticationSessionConvert4<TData>(data, axiosOptions);
+    return pOSTAuthenticationSessionConvert4<TData>(data, requestOptions);
   }, mutationOptions);
 };
-export const pOSTListListIdAddItem = <TData = AxiosResponse<POSTListListIdAddItem201>>(
+export const pOSTListListIdAddItem = <TData = POSTListListIdAddItem201>(
   listid: string,
   pOSTListListIdAddItemBody: POSTListListIdAddItemBody,
   params?: POSTListListIdAddItemParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.post(`/list/${listid}/add_item`, pOSTListListIdAddItemBody, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/list/${listid}/add_item`, method: 'post', data: pOSTListListIdAddItemBody, params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const usePOSTListListIdAddItem = <
-  TData = AsyncReturnType<typeof pOSTListListIdAddItem, AxiosResponse<POSTListListIdAddItem201>>,
+  TData = AsyncReturnType<typeof pOSTListListIdAddItem, POSTListListIdAddItem201>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TContext = unknown
 >(options?: {
@@ -426,9 +439,9 @@ export const usePOSTListListIdAddItem = <
     { listid: string; data: POSTListListIdAddItemBody; params?: POSTListListIdAddItemParams },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { mutation: mutationOptions, axios: axiosOptions } = options || {};
+  const { mutation: mutationOptions, request: requestOptions } = options || {};
 
   return useMutation<
     TData,
@@ -438,33 +451,37 @@ export const usePOSTListListIdAddItem = <
   >(props => {
     const { listid, data, params } = props || {};
 
-    return pOSTListListIdAddItem<TData>(listid, data, params, axiosOptions);
+    return pOSTListListIdAddItem<TData>(listid, data, params, requestOptions);
   }, mutationOptions);
 };
-export const gETTvTvIdAggregateCredits = <TData = AxiosResponse<GETTvTvIdAggregateCredits200>>(
+export const gETTvTvIdAggregateCredits = <TData = GETTvTvIdAggregateCredits200>(
   tvid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/aggregate_credits`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/aggregate_credits`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdAggregateCreditsQueryKey = (tvid: number) => [`/tv/${tvid}/aggregate_credits`];
 
 export const useGETTvTvIdAggregateCredits = <
-  TQueryFnData = AsyncReturnType<typeof gETTvTvIdAggregateCredits, AxiosResponse<GETTvTvIdAggregateCredits200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvTvIdAggregateCredits, GETTvTvIdAggregateCredits200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdAggregateCreditsQueryKey(tvid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdAggregateCredits<TQueryFnData>(tvid, axiosOptions),
+    () => gETTvTvIdAggregateCredits<TQueryFnData>(tvid, requestOptions),
     { enabled: !!tvid, ...queryOptions }
   );
 
@@ -474,16 +491,17 @@ export const useGETTvTvIdAggregateCredits = <
   };
 };
 
-export const gETMovieMovieIdTranslations = <TData = AxiosResponse<GETMovieMovieIdTranslations200>>(
+export const gETMovieMovieIdTranslations = <TData = GETMovieMovieIdTranslations200>(
   movieid: number,
   params?: GETMovieMovieIdTranslationsParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/movie/${movieid}/translations`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/movie/${movieid}/translations`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETMovieMovieIdTranslationsQueryKey = (movieid: number, params?: GETMovieMovieIdTranslationsParams) => [
   `/movie/${movieid}/translations`,
@@ -491,21 +509,21 @@ export const getGETMovieMovieIdTranslationsQueryKey = (movieid: number, params?:
 ];
 
 export const useGETMovieMovieIdTranslations = <
-  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdTranslations, AxiosResponse<GETMovieMovieIdTranslations200>>,
+  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdTranslations, GETMovieMovieIdTranslations200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   movieid: number,
   params?: GETMovieMovieIdTranslationsParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETMovieMovieIdTranslationsQueryKey(movieid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieMovieIdTranslations<TQueryFnData>(movieid, params, axiosOptions),
+    () => gETMovieMovieIdTranslations<TQueryFnData>(movieid, params, requestOptions),
     { enabled: !!movieid, ...queryOptions }
   );
 
@@ -515,15 +533,16 @@ export const useGETMovieMovieIdTranslations = <
   };
 };
 
-export const gETConfigurationJobs = <TData = AxiosResponse<GETConfigurationJobs200Item[]>>(
+export const gETConfigurationJobs = <TData = GETConfigurationJobs200Item[]>(
   params?: GETConfigurationJobsParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/configuration/jobs`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/configuration/jobs`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETConfigurationJobsQueryKey = (params?: GETConfigurationJobsParams) => [
   `/configuration/jobs`,
@@ -531,20 +550,20 @@ export const getGETConfigurationJobsQueryKey = (params?: GETConfigurationJobsPar
 ];
 
 export const useGETConfigurationJobs = <
-  TQueryFnData = AsyncReturnType<typeof gETConfigurationJobs, AxiosResponse<GETConfigurationJobs200Item[]>>,
+  TQueryFnData = AsyncReturnType<typeof gETConfigurationJobs, GETConfigurationJobs200Item[]>,
   TError = unknown,
   TData = TQueryFnData
 >(
   params?: GETConfigurationJobsParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETConfigurationJobsQueryKey(params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETConfigurationJobs<TQueryFnData>(params, axiosOptions),
+    () => gETConfigurationJobs<TQueryFnData>(params, requestOptions),
     queryOptions
   );
 
@@ -554,30 +573,34 @@ export const useGETConfigurationJobs = <
   };
 };
 
-export const gETCompanyCompanyId = <TData = AxiosResponse<GETCompanyCompanyId200>>(
+export const gETCompanyCompanyId = <TData = GETCompanyCompanyId200>(
   companyid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/company/${companyid}`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/company/${companyid}`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETCompanyCompanyIdQueryKey = (companyid: number) => [`/company/${companyid}`];
 
 export const useGETCompanyCompanyId = <
-  TQueryFnData = AsyncReturnType<typeof gETCompanyCompanyId, AxiosResponse<GETCompanyCompanyId200>>,
+  TQueryFnData = AsyncReturnType<typeof gETCompanyCompanyId, GETCompanyCompanyId200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   companyid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETCompanyCompanyIdQueryKey(companyid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETCompanyCompanyId<TQueryFnData>(companyid, axiosOptions),
+    () => gETCompanyCompanyId<TQueryFnData>(companyid, requestOptions),
     { enabled: !!companyid, ...queryOptions }
   );
 
@@ -587,30 +610,34 @@ export const useGETCompanyCompanyId = <
   };
 };
 
-export const gETTvTvIdSimilar = <TData = AxiosResponse<GETTvTvIdSimilar200>>(
+export const gETTvTvIdSimilar = <TData = GETTvTvIdSimilar200>(
   tvid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/similar`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/similar`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdSimilarQueryKey = (tvid: number) => [`/tv/${tvid}/similar`];
 
 export const useGETTvTvIdSimilar = <
-  TQueryFnData = AsyncReturnType<typeof gETTvTvIdSimilar, AxiosResponse<GETTvTvIdSimilar200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvTvIdSimilar, GETTvTvIdSimilar200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdSimilarQueryKey(tvid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdSimilar<TQueryFnData>(tvid, axiosOptions),
+    () => gETTvTvIdSimilar<TQueryFnData>(tvid, requestOptions),
     { enabled: !!tvid, ...queryOptions }
   );
 
@@ -620,29 +647,31 @@ export const useGETTvTvIdSimilar = <
   };
 };
 
-export const gETSearchKeyword = <TData = AxiosResponse<GETSearchKeyword200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/search/keyword`, options);
-};
+export const gETSearchKeyword = <TData = GETSearchKeyword200>(options?: SecondParameter<typeof customInstance>) =>
+  customInstance<TData>(
+    { url: `/search/keyword`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETSearchKeywordQueryKey = () => [`/search/keyword`];
 
 export const useGETSearchKeyword = <
-  TQueryFnData = AsyncReturnType<typeof gETSearchKeyword, AxiosResponse<GETSearchKeyword200>>,
+  TQueryFnData = AsyncReturnType<typeof gETSearchKeyword, GETSearchKeyword200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETSearchKeywordQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETSearchKeyword<TQueryFnData>(axiosOptions),
+    () => gETSearchKeyword<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -653,15 +682,19 @@ export const useGETSearchKeyword = <
 };
 
 export const gETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberExternalIds = <
-  TData = AxiosResponse<GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberExternalIds200>
+  TData = GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberExternalIds200
 >(
   tvid: number,
   seasonnumber: number,
   episodenumber: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/season/${seasonnumber}/episode/${episodenumber}/external_ids`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/season/${seasonnumber}/episode/${episodenumber}/external_ids`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberExternalIdsQueryKey = (
   tvid: number,
@@ -672,7 +705,7 @@ export const getGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberExternalIdsQueryK
 export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberExternalIds = <
   TQueryFnData = AsyncReturnType<
     typeof gETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberExternalIds,
-    AxiosResponse<GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberExternalIds200>
+    GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberExternalIds200
   >,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
@@ -680,9 +713,9 @@ export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberExternalIds = <
   tvid: number,
   seasonnumber: number,
   episodenumber: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey =
     queryOptions?.queryKey ??
@@ -695,7 +728,7 @@ export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberExternalIds = <
         tvid,
         seasonnumber,
         episodenumber,
-        axiosOptions
+        requestOptions
       ),
     { enabled: !!(tvid && seasonnumber && episodenumber), ...queryOptions }
   );
@@ -706,20 +739,21 @@ export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberExternalIds = <
   };
 };
 
-export const pOSTAccountAccountIdWatchlist = <TData = AxiosResponse<POSTAccountAccountIdWatchlist201>>(
+export const pOSTAccountAccountIdWatchlist = <TData = POSTAccountAccountIdWatchlist201>(
   accountid: number,
   pOSTAccountAccountIdWatchlistBody: POSTAccountAccountIdWatchlistBody,
   params?: POSTAccountAccountIdWatchlistParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.post(`/account/${accountid}/watchlist`, pOSTAccountAccountIdWatchlistBody, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/account/${accountid}/watchlist`, method: 'post', data: pOSTAccountAccountIdWatchlistBody, params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const usePOSTAccountAccountIdWatchlist = <
-  TData = AsyncReturnType<typeof pOSTAccountAccountIdWatchlist, AxiosResponse<POSTAccountAccountIdWatchlist201>>,
+  TData = AsyncReturnType<typeof pOSTAccountAccountIdWatchlist, POSTAccountAccountIdWatchlist201>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TContext = unknown
 >(options?: {
@@ -729,9 +763,9 @@ export const usePOSTAccountAccountIdWatchlist = <
     { accountid: number; data: POSTAccountAccountIdWatchlistBody; params?: POSTAccountAccountIdWatchlistParams },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { mutation: mutationOptions, axios: axiosOptions } = options || {};
+  const { mutation: mutationOptions, request: requestOptions } = options || {};
 
   return useMutation<
     TData,
@@ -741,33 +775,37 @@ export const usePOSTAccountAccountIdWatchlist = <
   >(props => {
     const { accountid, data, params } = props || {};
 
-    return pOSTAccountAccountIdWatchlist<TData>(accountid, data, params, axiosOptions);
+    return pOSTAccountAccountIdWatchlist<TData>(accountid, data, params, requestOptions);
   }, mutationOptions);
 };
-export const gETTvTvIdContentRatings = <TData = AxiosResponse<GETTvTvIdContentRatings200>>(
+export const gETTvTvIdContentRatings = <TData = GETTvTvIdContentRatings200>(
   tvid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/content_ratings`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/content_ratings`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdContentRatingsQueryKey = (tvid: number) => [`/tv/${tvid}/content_ratings`];
 
 export const useGETTvTvIdContentRatings = <
-  TQueryFnData = AsyncReturnType<typeof gETTvTvIdContentRatings, AxiosResponse<GETTvTvIdContentRatings200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvTvIdContentRatings, GETTvTvIdContentRatings200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdContentRatingsQueryKey(tvid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdContentRatings<TQueryFnData>(tvid, axiosOptions),
+    () => gETTvTvIdContentRatings<TQueryFnData>(tvid, requestOptions),
     { enabled: !!tvid, ...queryOptions }
   );
 
@@ -777,15 +815,16 @@ export const useGETTvTvIdContentRatings = <
   };
 };
 
-export const gETConfiguration = <TData = AxiosResponse<GETConfiguration200>>(
+export const gETConfiguration = <TData = GETConfiguration200>(
   params?: GETConfigurationParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/configuration`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/configuration`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETConfigurationQueryKey = (params?: GETConfigurationParams) => [
   `/configuration`,
@@ -793,20 +832,20 @@ export const getGETConfigurationQueryKey = (params?: GETConfigurationParams) => 
 ];
 
 export const useGETConfiguration = <
-  TQueryFnData = AsyncReturnType<typeof gETConfiguration, AxiosResponse<GETConfiguration200>>,
+  TQueryFnData = AsyncReturnType<typeof gETConfiguration, GETConfiguration200>,
   TError = unknown,
   TData = TQueryFnData
 >(
   params?: GETConfigurationParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETConfigurationQueryKey(params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETConfiguration<TQueryFnData>(params, axiosOptions),
+    () => gETConfiguration<TQueryFnData>(params, requestOptions),
     queryOptions
   );
 
@@ -816,15 +855,16 @@ export const useGETConfiguration = <
   };
 };
 
-export const gETConfigurationTimezones = <TData = AxiosResponse<GETConfigurationTimezones200Item[]>>(
+export const gETConfigurationTimezones = <TData = GETConfigurationTimezones200Item[]>(
   params?: GETConfigurationTimezonesParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/configuration/timezones`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/configuration/timezones`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETConfigurationTimezonesQueryKey = (params?: GETConfigurationTimezonesParams) => [
   `/configuration/timezones`,
@@ -832,20 +872,20 @@ export const getGETConfigurationTimezonesQueryKey = (params?: GETConfigurationTi
 ];
 
 export const useGETConfigurationTimezones = <
-  TQueryFnData = AsyncReturnType<typeof gETConfigurationTimezones, AxiosResponse<GETConfigurationTimezones200Item[]>>,
+  TQueryFnData = AsyncReturnType<typeof gETConfigurationTimezones, GETConfigurationTimezones200Item[]>,
   TError = unknown,
   TData = TQueryFnData
 >(
   params?: GETConfigurationTimezonesParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETConfigurationTimezonesQueryKey(params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETConfigurationTimezones<TQueryFnData>(params, axiosOptions),
+    () => gETConfigurationTimezones<TQueryFnData>(params, requestOptions),
     queryOptions
   );
 
@@ -855,30 +895,34 @@ export const useGETConfigurationTimezones = <
   };
 };
 
-export const gETPersonPersonIdExternalIds = <TData = AxiosResponse<GETPersonPersonIdExternalIds200>>(
+export const gETPersonPersonIdExternalIds = <TData = GETPersonPersonIdExternalIds200>(
   personid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/person/${personid}/external_ids`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/person/${personid}/external_ids`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETPersonPersonIdExternalIdsQueryKey = (personid: number) => [`/person/${personid}/external_ids`];
 
 export const useGETPersonPersonIdExternalIds = <
-  TQueryFnData = AsyncReturnType<typeof gETPersonPersonIdExternalIds, AxiosResponse<GETPersonPersonIdExternalIds200>>,
+  TQueryFnData = AsyncReturnType<typeof gETPersonPersonIdExternalIds, GETPersonPersonIdExternalIds200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   personid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETPersonPersonIdExternalIdsQueryKey(personid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETPersonPersonIdExternalIds<TQueryFnData>(personid, axiosOptions),
+    () => gETPersonPersonIdExternalIds<TQueryFnData>(personid, requestOptions),
     { enabled: !!personid, ...queryOptions }
   );
 
@@ -888,35 +932,36 @@ export const useGETPersonPersonIdExternalIds = <
   };
 };
 
-export const gETPersonPersonIdCombinedCredits = <TData = AxiosResponse<GETPersonPersonIdCombinedCredits200>>(
+export const gETPersonPersonIdCombinedCredits = <TData = GETPersonPersonIdCombinedCredits200>(
   personid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/person/${personid}/combined_credits`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/person/${personid}/combined_credits`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETPersonPersonIdCombinedCreditsQueryKey = (personid: number) => [
   `/person/${personid}/combined_credits`,
 ];
 
 export const useGETPersonPersonIdCombinedCredits = <
-  TQueryFnData = AsyncReturnType<
-    typeof gETPersonPersonIdCombinedCredits,
-    AxiosResponse<GETPersonPersonIdCombinedCredits200>
-  >,
+  TQueryFnData = AsyncReturnType<typeof gETPersonPersonIdCombinedCredits, GETPersonPersonIdCombinedCredits200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   personid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETPersonPersonIdCombinedCreditsQueryKey(personid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETPersonPersonIdCombinedCredits<TQueryFnData>(personid, axiosOptions),
+    () => gETPersonPersonIdCombinedCredits<TQueryFnData>(personid, requestOptions),
     { enabled: !!personid, ...queryOptions }
   );
 
@@ -927,15 +972,19 @@ export const useGETPersonPersonIdCombinedCredits = <
 };
 
 export const gETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberVideos = <
-  TData = AxiosResponse<GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberVideos200>
+  TData = GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberVideos200
 >(
   tvid: number,
   seasonnumber: number,
   episodenumber: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/season/${seasonnumber}/episode/${episodenumber}/videos`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/season/${seasonnumber}/episode/${episodenumber}/videos`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberVideosQueryKey = (
   tvid: number,
@@ -946,7 +995,7 @@ export const getGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberVideosQueryKey = 
 export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberVideos = <
   TQueryFnData = AsyncReturnType<
     typeof gETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberVideos,
-    AxiosResponse<GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberVideos200>
+    GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberVideos200
   >,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
@@ -954,9 +1003,9 @@ export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberVideos = <
   tvid: number,
   seasonnumber: number,
   episodenumber: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey =
     queryOptions?.queryKey ??
@@ -969,7 +1018,7 @@ export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberVideos = <
         tvid,
         seasonnumber,
         episodenumber,
-        axiosOptions
+        requestOptions
       ),
     { enabled: !!(tvid && seasonnumber && episodenumber), ...queryOptions }
   );
@@ -980,30 +1029,34 @@ export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberVideos = <
   };
 };
 
-export const gETTvTvIdTranslations = <TData = AxiosResponse<GETTvTvIdTranslations200>>(
+export const gETTvTvIdTranslations = <TData = GETTvTvIdTranslations200>(
   tvid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/translations`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/translations`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdTranslationsQueryKey = (tvid: number) => [`/tv/${tvid}/translations`];
 
 export const useGETTvTvIdTranslations = <
-  TQueryFnData = AsyncReturnType<typeof gETTvTvIdTranslations, AxiosResponse<GETTvTvIdTranslations200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvTvIdTranslations, GETTvTvIdTranslations200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdTranslationsQueryKey(tvid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdTranslations<TQueryFnData>(tvid, axiosOptions),
+    () => gETTvTvIdTranslations<TQueryFnData>(tvid, requestOptions),
     { enabled: !!tvid, ...queryOptions }
   );
 
@@ -1013,30 +1066,34 @@ export const useGETTvTvIdTranslations = <
   };
 };
 
-export const gETPersonPersonIdChanges = <TData = AxiosResponse<GETPersonPersonIdChanges200>>(
+export const gETPersonPersonIdChanges = <TData = GETPersonPersonIdChanges200>(
   personid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/person/${personid}/changes`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/person/${personid}/changes`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETPersonPersonIdChangesQueryKey = (personid: number) => [`/person/${personid}/changes`];
 
 export const useGETPersonPersonIdChanges = <
-  TQueryFnData = AsyncReturnType<typeof gETPersonPersonIdChanges, AxiosResponse<GETPersonPersonIdChanges200>>,
+  TQueryFnData = AsyncReturnType<typeof gETPersonPersonIdChanges, GETPersonPersonIdChanges200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   personid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETPersonPersonIdChangesQueryKey(personid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETPersonPersonIdChanges<TQueryFnData>(personid, axiosOptions),
+    () => gETPersonPersonIdChanges<TQueryFnData>(personid, requestOptions),
     { enabled: !!personid, ...queryOptions }
   );
 
@@ -1046,30 +1103,34 @@ export const useGETPersonPersonIdChanges = <
   };
 };
 
-export const gETKeywordKeywordId = <TData = AxiosResponse<GETKeywordKeywordId200>>(
+export const gETKeywordKeywordId = <TData = GETKeywordKeywordId200>(
   keywordid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/keyword/${keywordid}`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/keyword/${keywordid}`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETKeywordKeywordIdQueryKey = (keywordid: number) => [`/keyword/${keywordid}`];
 
 export const useGETKeywordKeywordId = <
-  TQueryFnData = AsyncReturnType<typeof gETKeywordKeywordId, AxiosResponse<GETKeywordKeywordId200>>,
+  TQueryFnData = AsyncReturnType<typeof gETKeywordKeywordId, GETKeywordKeywordId200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   keywordid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETKeywordKeywordIdQueryKey(keywordid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETKeywordKeywordId<TQueryFnData>(keywordid, axiosOptions),
+    () => gETKeywordKeywordId<TQueryFnData>(keywordid, requestOptions),
     { enabled: !!keywordid, ...queryOptions }
   );
 
@@ -1079,29 +1140,33 @@ export const useGETKeywordKeywordId = <
   };
 };
 
-export const gETAuthenticationTokenNew = <TData = AxiosResponse<GETAuthenticationTokenNew200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/authentication/token/new`, options);
-};
+export const gETAuthenticationTokenNew = <TData = GETAuthenticationTokenNew200>(
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/authentication/token/new`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETAuthenticationTokenNewQueryKey = () => [`/authentication/token/new`];
 
 export const useGETAuthenticationTokenNew = <
-  TQueryFnData = AsyncReturnType<typeof gETAuthenticationTokenNew, AxiosResponse<GETAuthenticationTokenNew200>>,
+  TQueryFnData = AsyncReturnType<typeof gETAuthenticationTokenNew, GETAuthenticationTokenNew200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETAuthenticationTokenNewQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETAuthenticationTokenNew<TQueryFnData>(axiosOptions),
+    () => gETAuthenticationTokenNew<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -1112,24 +1177,25 @@ export const useGETAuthenticationTokenNew = <
 };
 
 export const dELETETvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRating = <
-  TData = AxiosResponse<DELETETvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRating200>
+  TData = DELETETvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRating200
 >(
   tvid: number,
   seasonnumber: number,
   episodenumber: number,
   params?: DELETETvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRatingParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.delete(`/tv/${tvid}/season/${seasonnumber}/episode/${episodenumber}/rating`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/season/${seasonnumber}/episode/${episodenumber}/rating`, method: 'delete', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const useDELETETvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRating = <
   TData = AsyncReturnType<
     typeof dELETETvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRating,
-    AxiosResponse<DELETETvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRating200>
+    DELETETvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRating200
   >,
   TError = TraitSessionErrors401Response,
   TContext = unknown
@@ -1145,9 +1211,9 @@ export const useDELETETvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRating = <
     },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { mutation: mutationOptions, axios: axiosOptions } = options || {};
+  const { mutation: mutationOptions, request: requestOptions } = options || {};
 
   return useMutation<
     TData,
@@ -1167,34 +1233,36 @@ export const useDELETETvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRating = <
       seasonnumber,
       episodenumber,
       params,
-      axiosOptions
+      requestOptions
     );
   }, mutationOptions);
 };
 export const pOSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRating = <
-  TData = AxiosResponse<POSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRating201>
+  TData = POSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRating201
 >(
   tvid: number,
   seasonnumber: number,
   episodenumber: number,
   pOSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRatingBodyBody: POSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRatingBodyBody,
   params?: POSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRatingParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.post(
-    `/tv/${tvid}/season/${seasonnumber}/episode/${episodenumber}/rating`,
-    pOSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRatingBodyBody,
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
     {
+      url: `/tv/${tvid}/season/${seasonnumber}/episode/${episodenumber}/rating`,
+      method: 'post',
+      data: pOSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRatingBodyBody,
       params,
-      ...options,
-    }
+    },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
   );
-};
 
 export const usePOSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRating = <
   TData = AsyncReturnType<
     typeof pOSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRating,
-    AxiosResponse<POSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRating201>
+    POSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRating201
   >,
   TError = TraitSessionErrors401Response | TraitStandardErrors404Response,
   TContext = unknown
@@ -1211,9 +1279,9 @@ export const usePOSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRating = <
     },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { mutation: mutationOptions, axios: axiosOptions } = options || {};
+  const { mutation: mutationOptions, request: requestOptions } = options || {};
 
   return useMutation<
     TData,
@@ -1235,34 +1303,38 @@ export const usePOSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRating = <
       episodenumber,
       data,
       params,
-      axiosOptions
+      requestOptions
     );
   }, mutationOptions);
 };
-export const gETListListId = <TData = AxiosResponse<GETListListId200>>(
+export const gETListListId = <TData = GETListListId200>(
   listid: string,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/list/${listid}`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/list/${listid}`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETListListIdQueryKey = (listid: string) => [`/list/${listid}`];
 
 export const useGETListListId = <
-  TQueryFnData = AsyncReturnType<typeof gETListListId, AxiosResponse<GETListListId200>>,
+  TQueryFnData = AsyncReturnType<typeof gETListListId, GETListListId200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   listid: string,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETListListIdQueryKey(listid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETListListId<TQueryFnData>(listid, axiosOptions),
+    () => gETListListId<TQueryFnData>(listid, requestOptions),
     { enabled: !!listid, ...queryOptions }
   );
 
@@ -1272,43 +1344,45 @@ export const useGETListListId = <
   };
 };
 
-export const dELETEListListId = <TData = AxiosResponse<DELETEListListId201>>(
+export const dELETEListListId = <TData = DELETEListListId201>(
   listid: string,
   params?: DELETEListListIdParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.delete(`/list/${listid}`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/list/${listid}`, method: 'delete', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const useDELETEListListId = <
-  TData = AsyncReturnType<typeof dELETEListListId, AxiosResponse<DELETEListListId201>>,
+  TData = AsyncReturnType<typeof dELETEListListId, DELETEListListId201>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<TData, TError, { listid: string; params?: DELETEListListIdParams }, TContext>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { mutation: mutationOptions, axios: axiosOptions } = options || {};
+  const { mutation: mutationOptions, request: requestOptions } = options || {};
 
   return useMutation<TData, TError, { listid: string; params?: DELETEListListIdParams }, TContext>(props => {
     const { listid, params } = props || {};
 
-    return dELETEListListId<TData>(listid, params, axiosOptions);
+    return dELETEListListId<TData>(listid, params, requestOptions);
   }, mutationOptions);
 };
-export const gETTvTvIdAccountStates = <TData = AxiosResponse<GETTvTvIdAccountStates200>>(
+export const gETTvTvIdAccountStates = <TData = GETTvTvIdAccountStates200>(
   tvid: number,
   params?: GETTvTvIdAccountStatesParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/account_states`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/account_states`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdAccountStatesQueryKey = (tvid: number, params?: GETTvTvIdAccountStatesParams) => [
   `/tv/${tvid}/account_states`,
@@ -1316,21 +1390,21 @@ export const getGETTvTvIdAccountStatesQueryKey = (tvid: number, params?: GETTvTv
 ];
 
 export const useGETTvTvIdAccountStates = <
-  TQueryFnData = AsyncReturnType<typeof gETTvTvIdAccountStates, AxiosResponse<GETTvTvIdAccountStates200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvTvIdAccountStates, GETTvTvIdAccountStates200>,
   TError = TraitSessionErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
   params?: GETTvTvIdAccountStatesParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdAccountStatesQueryKey(tvid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdAccountStates<TQueryFnData>(tvid, params, axiosOptions),
+    () => gETTvTvIdAccountStates<TQueryFnData>(tvid, params, requestOptions),
     { enabled: !!tvid, ...queryOptions }
   );
 
@@ -1340,20 +1414,21 @@ export const useGETTvTvIdAccountStates = <
   };
 };
 
-export const pOSTAccountAccountIdFavorite = <TData = AxiosResponse<POSTAccountAccountIdFavorite201>>(
+export const pOSTAccountAccountIdFavorite = <TData = POSTAccountAccountIdFavorite201>(
   accountid: number,
   pOSTAccountAccountIdFavoriteBody: POSTAccountAccountIdFavoriteBody,
   params?: POSTAccountAccountIdFavoriteParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.post(`/account/${accountid}/favorite`, pOSTAccountAccountIdFavoriteBody, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/account/${accountid}/favorite`, method: 'post', data: pOSTAccountAccountIdFavoriteBody, params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const usePOSTAccountAccountIdFavorite = <
-  TData = AsyncReturnType<typeof pOSTAccountAccountIdFavorite, AxiosResponse<POSTAccountAccountIdFavorite201>>,
+  TData = AsyncReturnType<typeof pOSTAccountAccountIdFavorite, POSTAccountAccountIdFavorite201>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TContext = unknown
 >(options?: {
@@ -1363,9 +1438,9 @@ export const usePOSTAccountAccountIdFavorite = <
     { accountid: number; data: POSTAccountAccountIdFavoriteBody; params?: POSTAccountAccountIdFavoriteParams },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { mutation: mutationOptions, axios: axiosOptions } = options || {};
+  const { mutation: mutationOptions, request: requestOptions } = options || {};
 
   return useMutation<
     TData,
@@ -1375,19 +1450,20 @@ export const usePOSTAccountAccountIdFavorite = <
   >(props => {
     const { accountid, data, params } = props || {};
 
-    return pOSTAccountAccountIdFavorite<TData>(accountid, data, params, axiosOptions);
+    return pOSTAccountAccountIdFavorite<TData>(accountid, data, params, requestOptions);
   }, mutationOptions);
 };
-export const gETMovieMovieIdExternalIds = <TData = AxiosResponse<GETMovieMovieIdExternalIds200>>(
+export const gETMovieMovieIdExternalIds = <TData = GETMovieMovieIdExternalIds200>(
   movieid: number,
   params?: GETMovieMovieIdExternalIdsParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/movie/${movieid}/external_ids`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/movie/${movieid}/external_ids`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETMovieMovieIdExternalIdsQueryKey = (movieid: number, params?: GETMovieMovieIdExternalIdsParams) => [
   `/movie/${movieid}/external_ids`,
@@ -1395,21 +1471,21 @@ export const getGETMovieMovieIdExternalIdsQueryKey = (movieid: number, params?: 
 ];
 
 export const useGETMovieMovieIdExternalIds = <
-  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdExternalIds, AxiosResponse<GETMovieMovieIdExternalIds200>>,
+  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdExternalIds, GETMovieMovieIdExternalIds200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   movieid: number,
   params?: GETMovieMovieIdExternalIdsParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETMovieMovieIdExternalIdsQueryKey(movieid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieMovieIdExternalIds<TQueryFnData>(movieid, params, axiosOptions),
+    () => gETMovieMovieIdExternalIds<TQueryFnData>(movieid, params, requestOptions),
     { enabled: !!movieid, ...queryOptions }
   );
 
@@ -1419,20 +1495,21 @@ export const useGETMovieMovieIdExternalIds = <
   };
 };
 
-export const pOSTListListIdRemoveItem = <TData = AxiosResponse<POSTListListIdRemoveItem200>>(
+export const pOSTListListIdRemoveItem = <TData = POSTListListIdRemoveItem200>(
   listid: string,
   pOSTListListIdRemoveItemBody: POSTListListIdRemoveItemBody,
   params?: POSTListListIdRemoveItemParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.post(`/list/${listid}/remove_item`, pOSTListListIdRemoveItemBody, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/list/${listid}/remove_item`, method: 'post', data: pOSTListListIdRemoveItemBody, params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const usePOSTListListIdRemoveItem = <
-  TData = AsyncReturnType<typeof pOSTListListIdRemoveItem, AxiosResponse<POSTListListIdRemoveItem200>>,
+  TData = AsyncReturnType<typeof pOSTListListIdRemoveItem, POSTListListIdRemoveItem200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TContext = unknown
 >(options?: {
@@ -1442,9 +1519,9 @@ export const usePOSTListListIdRemoveItem = <
     { listid: string; data: POSTListListIdRemoveItemBody; params?: POSTListListIdRemoveItemParams },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { mutation: mutationOptions, axios: axiosOptions } = options || {};
+  const { mutation: mutationOptions, request: requestOptions } = options || {};
 
   return useMutation<
     TData,
@@ -1454,33 +1531,37 @@ export const usePOSTListListIdRemoveItem = <
   >(props => {
     const { listid, data, params } = props || {};
 
-    return pOSTListListIdRemoveItem<TData>(listid, data, params, axiosOptions);
+    return pOSTListListIdRemoveItem<TData>(listid, data, params, requestOptions);
   }, mutationOptions);
 };
-export const gETMovieMovieIdChanges = <TData = AxiosResponse<GETMovieMovieIdChanges200>>(
+export const gETMovieMovieIdChanges = <TData = GETMovieMovieIdChanges200>(
   movieid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/movie/${movieid}/changes`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/movie/${movieid}/changes`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETMovieMovieIdChangesQueryKey = (movieid: number) => [`/movie/${movieid}/changes`];
 
 export const useGETMovieMovieIdChanges = <
-  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdChanges, AxiosResponse<GETMovieMovieIdChanges200>>,
+  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdChanges, GETMovieMovieIdChanges200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   movieid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETMovieMovieIdChangesQueryKey(movieid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieMovieIdChanges<TQueryFnData>(movieid, axiosOptions),
+    () => gETMovieMovieIdChanges<TQueryFnData>(movieid, requestOptions),
     { enabled: !!movieid, ...queryOptions }
   );
 
@@ -1490,29 +1571,31 @@ export const useGETMovieMovieIdChanges = <
   };
 };
 
-export const gETMovieNowPlaying = <TData = AxiosResponse<GETMovieNowPlaying200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/movie/now_playing`, options);
-};
+export const gETMovieNowPlaying = <TData = GETMovieNowPlaying200>(options?: SecondParameter<typeof customInstance>) =>
+  customInstance<TData>(
+    { url: `/movie/now_playing`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETMovieNowPlayingQueryKey = () => [`/movie/now_playing`];
 
 export const useGETMovieNowPlaying = <
-  TQueryFnData = AsyncReturnType<typeof gETMovieNowPlaying, AxiosResponse<GETMovieNowPlaying200>>,
+  TQueryFnData = AsyncReturnType<typeof gETMovieNowPlaying, GETMovieNowPlaying200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETMovieNowPlayingQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieNowPlaying<TQueryFnData>(axiosOptions),
+    () => gETMovieNowPlaying<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -1522,20 +1605,21 @@ export const useGETMovieNowPlaying = <
   };
 };
 
-export const pOSTMovieMovieIdRating = <TData = AxiosResponse<POSTMovieMovieIdRating201>>(
+export const pOSTMovieMovieIdRating = <TData = POSTMovieMovieIdRating201>(
   movieid: number,
   pOSTMovieMovieIdRatingBody: POSTMovieMovieIdRatingBody,
   params?: POSTMovieMovieIdRatingParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.post(`/movie/${movieid}/rating`, pOSTMovieMovieIdRatingBody, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/movie/${movieid}/rating`, method: 'post', data: pOSTMovieMovieIdRatingBody, params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const usePOSTMovieMovieIdRating = <
-  TData = AsyncReturnType<typeof pOSTMovieMovieIdRating, AxiosResponse<POSTMovieMovieIdRating201>>,
+  TData = AsyncReturnType<typeof pOSTMovieMovieIdRating, POSTMovieMovieIdRating201>,
   TError = TraitSessionErrors401Response | TraitStandardErrors404Response,
   TContext = unknown
 >(options?: {
@@ -1545,9 +1629,9 @@ export const usePOSTMovieMovieIdRating = <
     { movieid: number; data: POSTMovieMovieIdRatingBody; params?: POSTMovieMovieIdRatingParams },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { mutation: mutationOptions, axios: axiosOptions } = options || {};
+  const { mutation: mutationOptions, request: requestOptions } = options || {};
 
   return useMutation<
     TData,
@@ -1557,59 +1641,62 @@ export const usePOSTMovieMovieIdRating = <
   >(props => {
     const { movieid, data, params } = props || {};
 
-    return pOSTMovieMovieIdRating<TData>(movieid, data, params, axiosOptions);
+    return pOSTMovieMovieIdRating<TData>(movieid, data, params, requestOptions);
   }, mutationOptions);
 };
-export const dELETEMovieMovieIdRating = <TData = AxiosResponse<DELETEMovieMovieIdRating200>>(
+export const dELETEMovieMovieIdRating = <TData = DELETEMovieMovieIdRating200>(
   movieid: number,
   params?: DELETEMovieMovieIdRatingParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.delete(`/movie/${movieid}/rating`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/movie/${movieid}/rating`, method: 'delete', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const useDELETEMovieMovieIdRating = <
-  TData = AsyncReturnType<typeof dELETEMovieMovieIdRating, AxiosResponse<DELETEMovieMovieIdRating200>>,
+  TData = AsyncReturnType<typeof dELETEMovieMovieIdRating, DELETEMovieMovieIdRating200>,
   TError = TraitSessionErrors401Response,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<TData, TError, { movieid: number; params?: DELETEMovieMovieIdRatingParams }, TContext>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { mutation: mutationOptions, axios: axiosOptions } = options || {};
+  const { mutation: mutationOptions, request: requestOptions } = options || {};
 
   return useMutation<TData, TError, { movieid: number; params?: DELETEMovieMovieIdRatingParams }, TContext>(props => {
     const { movieid, params } = props || {};
 
-    return dELETEMovieMovieIdRating<TData>(movieid, params, axiosOptions);
+    return dELETEMovieMovieIdRating<TData>(movieid, params, requestOptions);
   }, mutationOptions);
 };
-export const gETTvTopRated = <TData = AxiosResponse<GETTvTopRated200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/top_rated`, options);
-};
+export const gETTvTopRated = <TData = GETTvTopRated200>(options?: SecondParameter<typeof customInstance>) =>
+  customInstance<TData>(
+    { url: `/tv/top_rated`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTopRatedQueryKey = () => [`/tv/top_rated`];
 
 export const useGETTvTopRated = <
-  TQueryFnData = AsyncReturnType<typeof gETTvTopRated, AxiosResponse<GETTvTopRated200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvTopRated, GETTvTopRated200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTopRatedQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTopRated<TQueryFnData>(axiosOptions),
+    () => gETTvTopRated<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -1619,29 +1706,31 @@ export const useGETTvTopRated = <
   };
 };
 
-export const gETMoviePopular = <TData = AxiosResponse<GETMoviePopular200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/movie/popular`, options);
-};
+export const gETMoviePopular = <TData = GETMoviePopular200>(options?: SecondParameter<typeof customInstance>) =>
+  customInstance<TData>(
+    { url: `/movie/popular`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETMoviePopularQueryKey = () => [`/movie/popular`];
 
 export const useGETMoviePopular = <
-  TQueryFnData = AsyncReturnType<typeof gETMoviePopular, AxiosResponse<GETMoviePopular200>>,
+  TQueryFnData = AsyncReturnType<typeof gETMoviePopular, GETMoviePopular200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETMoviePopularQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMoviePopular<TQueryFnData>(axiosOptions),
+    () => gETMoviePopular<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -1651,16 +1740,17 @@ export const useGETMoviePopular = <
   };
 };
 
-export const gETMovieMovieIdAlternativeTitles = <TData = AxiosResponse<GETMovieMovieIdAlternativeTitles200>>(
+export const gETMovieMovieIdAlternativeTitles = <TData = GETMovieMovieIdAlternativeTitles200>(
   movieid: number,
   params?: GETMovieMovieIdAlternativeTitlesParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/movie/${movieid}/alternative_titles`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/movie/${movieid}/alternative_titles`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETMovieMovieIdAlternativeTitlesQueryKey = (
   movieid: number,
@@ -1668,24 +1758,21 @@ export const getGETMovieMovieIdAlternativeTitlesQueryKey = (
 ) => [`/movie/${movieid}/alternative_titles`, ...(params ? [params] : [])];
 
 export const useGETMovieMovieIdAlternativeTitles = <
-  TQueryFnData = AsyncReturnType<
-    typeof gETMovieMovieIdAlternativeTitles,
-    AxiosResponse<GETMovieMovieIdAlternativeTitles200>
-  >,
+  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdAlternativeTitles, GETMovieMovieIdAlternativeTitles200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   movieid: number,
   params?: GETMovieMovieIdAlternativeTitlesParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETMovieMovieIdAlternativeTitlesQueryKey(movieid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieMovieIdAlternativeTitles<TQueryFnData>(movieid, params, axiosOptions),
+    () => gETMovieMovieIdAlternativeTitles<TQueryFnData>(movieid, params, requestOptions),
     { enabled: !!movieid, ...queryOptions }
   );
 
@@ -1696,19 +1783,20 @@ export const useGETMovieMovieIdAlternativeTitles = <
 };
 
 export const gETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberAccountStates = <
-  TData = AxiosResponse<GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberAccountStates200>
+  TData = GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberAccountStates200
 >(
   tvid: number,
   seasonnumber: number,
   episodenumber: number,
   params?: GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberAccountStatesParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/season/${seasonnumber}/episode/${episodenumber}/account_states`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/season/${seasonnumber}/episode/${episodenumber}/account_states`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberAccountStatesQueryKey = (
   tvid: number,
@@ -1720,7 +1808,7 @@ export const getGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberAccountStatesQuer
 export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberAccountStates = <
   TQueryFnData = AsyncReturnType<
     typeof gETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberAccountStates,
-    AxiosResponse<GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberAccountStates200>
+    GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberAccountStates200
   >,
   TError = TraitSessionErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
@@ -1729,9 +1817,9 @@ export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberAccountStates = <
   seasonnumber: number,
   episodenumber: number,
   params?: GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberAccountStatesParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey =
     queryOptions?.queryKey ??
@@ -1745,7 +1833,7 @@ export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberAccountStates = <
         seasonnumber,
         episodenumber,
         params,
-        axiosOptions
+        requestOptions
       ),
     { enabled: !!(tvid && seasonnumber && episodenumber), ...queryOptions }
   );
@@ -1756,20 +1844,26 @@ export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberAccountStates = <
   };
 };
 
-export const pOSTTvTvIdRating = <TData = AxiosResponse<POSTTvTvIdRating201>>(
+export const pOSTTvTvIdRating = <TData = POSTTvTvIdRating201>(
   tvid: number,
   pOSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRatingBodyBody: POSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRatingBodyBody,
   params?: POSTTvTvIdRatingParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.post(`/tv/${tvid}/rating`, pOSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRatingBodyBody, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    {
+      url: `/tv/${tvid}/rating`,
+      method: 'post',
+      data: pOSTTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberRatingBodyBody,
+      params,
+    },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const usePOSTTvTvIdRating = <
-  TData = AsyncReturnType<typeof pOSTTvTvIdRating, AxiosResponse<POSTTvTvIdRating201>>,
+  TData = AsyncReturnType<typeof pOSTTvTvIdRating, POSTTvTvIdRating201>,
   TError = TraitSessionErrors401Response | TraitStandardErrors404Response,
   TContext = unknown
 >(options?: {
@@ -1783,9 +1877,9 @@ export const usePOSTTvTvIdRating = <
     },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { mutation: mutationOptions, axios: axiosOptions } = options || {};
+  const { mutation: mutationOptions, request: requestOptions } = options || {};
 
   return useMutation<
     TData,
@@ -1799,60 +1893,65 @@ export const usePOSTTvTvIdRating = <
   >(props => {
     const { tvid, data, params } = props || {};
 
-    return pOSTTvTvIdRating<TData>(tvid, data, params, axiosOptions);
+    return pOSTTvTvIdRating<TData>(tvid, data, params, requestOptions);
   }, mutationOptions);
 };
-export const dELETETvTvIdRating = <TData = AxiosResponse<DELETETvTvIdRating200>>(
+export const dELETETvTvIdRating = <TData = DELETETvTvIdRating200>(
   tvid: number,
   params?: DELETETvTvIdRatingParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.delete(`/tv/${tvid}/rating`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/rating`, method: 'delete', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const useDELETETvTvIdRating = <
-  TData = AsyncReturnType<typeof dELETETvTvIdRating, AxiosResponse<DELETETvTvIdRating200>>,
+  TData = AsyncReturnType<typeof dELETETvTvIdRating, DELETETvTvIdRating200>,
   TError = TraitSessionErrors401Response,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<TData, TError, { tvid: number; params?: DELETETvTvIdRatingParams }, TContext>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { mutation: mutationOptions, axios: axiosOptions } = options || {};
+  const { mutation: mutationOptions, request: requestOptions } = options || {};
 
   return useMutation<TData, TError, { tvid: number; params?: DELETETvTvIdRatingParams }, TContext>(props => {
     const { tvid, params } = props || {};
 
-    return dELETETvTvIdRating<TData>(tvid, params, axiosOptions);
+    return dELETETvTvIdRating<TData>(tvid, params, requestOptions);
   }, mutationOptions);
 };
-export const gETTvTvIdEpisodeGroups = <TData = AxiosResponse<GETTvTvIdEpisodeGroups200>>(
+export const gETTvTvIdEpisodeGroups = <TData = GETTvTvIdEpisodeGroups200>(
   tvid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/episode_groups`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/episode_groups`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdEpisodeGroupsQueryKey = (tvid: number) => [`/tv/${tvid}/episode_groups`];
 
 export const useGETTvTvIdEpisodeGroups = <
-  TQueryFnData = AsyncReturnType<typeof gETTvTvIdEpisodeGroups, AxiosResponse<GETTvTvIdEpisodeGroups200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvTvIdEpisodeGroups, GETTvTvIdEpisodeGroups200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdEpisodeGroupsQueryKey(tvid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdEpisodeGroups<TQueryFnData>(tvid, axiosOptions),
+    () => gETTvTvIdEpisodeGroups<TQueryFnData>(tvid, requestOptions),
     { enabled: !!tvid, ...queryOptions }
   );
 
@@ -1862,35 +1961,36 @@ export const useGETTvTvIdEpisodeGroups = <
   };
 };
 
-export const gETNetworkNetworkIdAlternativeNames = <TData = AxiosResponse<GETNetworkNetworkIdAlternativeNames200>>(
+export const gETNetworkNetworkIdAlternativeNames = <TData = GETNetworkNetworkIdAlternativeNames200>(
   networkid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/network/${networkid}/alternative_names`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/network/${networkid}/alternative_names`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETNetworkNetworkIdAlternativeNamesQueryKey = (networkid: number) => [
   `/network/${networkid}/alternative_names`,
 ];
 
 export const useGETNetworkNetworkIdAlternativeNames = <
-  TQueryFnData = AsyncReturnType<
-    typeof gETNetworkNetworkIdAlternativeNames,
-    AxiosResponse<GETNetworkNetworkIdAlternativeNames200>
-  >,
+  TQueryFnData = AsyncReturnType<typeof gETNetworkNetworkIdAlternativeNames, GETNetworkNetworkIdAlternativeNames200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   networkid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETNetworkNetworkIdAlternativeNamesQueryKey(networkid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETNetworkNetworkIdAlternativeNames<TQueryFnData>(networkid, axiosOptions),
+    () => gETNetworkNetworkIdAlternativeNames<TQueryFnData>(networkid, requestOptions),
     { enabled: !!networkid, ...queryOptions }
   );
 
@@ -1900,15 +2000,17 @@ export const useGETNetworkNetworkIdAlternativeNames = <
   };
 };
 
-export const gETTvTvIdSeasonSeasonNumberAggregateCredits = <
-  TData = AxiosResponse<GETTvTvIdSeasonSeasonNumberAggregateCredits200>
->(
+export const gETTvTvIdSeasonSeasonNumberAggregateCredits = <TData = GETTvTvIdSeasonSeasonNumberAggregateCredits200>(
   tvid: number,
   seasonnumber: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/season/${seasonnumber}/aggregate_credits`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/season/${seasonnumber}/aggregate_credits`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdSeasonSeasonNumberAggregateCreditsQueryKey = (tvid: number, seasonnumber: number) => [
   `/tv/${tvid}/season/${seasonnumber}/aggregate_credits`,
@@ -1917,22 +2019,22 @@ export const getGETTvTvIdSeasonSeasonNumberAggregateCreditsQueryKey = (tvid: num
 export const useGETTvTvIdSeasonSeasonNumberAggregateCredits = <
   TQueryFnData = AsyncReturnType<
     typeof gETTvTvIdSeasonSeasonNumberAggregateCredits,
-    AxiosResponse<GETTvTvIdSeasonSeasonNumberAggregateCredits200>
+    GETTvTvIdSeasonSeasonNumberAggregateCredits200
   >,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
   seasonnumber: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdSeasonSeasonNumberAggregateCreditsQueryKey(tvid, seasonnumber);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdSeasonSeasonNumberAggregateCredits<TQueryFnData>(tvid, seasonnumber, axiosOptions),
+    () => gETTvTvIdSeasonSeasonNumberAggregateCredits<TQueryFnData>(tvid, seasonnumber, requestOptions),
     { enabled: !!(tvid && seasonnumber), ...queryOptions }
   );
 
@@ -1942,16 +2044,17 @@ export const useGETTvTvIdSeasonSeasonNumberAggregateCredits = <
   };
 };
 
-export const gETMovieMovieIdVideos = <TData = AxiosResponse<GETMovieMovieIdVideos200>>(
+export const gETMovieMovieIdVideos = <TData = GETMovieMovieIdVideos200>(
   movieid: number,
   params?: GETMovieMovieIdVideosParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/movie/${movieid}/videos`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/movie/${movieid}/videos`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETMovieMovieIdVideosQueryKey = (movieid: number, params?: GETMovieMovieIdVideosParams) => [
   `/movie/${movieid}/videos`,
@@ -1959,21 +2062,21 @@ export const getGETMovieMovieIdVideosQueryKey = (movieid: number, params?: GETMo
 ];
 
 export const useGETMovieMovieIdVideos = <
-  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdVideos, AxiosResponse<GETMovieMovieIdVideos200>>,
+  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdVideos, GETMovieMovieIdVideos200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   movieid: number,
   params?: GETMovieMovieIdVideosParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETMovieMovieIdVideosQueryKey(movieid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieMovieIdVideos<TQueryFnData>(movieid, params, axiosOptions),
+    () => gETMovieMovieIdVideos<TQueryFnData>(movieid, params, requestOptions),
     { enabled: !!movieid, ...queryOptions }
   );
 
@@ -1983,13 +2086,17 @@ export const useGETMovieMovieIdVideos = <
   };
 };
 
-export const gETTrendingMediaTypeTimeWindow = <TData = AxiosResponse<GETTrendingMediaTypeTimeWindow200>>(
+export const gETTrendingMediaTypeTimeWindow = <TData = GETTrendingMediaTypeTimeWindow200>(
   mediatype: 'all' | 'movie' | 'tv' | 'person',
   timewindow: 'day' | 'week',
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/trending/${mediatype}/${timewindow}`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/trending/${mediatype}/${timewindow}`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTrendingMediaTypeTimeWindowQueryKey = (
   mediatype: 'all' | 'movie' | 'tv' | 'person',
@@ -1997,24 +2104,21 @@ export const getGETTrendingMediaTypeTimeWindowQueryKey = (
 ) => [`/trending/${mediatype}/${timewindow}`];
 
 export const useGETTrendingMediaTypeTimeWindow = <
-  TQueryFnData = AsyncReturnType<
-    typeof gETTrendingMediaTypeTimeWindow,
-    AxiosResponse<GETTrendingMediaTypeTimeWindow200>
-  >,
+  TQueryFnData = AsyncReturnType<typeof gETTrendingMediaTypeTimeWindow, GETTrendingMediaTypeTimeWindow200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   mediatype: 'all' | 'movie' | 'tv' | 'person',
   timewindow: 'day' | 'week',
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTrendingMediaTypeTimeWindowQueryKey(mediatype, timewindow);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTrendingMediaTypeTimeWindow<TQueryFnData>(mediatype, timewindow, axiosOptions),
+    () => gETTrendingMediaTypeTimeWindow<TQueryFnData>(mediatype, timewindow, requestOptions),
     { enabled: !!(mediatype && timewindow), ...queryOptions }
   );
 
@@ -2024,16 +2128,17 @@ export const useGETTrendingMediaTypeTimeWindow = <
   };
 };
 
-export const gETMovieMovieIdAccountStates = <TData = AxiosResponse<GETMovieMovieIdAccountStates200>>(
+export const gETMovieMovieIdAccountStates = <TData = GETMovieMovieIdAccountStates200>(
   movieid: number,
   params?: GETMovieMovieIdAccountStatesParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/movie/${movieid}/account_states`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/movie/${movieid}/account_states`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETMovieMovieIdAccountStatesQueryKey = (
   movieid: number,
@@ -2041,21 +2146,21 @@ export const getGETMovieMovieIdAccountStatesQueryKey = (
 ) => [`/movie/${movieid}/account_states`, ...(params ? [params] : [])];
 
 export const useGETMovieMovieIdAccountStates = <
-  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdAccountStates, AxiosResponse<GETMovieMovieIdAccountStates200>>,
+  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdAccountStates, GETMovieMovieIdAccountStates200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   movieid: number,
   params?: GETMovieMovieIdAccountStatesParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETMovieMovieIdAccountStatesQueryKey(movieid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieMovieIdAccountStates<TQueryFnData>(movieid, params, axiosOptions),
+    () => gETMovieMovieIdAccountStates<TQueryFnData>(movieid, params, requestOptions),
     { enabled: !!movieid, ...queryOptions }
   );
 
@@ -2065,29 +2170,31 @@ export const useGETMovieMovieIdAccountStates = <
   };
 };
 
-export const gETMovieUpcoming = <TData = AxiosResponse<GETMovieUpcoming200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/movie/upcoming`, options);
-};
+export const gETMovieUpcoming = <TData = GETMovieUpcoming200>(options?: SecondParameter<typeof customInstance>) =>
+  customInstance<TData>(
+    { url: `/movie/upcoming`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETMovieUpcomingQueryKey = () => [`/movie/upcoming`];
 
 export const useGETMovieUpcoming = <
-  TQueryFnData = AsyncReturnType<typeof gETMovieUpcoming, AxiosResponse<GETMovieUpcoming200>>,
+  TQueryFnData = AsyncReturnType<typeof gETMovieUpcoming, GETMovieUpcoming200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETMovieUpcomingQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieUpcoming<TQueryFnData>(axiosOptions),
+    () => gETMovieUpcoming<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -2097,29 +2204,31 @@ export const useGETMovieUpcoming = <
   };
 };
 
-export const gETPersonLatest = <TData = AxiosResponse<GETPersonLatest200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/person/latest`, options);
-};
+export const gETPersonLatest = <TData = GETPersonLatest200>(options?: SecondParameter<typeof customInstance>) =>
+  customInstance<TData>(
+    { url: `/person/latest`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETPersonLatestQueryKey = () => [`/person/latest`];
 
 export const useGETPersonLatest = <
-  TQueryFnData = AsyncReturnType<typeof gETPersonLatest, AxiosResponse<GETPersonLatest200>>,
+  TQueryFnData = AsyncReturnType<typeof gETPersonLatest, GETPersonLatest200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETPersonLatestQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETPersonLatest<TQueryFnData>(axiosOptions),
+    () => gETPersonLatest<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -2129,29 +2238,33 @@ export const useGETPersonLatest = <
   };
 };
 
-export const gETCertificationMovieList = <TData = AxiosResponse<GETCertificationMovieList200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/certification/movie/list`, options);
-};
+export const gETCertificationMovieList = <TData = GETCertificationMovieList200>(
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/certification/movie/list`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETCertificationMovieListQueryKey = () => [`/certification/movie/list`];
 
 export const useGETCertificationMovieList = <
-  TQueryFnData = AsyncReturnType<typeof gETCertificationMovieList, AxiosResponse<GETCertificationMovieList200>>,
+  TQueryFnData = AsyncReturnType<typeof gETCertificationMovieList, GETCertificationMovieList200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETCertificationMovieListQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETCertificationMovieList<TQueryFnData>(axiosOptions),
+    () => gETCertificationMovieList<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -2161,37 +2274,38 @@ export const useGETCertificationMovieList = <
   };
 };
 
-export const gETTvTvIdSeasonSeasonNumberVideos = <TData = AxiosResponse<GETTvTvIdSeasonSeasonNumberVideos200>>(
+export const gETTvTvIdSeasonSeasonNumberVideos = <TData = GETTvTvIdSeasonSeasonNumberVideos200>(
   tvid: number,
   seasonnumber: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/season/${seasonnumber}/videos`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/season/${seasonnumber}/videos`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdSeasonSeasonNumberVideosQueryKey = (tvid: number, seasonnumber: number) => [
   `/tv/${tvid}/season/${seasonnumber}/videos`,
 ];
 
 export const useGETTvTvIdSeasonSeasonNumberVideos = <
-  TQueryFnData = AsyncReturnType<
-    typeof gETTvTvIdSeasonSeasonNumberVideos,
-    AxiosResponse<GETTvTvIdSeasonSeasonNumberVideos200>
-  >,
+  TQueryFnData = AsyncReturnType<typeof gETTvTvIdSeasonSeasonNumberVideos, GETTvTvIdSeasonSeasonNumberVideos200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
   seasonnumber: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdSeasonSeasonNumberVideosQueryKey(tvid, seasonnumber);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdSeasonSeasonNumberVideos<TQueryFnData>(tvid, seasonnumber, axiosOptions),
+    () => gETTvTvIdSeasonSeasonNumberVideos<TQueryFnData>(tvid, seasonnumber, requestOptions),
     { enabled: !!(tvid && seasonnumber), ...queryOptions }
   );
 
@@ -2201,15 +2315,16 @@ export const useGETTvTvIdSeasonSeasonNumberVideos = <
   };
 };
 
-export const gETDiscoverMovie = <TData = AxiosResponse<GETDiscoverMovie200>>(
+export const gETDiscoverMovie = <TData = GETDiscoverMovie200>(
   params?: GETDiscoverMovieParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/discover/movie`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/discover/movie`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETDiscoverMovieQueryKey = (params?: GETDiscoverMovieParams) => [
   `/discover/movie`,
@@ -2217,20 +2332,20 @@ export const getGETDiscoverMovieQueryKey = (params?: GETDiscoverMovieParams) => 
 ];
 
 export const useGETDiscoverMovie = <
-  TQueryFnData = AsyncReturnType<typeof gETDiscoverMovie, AxiosResponse<GETDiscoverMovie200>>,
+  TQueryFnData = AsyncReturnType<typeof gETDiscoverMovie, GETDiscoverMovie200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   params?: GETDiscoverMovieParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETDiscoverMovieQueryKey(params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETDiscoverMovie<TQueryFnData>(params, axiosOptions),
+    () => gETDiscoverMovie<TQueryFnData>(params, requestOptions),
     queryOptions
   );
 
@@ -2240,29 +2355,31 @@ export const useGETDiscoverMovie = <
   };
 };
 
-export const gETSearchPerson = <TData = AxiosResponse<GETSearchPerson200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/search/person`, options);
-};
+export const gETSearchPerson = <TData = GETSearchPerson200>(options?: SecondParameter<typeof customInstance>) =>
+  customInstance<TData>(
+    { url: `/search/person`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETSearchPersonQueryKey = () => [`/search/person`];
 
 export const useGETSearchPerson = <
-  TQueryFnData = AsyncReturnType<typeof gETSearchPerson, AxiosResponse<GETSearchPerson200>>,
+  TQueryFnData = AsyncReturnType<typeof gETSearchPerson, GETSearchPerson200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETSearchPersonQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETSearchPerson<TQueryFnData>(axiosOptions),
+    () => gETSearchPerson<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -2272,33 +2389,34 @@ export const useGETSearchPerson = <
   };
 };
 
-export const gETAccount = <TData = AxiosResponse<GETAccount200>>(
+export const gETAccount = <TData = GETAccount200>(
   params?: GETAccountParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/account`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/account`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETAccountQueryKey = (params?: GETAccountParams) => [`/account`, ...(params ? [params] : [])];
 
 export const useGETAccount = <
-  TQueryFnData = AsyncReturnType<typeof gETAccount, AxiosResponse<GETAccount200>>,
+  TQueryFnData = AsyncReturnType<typeof gETAccount, GETAccount200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   params?: GETAccountParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETAccountQueryKey(params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETAccount<TQueryFnData>(params, axiosOptions),
+    () => gETAccount<TQueryFnData>(params, requestOptions),
     queryOptions
   );
 
@@ -2308,27 +2426,31 @@ export const useGETAccount = <
   };
 };
 
-export const gETTvLatest = <TData = AxiosResponse<GETTvLatest200>>(options?: AxiosRequestConfig): Promise<TData> => {
-  return axios.get(`/tv/latest`, options);
-};
+export const gETTvLatest = <TData = GETTvLatest200>(options?: SecondParameter<typeof customInstance>) =>
+  customInstance<TData>(
+    { url: `/tv/latest`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvLatestQueryKey = () => [`/tv/latest`];
 
 export const useGETTvLatest = <
-  TQueryFnData = AsyncReturnType<typeof gETTvLatest, AxiosResponse<GETTvLatest200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvLatest, GETTvLatest200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvLatestQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvLatest<TQueryFnData>(axiosOptions),
+    () => gETTvLatest<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -2338,30 +2460,34 @@ export const useGETTvLatest = <
   };
 };
 
-export const gETCompanyCompanyIdImages = <TData = AxiosResponse<GETCompanyCompanyIdImages200>>(
+export const gETCompanyCompanyIdImages = <TData = GETCompanyCompanyIdImages200>(
   companyid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/company/${companyid}/images`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/company/${companyid}/images`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETCompanyCompanyIdImagesQueryKey = (companyid: number) => [`/company/${companyid}/images`];
 
 export const useGETCompanyCompanyIdImages = <
-  TQueryFnData = AsyncReturnType<typeof gETCompanyCompanyIdImages, AxiosResponse<GETCompanyCompanyIdImages200>>,
+  TQueryFnData = AsyncReturnType<typeof gETCompanyCompanyIdImages, GETCompanyCompanyIdImages200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   companyid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETCompanyCompanyIdImagesQueryKey(companyid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETCompanyCompanyIdImages<TQueryFnData>(companyid, axiosOptions),
+    () => gETCompanyCompanyIdImages<TQueryFnData>(companyid, requestOptions),
     { enabled: !!companyid, ...queryOptions }
   );
 
@@ -2371,16 +2497,17 @@ export const useGETCompanyCompanyIdImages = <
   };
 };
 
-export const gETMovieMovieIdLists = <TData = AxiosResponse<GETMovieMovieIdLists200>>(
+export const gETMovieMovieIdLists = <TData = GETMovieMovieIdLists200>(
   movieid: number,
   params?: GETMovieMovieIdListsParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/movie/${movieid}/lists`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/movie/${movieid}/lists`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETMovieMovieIdListsQueryKey = (movieid: number, params?: GETMovieMovieIdListsParams) => [
   `/movie/${movieid}/lists`,
@@ -2388,21 +2515,21 @@ export const getGETMovieMovieIdListsQueryKey = (movieid: number, params?: GETMov
 ];
 
 export const useGETMovieMovieIdLists = <
-  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdLists, AxiosResponse<GETMovieMovieIdLists200>>,
+  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdLists, GETMovieMovieIdLists200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   movieid: number,
   params?: GETMovieMovieIdListsParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETMovieMovieIdListsQueryKey(movieid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieMovieIdLists<TQueryFnData>(movieid, params, axiosOptions),
+    () => gETMovieMovieIdLists<TQueryFnData>(movieid, params, requestOptions),
     { enabled: !!movieid, ...queryOptions }
   );
 
@@ -2412,29 +2539,31 @@ export const useGETMovieMovieIdLists = <
   };
 };
 
-export const gETSearchCollection = <TData = AxiosResponse<GETSearchCollection200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/search/collection`, options);
-};
+export const gETSearchCollection = <TData = GETSearchCollection200>(options?: SecondParameter<typeof customInstance>) =>
+  customInstance<TData>(
+    { url: `/search/collection`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETSearchCollectionQueryKey = () => [`/search/collection`];
 
 export const useGETSearchCollection = <
-  TQueryFnData = AsyncReturnType<typeof gETSearchCollection, AxiosResponse<GETSearchCollection200>>,
+  TQueryFnData = AsyncReturnType<typeof gETSearchCollection, GETSearchCollection200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETSearchCollectionQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETSearchCollection<TQueryFnData>(axiosOptions),
+    () => gETSearchCollection<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -2444,56 +2573,61 @@ export const useGETSearchCollection = <
   };
 };
 
-export const pOSTListListIdClear = <TData = AxiosResponse<POSTListListIdClear201>>(
+export const pOSTListListIdClear = <TData = POSTListListIdClear201>(
   listid: string,
   params?: POSTListListIdClearParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.post(`/list/${listid}/clear`, undefined, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/list/${listid}/clear`, method: 'post', data: undefined, params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const usePOSTListListIdClear = <
-  TData = AsyncReturnType<typeof pOSTListListIdClear, AxiosResponse<POSTListListIdClear201>>,
+  TData = AsyncReturnType<typeof pOSTListListIdClear, POSTListListIdClear201>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<TData, TError, { listid: string; params?: POSTListListIdClearParams }, TContext>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { mutation: mutationOptions, axios: axiosOptions } = options || {};
+  const { mutation: mutationOptions, request: requestOptions } = options || {};
 
   return useMutation<TData, TError, { listid: string; params?: POSTListListIdClearParams }, TContext>(props => {
     const { listid, params } = props || {};
 
-    return pOSTListListIdClear<TData>(listid, params, axiosOptions);
+    return pOSTListListIdClear<TData>(listid, params, requestOptions);
   }, mutationOptions);
 };
-export const gETWatchProvidersRegions = <TData = AxiosResponse<GETWatchProvidersRegions200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/watch/providers/regions`, options);
-};
+export const gETWatchProvidersRegions = <TData = GETWatchProvidersRegions200>(
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/watch/providers/regions`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETWatchProvidersRegionsQueryKey = () => [`/watch/providers/regions`];
 
 export const useGETWatchProvidersRegions = <
-  TQueryFnData = AsyncReturnType<typeof gETWatchProvidersRegions, AxiosResponse<GETWatchProvidersRegions200>>,
+  TQueryFnData = AsyncReturnType<typeof gETWatchProvidersRegions, GETWatchProvidersRegions200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETWatchProvidersRegionsQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETWatchProvidersRegions<TQueryFnData>(axiosOptions),
+    () => gETWatchProvidersRegions<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -2503,30 +2637,34 @@ export const useGETWatchProvidersRegions = <
   };
 };
 
-export const gETReviewReviewId = <TData = AxiosResponse<GETReviewReviewId200>>(
+export const gETReviewReviewId = <TData = GETReviewReviewId200>(
   reviewid: string,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/review/${reviewid}`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/review/${reviewid}`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETReviewReviewIdQueryKey = (reviewid: string) => [`/review/${reviewid}`];
 
 export const useGETReviewReviewId = <
-  TQueryFnData = AsyncReturnType<typeof gETReviewReviewId, AxiosResponse<GETReviewReviewId200>>,
+  TQueryFnData = AsyncReturnType<typeof gETReviewReviewId, GETReviewReviewId200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   reviewid: string,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETReviewReviewIdQueryKey(reviewid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETReviewReviewId<TQueryFnData>(reviewid, axiosOptions),
+    () => gETReviewReviewId<TQueryFnData>(reviewid, requestOptions),
     { enabled: !!reviewid, ...queryOptions }
   );
 
@@ -2536,30 +2674,34 @@ export const useGETReviewReviewId = <
   };
 };
 
-export const gETTvTvIdImages = <TData = AxiosResponse<GETTvTvIdImages200>>(
+export const gETTvTvIdImages = <TData = GETTvTvIdImages200>(
   tvid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/images`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/images`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdImagesQueryKey = (tvid: number) => [`/tv/${tvid}/images`];
 
 export const useGETTvTvIdImages = <
-  TQueryFnData = AsyncReturnType<typeof gETTvTvIdImages, AxiosResponse<GETTvTvIdImages200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvTvIdImages, GETTvTvIdImages200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdImagesQueryKey(tvid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdImages<TQueryFnData>(tvid, axiosOptions),
+    () => gETTvTvIdImages<TQueryFnData>(tvid, requestOptions),
     { enabled: !!tvid, ...queryOptions }
   );
 
@@ -2569,30 +2711,34 @@ export const useGETTvTvIdImages = <
   };
 };
 
-export const gETPersonPersonIdTvCredits = <TData = AxiosResponse<GETPersonPersonIdTvCredits200>>(
+export const gETPersonPersonIdTvCredits = <TData = GETPersonPersonIdTvCredits200>(
   personid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/person/${personid}/tv_credits`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/person/${personid}/tv_credits`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETPersonPersonIdTvCreditsQueryKey = (personid: number) => [`/person/${personid}/tv_credits`];
 
 export const useGETPersonPersonIdTvCredits = <
-  TQueryFnData = AsyncReturnType<typeof gETPersonPersonIdTvCredits, AxiosResponse<GETPersonPersonIdTvCredits200>>,
+  TQueryFnData = AsyncReturnType<typeof gETPersonPersonIdTvCredits, GETPersonPersonIdTvCredits200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   personid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETPersonPersonIdTvCreditsQueryKey(personid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETPersonPersonIdTvCredits<TQueryFnData>(personid, axiosOptions),
+    () => gETPersonPersonIdTvCredits<TQueryFnData>(personid, requestOptions),
     { enabled: !!personid, ...queryOptions }
   );
 
@@ -2602,30 +2748,34 @@ export const useGETPersonPersonIdTvCredits = <
   };
 };
 
-export const gETNetworkNetworkId = <TData = AxiosResponse<GETNetworkNetworkId200>>(
+export const gETNetworkNetworkId = <TData = GETNetworkNetworkId200>(
   networkid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/network/${networkid}`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/network/${networkid}`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETNetworkNetworkIdQueryKey = (networkid: number) => [`/network/${networkid}`];
 
 export const useGETNetworkNetworkId = <
-  TQueryFnData = AsyncReturnType<typeof gETNetworkNetworkId, AxiosResponse<GETNetworkNetworkId200>>,
+  TQueryFnData = AsyncReturnType<typeof gETNetworkNetworkId, GETNetworkNetworkId200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   networkid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETNetworkNetworkIdQueryKey(networkid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETNetworkNetworkId<TQueryFnData>(networkid, axiosOptions),
+    () => gETNetworkNetworkId<TQueryFnData>(networkid, requestOptions),
     { enabled: !!networkid, ...queryOptions }
   );
 
@@ -2635,27 +2785,31 @@ export const useGETNetworkNetworkId = <
   };
 };
 
-export const gETTvChanges = <TData = AxiosResponse<GETTvChanges200>>(options?: AxiosRequestConfig): Promise<TData> => {
-  return axios.get(`/tv/changes`, options);
-};
+export const gETTvChanges = <TData = GETTvChanges200>(options?: SecondParameter<typeof customInstance>) =>
+  customInstance<TData>(
+    { url: `/tv/changes`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvChangesQueryKey = () => [`/tv/changes`];
 
 export const useGETTvChanges = <
-  TQueryFnData = AsyncReturnType<typeof gETTvChanges, AxiosResponse<GETTvChanges200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvChanges, GETTvChanges200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvChangesQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvChanges<TQueryFnData>(axiosOptions),
+    () => gETTvChanges<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -2665,30 +2819,34 @@ export const useGETTvChanges = <
   };
 };
 
-export const gETTvEpisodeGroupId = <TData = AxiosResponse<GETTvEpisodeGroupId200>>(
+export const gETTvEpisodeGroupId = <TData = GETTvEpisodeGroupId200>(
   id: string,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/episode_group/${id}`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/episode_group/${id}`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvEpisodeGroupIdQueryKey = (id: string) => [`/tv/episode_group/${id}`];
 
 export const useGETTvEpisodeGroupId = <
-  TQueryFnData = AsyncReturnType<typeof gETTvEpisodeGroupId, AxiosResponse<GETTvEpisodeGroupId200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvEpisodeGroupId, GETTvEpisodeGroupId200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   id: string,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvEpisodeGroupIdQueryKey(id);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvEpisodeGroupId<TQueryFnData>(id, axiosOptions),
+    () => gETTvEpisodeGroupId<TQueryFnData>(id, requestOptions),
     { enabled: !!id, ...queryOptions }
   );
 
@@ -2698,29 +2856,31 @@ export const useGETTvEpisodeGroupId = <
   };
 };
 
-export const gETSearchCompany = <TData = AxiosResponse<GETSearchCompany200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/search/company`, options);
-};
+export const gETSearchCompany = <TData = GETSearchCompany200>(options?: SecondParameter<typeof customInstance>) =>
+  customInstance<TData>(
+    { url: `/search/company`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETSearchCompanyQueryKey = () => [`/search/company`];
 
 export const useGETSearchCompany = <
-  TQueryFnData = AsyncReturnType<typeof gETSearchCompany, AxiosResponse<GETSearchCompany200>>,
+  TQueryFnData = AsyncReturnType<typeof gETSearchCompany, GETSearchCompany200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETSearchCompanyQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETSearchCompany<TQueryFnData>(axiosOptions),
+    () => gETSearchCompany<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -2730,15 +2890,16 @@ export const useGETSearchCompany = <
   };
 };
 
-export const gETWatchProvidersTv = <TData = AxiosResponse<GETWatchProvidersTv200>>(
+export const gETWatchProvidersTv = <TData = GETWatchProvidersTv200>(
   params?: GETWatchProvidersTvParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/watch/providers/tv`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/watch/providers/tv`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETWatchProvidersTvQueryKey = (params?: GETWatchProvidersTvParams) => [
   `/watch/providers/tv`,
@@ -2746,20 +2907,20 @@ export const getGETWatchProvidersTvQueryKey = (params?: GETWatchProvidersTvParam
 ];
 
 export const useGETWatchProvidersTv = <
-  TQueryFnData = AsyncReturnType<typeof gETWatchProvidersTv, AxiosResponse<GETWatchProvidersTv200>>,
+  TQueryFnData = AsyncReturnType<typeof gETWatchProvidersTv, GETWatchProvidersTv200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   params?: GETWatchProvidersTvParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETWatchProvidersTvQueryKey(params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETWatchProvidersTv<TQueryFnData>(params, axiosOptions),
+    () => gETWatchProvidersTv<TQueryFnData>(params, requestOptions),
     queryOptions
   );
 
@@ -2769,16 +2930,17 @@ export const useGETWatchProvidersTv = <
   };
 };
 
-export const gETListListIdItemStatus = <TData = AxiosResponse<GETListListIdItemStatus200>>(
+export const gETListListIdItemStatus = <TData = GETListListIdItemStatus200>(
   listid: string,
   params?: GETListListIdItemStatusParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/list/${listid}/item_status`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/list/${listid}/item_status`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETListListIdItemStatusQueryKey = (listid: string, params?: GETListListIdItemStatusParams) => [
   `/list/${listid}/item_status`,
@@ -2786,21 +2948,21 @@ export const getGETListListIdItemStatusQueryKey = (listid: string, params?: GETL
 ];
 
 export const useGETListListIdItemStatus = <
-  TQueryFnData = AsyncReturnType<typeof gETListListIdItemStatus, AxiosResponse<GETListListIdItemStatus200>>,
+  TQueryFnData = AsyncReturnType<typeof gETListListIdItemStatus, GETListListIdItemStatus200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   listid: string,
   params?: GETListListIdItemStatusParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETListListIdItemStatusQueryKey(listid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETListListIdItemStatus<TQueryFnData>(listid, params, axiosOptions),
+    () => gETListListIdItemStatus<TQueryFnData>(listid, params, requestOptions),
     { enabled: !!listid, ...queryOptions }
   );
 
@@ -2810,30 +2972,34 @@ export const useGETListListIdItemStatus = <
   };
 };
 
-export const gETTvTvIdReviews = <TData = AxiosResponse<GETTvTvIdReviews200>>(
+export const gETTvTvIdReviews = <TData = GETTvTvIdReviews200>(
   tvid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/reviews`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/reviews`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdReviewsQueryKey = (tvid: number) => [`/tv/${tvid}/reviews`];
 
 export const useGETTvTvIdReviews = <
-  TQueryFnData = AsyncReturnType<typeof gETTvTvIdReviews, AxiosResponse<GETTvTvIdReviews200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvTvIdReviews, GETTvTvIdReviews200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdReviewsQueryKey(tvid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdReviews<TQueryFnData>(tvid, axiosOptions),
+    () => gETTvTvIdReviews<TQueryFnData>(tvid, requestOptions),
     { enabled: !!tvid, ...queryOptions }
   );
 
@@ -2843,16 +3009,17 @@ export const useGETTvTvIdReviews = <
   };
 };
 
-export const gETAccountAccountIdWatchlistTv = <TData = AxiosResponse<GETAccountAccountIdWatchlistTv200>>(
+export const gETAccountAccountIdWatchlistTv = <TData = GETAccountAccountIdWatchlistTv200>(
   accountid: number,
   params?: GETAccountAccountIdWatchlistTvParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/account/${accountid}/watchlist/tv`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/account/${accountid}/watchlist/tv`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETAccountAccountIdWatchlistTvQueryKey = (
   accountid: number,
@@ -2860,24 +3027,21 @@ export const getGETAccountAccountIdWatchlistTvQueryKey = (
 ) => [`/account/${accountid}/watchlist/tv`, ...(params ? [params] : [])];
 
 export const useGETAccountAccountIdWatchlistTv = <
-  TQueryFnData = AsyncReturnType<
-    typeof gETAccountAccountIdWatchlistTv,
-    AxiosResponse<GETAccountAccountIdWatchlistTv200>
-  >,
+  TQueryFnData = AsyncReturnType<typeof gETAccountAccountIdWatchlistTv, GETAccountAccountIdWatchlistTv200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   accountid: number,
   params?: GETAccountAccountIdWatchlistTvParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETAccountAccountIdWatchlistTvQueryKey(accountid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETAccountAccountIdWatchlistTv<TQueryFnData>(accountid, params, axiosOptions),
+    () => gETAccountAccountIdWatchlistTv<TQueryFnData>(accountid, params, requestOptions),
     { enabled: !!accountid, ...queryOptions }
   );
 
@@ -2887,29 +3051,31 @@ export const useGETAccountAccountIdWatchlistTv = <
   };
 };
 
-export const gETMovieLatest = <TData = AxiosResponse<GETMovieLatest200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/movie/latest`, options);
-};
+export const gETMovieLatest = <TData = GETMovieLatest200>(options?: SecondParameter<typeof customInstance>) =>
+  customInstance<TData>(
+    { url: `/movie/latest`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETMovieLatestQueryKey = () => [`/movie/latest`];
 
 export const useGETMovieLatest = <
-  TQueryFnData = AsyncReturnType<typeof gETMovieLatest, AxiosResponse<GETMovieLatest200>>,
+  TQueryFnData = AsyncReturnType<typeof gETMovieLatest, GETMovieLatest200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETMovieLatestQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieLatest<TQueryFnData>(axiosOptions),
+    () => gETMovieLatest<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -2919,32 +3085,33 @@ export const useGETMovieLatest = <
   };
 };
 
-export const gETAuthenticationGuestSessionNew = <TData = AxiosResponse<GETAuthenticationGuestSessionNew200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/authentication/guest_session/new`, options);
-};
+export const gETAuthenticationGuestSessionNew = <TData = GETAuthenticationGuestSessionNew200>(
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/authentication/guest_session/new`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETAuthenticationGuestSessionNewQueryKey = () => [`/authentication/guest_session/new`];
 
 export const useGETAuthenticationGuestSessionNew = <
-  TQueryFnData = AsyncReturnType<
-    typeof gETAuthenticationGuestSessionNew,
-    AxiosResponse<GETAuthenticationGuestSessionNew200>
-  >,
+  TQueryFnData = AsyncReturnType<typeof gETAuthenticationGuestSessionNew, GETAuthenticationGuestSessionNew200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETAuthenticationGuestSessionNewQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETAuthenticationGuestSessionNew<TQueryFnData>(axiosOptions),
+    () => gETAuthenticationGuestSessionNew<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -2954,34 +3121,38 @@ export const useGETAuthenticationGuestSessionNew = <
   };
 };
 
-export const gETTvTvIdSeasonSeasonNumber = <TData = AxiosResponse<GETTvTvIdSeasonSeasonNumber200>>(
+export const gETTvTvIdSeasonSeasonNumber = <TData = GETTvTvIdSeasonSeasonNumber200>(
   tvid: number,
   seasonnumber: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/season/${seasonnumber}`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/season/${seasonnumber}`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdSeasonSeasonNumberQueryKey = (tvid: number, seasonnumber: number) => [
   `/tv/${tvid}/season/${seasonnumber}`,
 ];
 
 export const useGETTvTvIdSeasonSeasonNumber = <
-  TQueryFnData = AsyncReturnType<typeof gETTvTvIdSeasonSeasonNumber, AxiosResponse<GETTvTvIdSeasonSeasonNumber200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvTvIdSeasonSeasonNumber, GETTvTvIdSeasonSeasonNumber200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
   seasonnumber: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdSeasonSeasonNumberQueryKey(tvid, seasonnumber);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdSeasonSeasonNumber<TQueryFnData>(tvid, seasonnumber, axiosOptions),
+    () => gETTvTvIdSeasonSeasonNumber<TQueryFnData>(tvid, seasonnumber, requestOptions),
     { enabled: !!(tvid && seasonnumber), ...queryOptions }
   );
 
@@ -2991,16 +3162,17 @@ export const useGETTvTvIdSeasonSeasonNumber = <
   };
 };
 
-export const gETAccountAccountIdRatedMovies = <TData = AxiosResponse<GETAccountAccountIdRatedMovies200>>(
+export const gETAccountAccountIdRatedMovies = <TData = GETAccountAccountIdRatedMovies200>(
   accountid: number,
   params?: GETAccountAccountIdRatedMoviesParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/account/${accountid}/rated/movies`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/account/${accountid}/rated/movies`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETAccountAccountIdRatedMoviesQueryKey = (
   accountid: number,
@@ -3008,24 +3180,21 @@ export const getGETAccountAccountIdRatedMoviesQueryKey = (
 ) => [`/account/${accountid}/rated/movies`, ...(params ? [params] : [])];
 
 export const useGETAccountAccountIdRatedMovies = <
-  TQueryFnData = AsyncReturnType<
-    typeof gETAccountAccountIdRatedMovies,
-    AxiosResponse<GETAccountAccountIdRatedMovies200>
-  >,
+  TQueryFnData = AsyncReturnType<typeof gETAccountAccountIdRatedMovies, GETAccountAccountIdRatedMovies200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   accountid: number,
   params?: GETAccountAccountIdRatedMoviesParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETAccountAccountIdRatedMoviesQueryKey(accountid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETAccountAccountIdRatedMovies<TQueryFnData>(accountid, params, axiosOptions),
+    () => gETAccountAccountIdRatedMovies<TQueryFnData>(accountid, params, requestOptions),
     { enabled: !!accountid, ...queryOptions }
   );
 
@@ -3035,27 +3204,31 @@ export const useGETAccountAccountIdRatedMovies = <
   };
 };
 
-export const gETTvPopular = <TData = AxiosResponse<GETTvPopular200>>(options?: AxiosRequestConfig): Promise<TData> => {
-  return axios.get(`/tv/popular`, options);
-};
+export const gETTvPopular = <TData = GETTvPopular200>(options?: SecondParameter<typeof customInstance>) =>
+  customInstance<TData>(
+    { url: `/tv/popular`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvPopularQueryKey = () => [`/tv/popular`];
 
 export const useGETTvPopular = <
-  TQueryFnData = AsyncReturnType<typeof gETTvPopular, AxiosResponse<GETTvPopular200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvPopular, GETTvPopular200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvPopularQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvPopular<TQueryFnData>(axiosOptions),
+    () => gETTvPopular<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -3065,14 +3238,16 @@ export const useGETTvPopular = <
   };
 };
 
-export const gETGuestSessionGuestSessionIdRatedTvEpisodes = <
-  TData = AxiosResponse<GETGuestSessionGuestSessionIdRatedTvEpisodes200>
->(
+export const gETGuestSessionGuestSessionIdRatedTvEpisodes = <TData = GETGuestSessionGuestSessionIdRatedTvEpisodes200>(
   guestsessionid: string,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/guest_session/${guestsessionid}/rated/tv/episodes`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/guest_session/${guestsessionid}/rated/tv/episodes`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETGuestSessionGuestSessionIdRatedTvEpisodesQueryKey = (guestsessionid: string) => [
   `/guest_session/${guestsessionid}/rated/tv/episodes`,
@@ -3081,21 +3256,21 @@ export const getGETGuestSessionGuestSessionIdRatedTvEpisodesQueryKey = (guestses
 export const useGETGuestSessionGuestSessionIdRatedTvEpisodes = <
   TQueryFnData = AsyncReturnType<
     typeof gETGuestSessionGuestSessionIdRatedTvEpisodes,
-    AxiosResponse<GETGuestSessionGuestSessionIdRatedTvEpisodes200>
+    GETGuestSessionGuestSessionIdRatedTvEpisodes200
   >,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   guestsessionid: string,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETGuestSessionGuestSessionIdRatedTvEpisodesQueryKey(guestsessionid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETGuestSessionGuestSessionIdRatedTvEpisodes<TQueryFnData>(guestsessionid, axiosOptions),
+    () => gETGuestSessionGuestSessionIdRatedTvEpisodes<TQueryFnData>(guestsessionid, requestOptions),
     { enabled: !!guestsessionid, ...queryOptions }
   );
 
@@ -3105,30 +3280,34 @@ export const useGETGuestSessionGuestSessionIdRatedTvEpisodes = <
   };
 };
 
-export const gETPersonPersonIdMovieCredits = <TData = AxiosResponse<GETPersonPersonIdMovieCredits200>>(
+export const gETPersonPersonIdMovieCredits = <TData = GETPersonPersonIdMovieCredits200>(
   personid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/person/${personid}/movie_credits`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/person/${personid}/movie_credits`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETPersonPersonIdMovieCreditsQueryKey = (personid: number) => [`/person/${personid}/movie_credits`];
 
 export const useGETPersonPersonIdMovieCredits = <
-  TQueryFnData = AsyncReturnType<typeof gETPersonPersonIdMovieCredits, AxiosResponse<GETPersonPersonIdMovieCredits200>>,
+  TQueryFnData = AsyncReturnType<typeof gETPersonPersonIdMovieCredits, GETPersonPersonIdMovieCredits200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   personid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETPersonPersonIdMovieCreditsQueryKey(personid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETPersonPersonIdMovieCredits<TQueryFnData>(personid, axiosOptions),
+    () => gETPersonPersonIdMovieCredits<TQueryFnData>(personid, requestOptions),
     { enabled: !!personid, ...queryOptions }
   );
 
@@ -3138,30 +3317,34 @@ export const useGETPersonPersonIdMovieCredits = <
   };
 };
 
-export const gETCollectionCollectionId = <TData = AxiosResponse<GETCollectionCollectionId200>>(
+export const gETCollectionCollectionId = <TData = GETCollectionCollectionId200>(
   collectionid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/collection/${collectionid}`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/collection/${collectionid}`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETCollectionCollectionIdQueryKey = (collectionid: number) => [`/collection/${collectionid}`];
 
 export const useGETCollectionCollectionId = <
-  TQueryFnData = AsyncReturnType<typeof gETCollectionCollectionId, AxiosResponse<GETCollectionCollectionId200>>,
+  TQueryFnData = AsyncReturnType<typeof gETCollectionCollectionId, GETCollectionCollectionId200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   collectionid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETCollectionCollectionIdQueryKey(collectionid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETCollectionCollectionId<TQueryFnData>(collectionid, axiosOptions),
+    () => gETCollectionCollectionId<TQueryFnData>(collectionid, requestOptions),
     { enabled: !!collectionid, ...queryOptions }
   );
 
@@ -3171,29 +3354,31 @@ export const useGETCollectionCollectionId = <
   };
 };
 
-export const gETTvOnTheAir = <TData = AxiosResponse<GETTvOnTheAir200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/on_the_air`, options);
-};
+export const gETTvOnTheAir = <TData = GETTvOnTheAir200>(options?: SecondParameter<typeof customInstance>) =>
+  customInstance<TData>(
+    { url: `/tv/on_the_air`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvOnTheAirQueryKey = () => [`/tv/on_the_air`];
 
 export const useGETTvOnTheAir = <
-  TQueryFnData = AsyncReturnType<typeof gETTvOnTheAir, AxiosResponse<GETTvOnTheAir200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvOnTheAir, GETTvOnTheAir200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvOnTheAirQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvOnTheAir<TQueryFnData>(axiosOptions),
+    () => gETTvOnTheAir<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -3204,15 +3389,19 @@ export const useGETTvOnTheAir = <
 };
 
 export const gETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberTranslations = <
-  TData = AxiosResponse<GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberTranslations200>
+  TData = GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberTranslations200
 >(
   tvid: number,
   seasonnumber: number,
   episodenumber: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/season/${seasonnumber}/episode/${episodenumber}/translations`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/season/${seasonnumber}/episode/${episodenumber}/translations`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberTranslationsQueryKey = (
   tvid: number,
@@ -3223,7 +3412,7 @@ export const getGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberTranslationsQuery
 export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberTranslations = <
   TQueryFnData = AsyncReturnType<
     typeof gETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberTranslations,
-    AxiosResponse<GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberTranslations200>
+    GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberTranslations200
   >,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
@@ -3231,9 +3420,9 @@ export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberTranslations = <
   tvid: number,
   seasonnumber: number,
   episodenumber: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey =
     queryOptions?.queryKey ??
@@ -3246,7 +3435,7 @@ export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberTranslations = <
         tvid,
         seasonnumber,
         episodenumber,
-        axiosOptions
+        requestOptions
       ),
     { enabled: !!(tvid && seasonnumber && episodenumber), ...queryOptions }
   );
@@ -3257,30 +3446,34 @@ export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberTranslations = <
   };
 };
 
-export const gETTvSeasonSeasonIdChanges = <TData = AxiosResponse<GETTvSeasonSeasonIdChanges200>>(
+export const gETTvSeasonSeasonIdChanges = <TData = GETTvSeasonSeasonIdChanges200>(
   seasonid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/season/${seasonid}/changes`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/season/${seasonid}/changes`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvSeasonSeasonIdChangesQueryKey = (seasonid: number) => [`/tv/season/${seasonid}/changes`];
 
 export const useGETTvSeasonSeasonIdChanges = <
-  TQueryFnData = AsyncReturnType<typeof gETTvSeasonSeasonIdChanges, AxiosResponse<GETTvSeasonSeasonIdChanges200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvSeasonSeasonIdChanges, GETTvSeasonSeasonIdChanges200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   seasonid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvSeasonSeasonIdChangesQueryKey(seasonid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvSeasonSeasonIdChanges<TQueryFnData>(seasonid, axiosOptions),
+    () => gETTvSeasonSeasonIdChanges<TQueryFnData>(seasonid, requestOptions),
     { enabled: !!seasonid, ...queryOptions }
   );
 
@@ -3290,35 +3483,36 @@ export const useGETTvSeasonSeasonIdChanges = <
   };
 };
 
-export const gETCollectionCollectionIdImages = <TData = AxiosResponse<GETCollectionCollectionIdImages200>>(
+export const gETCollectionCollectionIdImages = <TData = GETCollectionCollectionIdImages200>(
   collectionid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/collection/${collectionid}/images`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/collection/${collectionid}/images`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETCollectionCollectionIdImagesQueryKey = (collectionid: number) => [
   `/collection/${collectionid}/images`,
 ];
 
 export const useGETCollectionCollectionIdImages = <
-  TQueryFnData = AsyncReturnType<
-    typeof gETCollectionCollectionIdImages,
-    AxiosResponse<GETCollectionCollectionIdImages200>
-  >,
+  TQueryFnData = AsyncReturnType<typeof gETCollectionCollectionIdImages, GETCollectionCollectionIdImages200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   collectionid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETCollectionCollectionIdImagesQueryKey(collectionid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETCollectionCollectionIdImages<TQueryFnData>(collectionid, axiosOptions),
+    () => gETCollectionCollectionIdImages<TQueryFnData>(collectionid, requestOptions),
     { enabled: !!collectionid, ...queryOptions }
   );
 
@@ -3328,12 +3522,16 @@ export const useGETCollectionCollectionIdImages = <
   };
 };
 
-export const gETCollectionCollectionIdTranslations = <TData = AxiosResponse<GETCollectionCollectionIdTranslations200>>(
+export const gETCollectionCollectionIdTranslations = <TData = GETCollectionCollectionIdTranslations200>(
   collectionid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/collection/${collectionid}/translations`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/collection/${collectionid}/translations`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETCollectionCollectionIdTranslationsQueryKey = (collectionid: number) => [
   `/collection/${collectionid}/translations`,
@@ -3342,21 +3540,21 @@ export const getGETCollectionCollectionIdTranslationsQueryKey = (collectionid: n
 export const useGETCollectionCollectionIdTranslations = <
   TQueryFnData = AsyncReturnType<
     typeof gETCollectionCollectionIdTranslations,
-    AxiosResponse<GETCollectionCollectionIdTranslations200>
+    GETCollectionCollectionIdTranslations200
   >,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   collectionid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETCollectionCollectionIdTranslationsQueryKey(collectionid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETCollectionCollectionIdTranslations<TQueryFnData>(collectionid, axiosOptions),
+    () => gETCollectionCollectionIdTranslations<TQueryFnData>(collectionid, requestOptions),
     { enabled: !!collectionid, ...queryOptions }
   );
 
@@ -3366,15 +3564,16 @@ export const useGETCollectionCollectionIdTranslations = <
   };
 };
 
-export const gETConfigurationCountries = <TData = AxiosResponse<GETConfigurationCountries200Item[]>>(
+export const gETConfigurationCountries = <TData = GETConfigurationCountries200Item[]>(
   params?: GETConfigurationCountriesParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/configuration/countries`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/configuration/countries`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETConfigurationCountriesQueryKey = (params?: GETConfigurationCountriesParams) => [
   `/configuration/countries`,
@@ -3382,20 +3581,20 @@ export const getGETConfigurationCountriesQueryKey = (params?: GETConfigurationCo
 ];
 
 export const useGETConfigurationCountries = <
-  TQueryFnData = AsyncReturnType<typeof gETConfigurationCountries, AxiosResponse<GETConfigurationCountries200Item[]>>,
+  TQueryFnData = AsyncReturnType<typeof gETConfigurationCountries, GETConfigurationCountries200Item[]>,
   TError = unknown,
   TData = TQueryFnData
 >(
   params?: GETConfigurationCountriesParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETConfigurationCountriesQueryKey(params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETConfigurationCountries<TQueryFnData>(params, axiosOptions),
+    () => gETConfigurationCountries<TQueryFnData>(params, requestOptions),
     queryOptions
   );
 
@@ -3405,30 +3604,34 @@ export const useGETConfigurationCountries = <
   };
 };
 
-export const gETTvTvIdWatchProviders = <TData = AxiosResponse<GETTvTvIdWatchProviders200>>(
+export const gETTvTvIdWatchProviders = <TData = GETTvTvIdWatchProviders200>(
   tvid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/watch/providers`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/watch/providers`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdWatchProvidersQueryKey = (tvid: number) => [`/tv/${tvid}/watch/providers`];
 
 export const useGETTvTvIdWatchProviders = <
-  TQueryFnData = AsyncReturnType<typeof gETTvTvIdWatchProviders, AxiosResponse<GETTvTvIdWatchProviders200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvTvIdWatchProviders, GETTvTvIdWatchProviders200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdWatchProvidersQueryKey(tvid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdWatchProviders<TQueryFnData>(tvid, axiosOptions),
+    () => gETTvTvIdWatchProviders<TQueryFnData>(tvid, requestOptions),
     { enabled: !!tvid, ...queryOptions }
   );
 
@@ -3438,28 +3641,29 @@ export const useGETTvTvIdWatchProviders = <
   };
 };
 
-export const gETTvTvId = <TData = AxiosResponse<GETTvTvId200>>(
-  tvid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}`, options);
-};
+export const gETTvTvId = <TData = GETTvTvId200>(tvid: number, options?: SecondParameter<typeof customInstance>) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdQueryKey = (tvid: number) => [`/tv/${tvid}`];
 
 export const useGETTvTvId = <
-  TQueryFnData = AsyncReturnType<typeof gETTvTvId, AxiosResponse<GETTvTvId200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvTvId, GETTvTvId200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdQueryKey(tvid);
 
-  const query = useQuery<TQueryFnData, TError, TData>(queryKey, () => gETTvTvId<TQueryFnData>(tvid, axiosOptions), {
+  const query = useQuery<TQueryFnData, TError, TData>(queryKey, () => gETTvTvId<TQueryFnData>(tvid, requestOptions), {
     enabled: !!tvid,
     ...queryOptions,
   });
@@ -3470,29 +3674,31 @@ export const useGETTvTvId = <
   };
 };
 
-export const gETMovieTopRated = <TData = AxiosResponse<GETMovieTopRated200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/movie/top_rated`, options);
-};
+export const gETMovieTopRated = <TData = GETMovieTopRated200>(options?: SecondParameter<typeof customInstance>) =>
+  customInstance<TData>(
+    { url: `/movie/top_rated`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETMovieTopRatedQueryKey = () => [`/movie/top_rated`];
 
 export const useGETMovieTopRated = <
-  TQueryFnData = AsyncReturnType<typeof gETMovieTopRated, AxiosResponse<GETMovieTopRated200>>,
+  TQueryFnData = AsyncReturnType<typeof gETMovieTopRated, GETMovieTopRated200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETMovieTopRatedQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieTopRated<TQueryFnData>(axiosOptions),
+    () => gETMovieTopRated<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -3502,15 +3708,17 @@ export const useGETMovieTopRated = <
   };
 };
 
-export const gETTvTvIdSeasonSeasonNumberExternalIds = <
-  TData = AxiosResponse<GETTvTvIdSeasonSeasonNumberExternalIds200>
->(
+export const gETTvTvIdSeasonSeasonNumberExternalIds = <TData = GETTvTvIdSeasonSeasonNumberExternalIds200>(
   tvid: number,
   seasonnumber: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/season/${seasonnumber}/external_ids`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/season/${seasonnumber}/external_ids`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdSeasonSeasonNumberExternalIdsQueryKey = (tvid: number, seasonnumber: number) => [
   `/tv/${tvid}/season/${seasonnumber}/external_ids`,
@@ -3519,22 +3727,22 @@ export const getGETTvTvIdSeasonSeasonNumberExternalIdsQueryKey = (tvid: number, 
 export const useGETTvTvIdSeasonSeasonNumberExternalIds = <
   TQueryFnData = AsyncReturnType<
     typeof gETTvTvIdSeasonSeasonNumberExternalIds,
-    AxiosResponse<GETTvTvIdSeasonSeasonNumberExternalIds200>
+    GETTvTvIdSeasonSeasonNumberExternalIds200
   >,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
   seasonnumber: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdSeasonSeasonNumberExternalIdsQueryKey(tvid, seasonnumber);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdSeasonSeasonNumberExternalIds<TQueryFnData>(tvid, seasonnumber, axiosOptions),
+    () => gETTvTvIdSeasonSeasonNumberExternalIds<TQueryFnData>(tvid, seasonnumber, requestOptions),
     { enabled: !!(tvid && seasonnumber), ...queryOptions }
   );
 
@@ -3544,58 +3752,65 @@ export const useGETTvTvIdSeasonSeasonNumberExternalIds = <
   };
 };
 
-export const pOSTAuthenticationTokenValidateWithLogin = <
-  TData = AxiosResponse<POSTAuthenticationTokenValidateWithLogin200>
->(
+export const pOSTAuthenticationTokenValidateWithLogin = <TData = POSTAuthenticationTokenValidateWithLogin200>(
   pOSTAuthenticationTokenValidateWithLoginBody: POSTAuthenticationTokenValidateWithLoginBody,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.post(`/authentication/token/validate_with_login`, pOSTAuthenticationTokenValidateWithLoginBody, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    {
+      url: `/authentication/token/validate_with_login`,
+      method: 'post',
+      data: pOSTAuthenticationTokenValidateWithLoginBody,
+    },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const usePOSTAuthenticationTokenValidateWithLogin = <
-  TData = AsyncReturnType<
-    typeof pOSTAuthenticationTokenValidateWithLogin,
-    AxiosResponse<POSTAuthenticationTokenValidateWithLogin200>
-  >,
+  TData = AsyncReturnType<typeof pOSTAuthenticationTokenValidateWithLogin, POSTAuthenticationTokenValidateWithLogin200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<TData, TError, { data: POSTAuthenticationTokenValidateWithLoginBody }, TContext>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { mutation: mutationOptions, axios: axiosOptions } = options || {};
+  const { mutation: mutationOptions, request: requestOptions } = options || {};
 
   return useMutation<TData, TError, { data: POSTAuthenticationTokenValidateWithLoginBody }, TContext>(props => {
     const { data } = props || {};
 
-    return pOSTAuthenticationTokenValidateWithLogin<TData>(data, axiosOptions);
+    return pOSTAuthenticationTokenValidateWithLogin<TData>(data, requestOptions);
   }, mutationOptions);
 };
-export const gETPersonPersonIdTranslations = <TData = AxiosResponse<GETPersonPersonIdTranslations200>>(
+export const gETPersonPersonIdTranslations = <TData = GETPersonPersonIdTranslations200>(
   personid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/person/${personid}/translations`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/person/${personid}/translations`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETPersonPersonIdTranslationsQueryKey = (personid: number) => [`/person/${personid}/translations`];
 
 export const useGETPersonPersonIdTranslations = <
-  TQueryFnData = AsyncReturnType<typeof gETPersonPersonIdTranslations, AxiosResponse<GETPersonPersonIdTranslations200>>,
+  TQueryFnData = AsyncReturnType<typeof gETPersonPersonIdTranslations, GETPersonPersonIdTranslations200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   personid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETPersonPersonIdTranslationsQueryKey(personid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETPersonPersonIdTranslations<TQueryFnData>(personid, axiosOptions),
+    () => gETPersonPersonIdTranslations<TQueryFnData>(personid, requestOptions),
     { enabled: !!personid, ...queryOptions }
   );
 
@@ -3605,33 +3820,34 @@ export const useGETPersonPersonIdTranslations = <
   };
 };
 
-export const gETSearchTv = <TData = AxiosResponse<GETSearchTv200>>(
+export const gETSearchTv = <TData = GETSearchTv200>(
   params?: GETSearchTvParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/search/tv`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/search/tv`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETSearchTvQueryKey = (params?: GETSearchTvParams) => [`/search/tv`, ...(params ? [params] : [])];
 
 export const useGETSearchTv = <
-  TQueryFnData = AsyncReturnType<typeof gETSearchTv, AxiosResponse<GETSearchTv200>>,
+  TQueryFnData = AsyncReturnType<typeof gETSearchTv, GETSearchTv200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   params?: GETSearchTvParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETSearchTvQueryKey(params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETSearchTv<TQueryFnData>(params, axiosOptions),
+    () => gETSearchTv<TQueryFnData>(params, requestOptions),
     queryOptions
   );
 
@@ -3641,29 +3857,31 @@ export const useGETSearchTv = <
   };
 };
 
-export const gETTvAiringToday = <TData = AxiosResponse<GETTvAiringToday200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/airing_today`, options);
-};
+export const gETTvAiringToday = <TData = GETTvAiringToday200>(options?: SecondParameter<typeof customInstance>) =>
+  customInstance<TData>(
+    { url: `/tv/airing_today`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvAiringTodayQueryKey = () => [`/tv/airing_today`];
 
 export const useGETTvAiringToday = <
-  TQueryFnData = AsyncReturnType<typeof gETTvAiringToday, AxiosResponse<GETTvAiringToday200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvAiringToday, GETTvAiringToday200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvAiringTodayQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvAiringToday<TQueryFnData>(axiosOptions),
+    () => gETTvAiringToday<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -3673,16 +3891,17 @@ export const useGETTvAiringToday = <
   };
 };
 
-export const gETAccountAccountIdFavoriteTv = <TData = AxiosResponse<GETAccountAccountIdFavoriteTv200>>(
+export const gETAccountAccountIdFavoriteTv = <TData = GETAccountAccountIdFavoriteTv200>(
   accountid: number,
   params?: GETAccountAccountIdFavoriteTvParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/account/${accountid}/favorite/tv`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/account/${accountid}/favorite/tv`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETAccountAccountIdFavoriteTvQueryKey = (
   accountid: number,
@@ -3690,21 +3909,21 @@ export const getGETAccountAccountIdFavoriteTvQueryKey = (
 ) => [`/account/${accountid}/favorite/tv`, ...(params ? [params] : [])];
 
 export const useGETAccountAccountIdFavoriteTv = <
-  TQueryFnData = AsyncReturnType<typeof gETAccountAccountIdFavoriteTv, AxiosResponse<GETAccountAccountIdFavoriteTv200>>,
+  TQueryFnData = AsyncReturnType<typeof gETAccountAccountIdFavoriteTv, GETAccountAccountIdFavoriteTv200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   accountid: number,
   params?: GETAccountAccountIdFavoriteTvParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETAccountAccountIdFavoriteTvQueryKey(accountid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETAccountAccountIdFavoriteTv<TQueryFnData>(accountid, params, axiosOptions),
+    () => gETAccountAccountIdFavoriteTv<TQueryFnData>(accountid, params, requestOptions),
     { enabled: !!accountid, ...queryOptions }
   );
 
@@ -3714,15 +3933,16 @@ export const useGETAccountAccountIdFavoriteTv = <
   };
 };
 
-export const gETWatchProvidersMovie = <TData = AxiosResponse<GETWatchProvidersMovie200>>(
+export const gETWatchProvidersMovie = <TData = GETWatchProvidersMovie200>(
   params?: GETWatchProvidersMovieParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/watch/providers/movie`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/watch/providers/movie`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETWatchProvidersMovieQueryKey = (params?: GETWatchProvidersMovieParams) => [
   `/watch/providers/movie`,
@@ -3730,20 +3950,20 @@ export const getGETWatchProvidersMovieQueryKey = (params?: GETWatchProvidersMovi
 ];
 
 export const useGETWatchProvidersMovie = <
-  TQueryFnData = AsyncReturnType<typeof gETWatchProvidersMovie, AxiosResponse<GETWatchProvidersMovie200>>,
+  TQueryFnData = AsyncReturnType<typeof gETWatchProvidersMovie, GETWatchProvidersMovie200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   params?: GETWatchProvidersMovieParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETWatchProvidersMovieQueryKey(params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETWatchProvidersMovie<TQueryFnData>(params, axiosOptions),
+    () => gETWatchProvidersMovie<TQueryFnData>(params, requestOptions),
     queryOptions
   );
 
@@ -3753,15 +3973,16 @@ export const useGETWatchProvidersMovie = <
   };
 };
 
-export const gETConfigurationPrimaryTranslations = <TData = AxiosResponse<string[]>>(
+export const gETConfigurationPrimaryTranslations = <TData = string[]>(
   params?: GETConfigurationPrimaryTranslationsParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/configuration/primary_translations`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/configuration/primary_translations`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETConfigurationPrimaryTranslationsQueryKey = (params?: GETConfigurationPrimaryTranslationsParams) => [
   `/configuration/primary_translations`,
@@ -3769,20 +3990,20 @@ export const getGETConfigurationPrimaryTranslationsQueryKey = (params?: GETConfi
 ];
 
 export const useGETConfigurationPrimaryTranslations = <
-  TQueryFnData = AsyncReturnType<typeof gETConfigurationPrimaryTranslations, AxiosResponse<string[]>>,
+  TQueryFnData = AsyncReturnType<typeof gETConfigurationPrimaryTranslations, string[]>,
   TError = unknown,
   TData = TQueryFnData
 >(
   params?: GETConfigurationPrimaryTranslationsParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETConfigurationPrimaryTranslationsQueryKey(params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETConfigurationPrimaryTranslations<TQueryFnData>(params, axiosOptions),
+    () => gETConfigurationPrimaryTranslations<TQueryFnData>(params, requestOptions),
     queryOptions
   );
 
@@ -3792,16 +4013,17 @@ export const useGETConfigurationPrimaryTranslations = <
   };
 };
 
-export const gETMovieMovieIdSimilar = <TData = AxiosResponse<GETMovieMovieIdSimilar200>>(
+export const gETMovieMovieIdSimilar = <TData = GETMovieMovieIdSimilar200>(
   movieid: number,
   params?: GETMovieMovieIdSimilarParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/movie/${movieid}/similar`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/movie/${movieid}/similar`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETMovieMovieIdSimilarQueryKey = (movieid: number, params?: GETMovieMovieIdSimilarParams) => [
   `/movie/${movieid}/similar`,
@@ -3809,21 +4031,21 @@ export const getGETMovieMovieIdSimilarQueryKey = (movieid: number, params?: GETM
 ];
 
 export const useGETMovieMovieIdSimilar = <
-  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdSimilar, AxiosResponse<GETMovieMovieIdSimilar200>>,
+  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdSimilar, GETMovieMovieIdSimilar200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   movieid: number,
   params?: GETMovieMovieIdSimilarParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETMovieMovieIdSimilarQueryKey(movieid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieMovieIdSimilar<TQueryFnData>(movieid, params, axiosOptions),
+    () => gETMovieMovieIdSimilar<TQueryFnData>(movieid, params, requestOptions),
     { enabled: !!movieid, ...queryOptions }
   );
 
@@ -3833,16 +4055,17 @@ export const useGETMovieMovieIdSimilar = <
   };
 };
 
-export const gETMovieMovieIdRecommendations = <TData = AxiosResponse<GETMovieMovieIdRecommendations200>>(
+export const gETMovieMovieIdRecommendations = <TData = GETMovieMovieIdRecommendations200>(
   movieid: number,
   params?: GETMovieMovieIdRecommendationsParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/movie/${movieid}/recommendations`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/movie/${movieid}/recommendations`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETMovieMovieIdRecommendationsQueryKey = (
   movieid: number,
@@ -3850,24 +4073,21 @@ export const getGETMovieMovieIdRecommendationsQueryKey = (
 ) => [`/movie/${movieid}/recommendations`, ...(params ? [params] : [])];
 
 export const useGETMovieMovieIdRecommendations = <
-  TQueryFnData = AsyncReturnType<
-    typeof gETMovieMovieIdRecommendations,
-    AxiosResponse<GETMovieMovieIdRecommendations200>
-  >,
+  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdRecommendations, GETMovieMovieIdRecommendations200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   movieid: number,
   params?: GETMovieMovieIdRecommendationsParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETMovieMovieIdRecommendationsQueryKey(movieid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieMovieIdRecommendations<TQueryFnData>(movieid, params, axiosOptions),
+    () => gETMovieMovieIdRecommendations<TQueryFnData>(movieid, params, requestOptions),
     { enabled: !!movieid, ...queryOptions }
   );
 
@@ -3877,29 +4097,31 @@ export const useGETMovieMovieIdRecommendations = <
   };
 };
 
-export const gETMovieChanges = <TData = AxiosResponse<GETMovieChanges200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/movie/changes`, options);
-};
+export const gETMovieChanges = <TData = GETMovieChanges200>(options?: SecondParameter<typeof customInstance>) =>
+  customInstance<TData>(
+    { url: `/movie/changes`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETMovieChangesQueryKey = () => [`/movie/changes`];
 
 export const useGETMovieChanges = <
-  TQueryFnData = AsyncReturnType<typeof gETMovieChanges, AxiosResponse<GETMovieChanges200>>,
+  TQueryFnData = AsyncReturnType<typeof gETMovieChanges, GETMovieChanges200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETMovieChangesQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieChanges<TQueryFnData>(axiosOptions),
+    () => gETMovieChanges<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -3910,15 +4132,19 @@ export const useGETMovieChanges = <
 };
 
 export const gETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberCredits = <
-  TData = AxiosResponse<GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberCredits200>
+  TData = GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberCredits200
 >(
   tvid: number,
   seasonnumber: number,
   episodenumber: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/season/${seasonnumber}/episode/${episodenumber}/credits`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/season/${seasonnumber}/episode/${episodenumber}/credits`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberCreditsQueryKey = (
   tvid: number,
@@ -3929,7 +4155,7 @@ export const getGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberCreditsQueryKey =
 export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberCredits = <
   TQueryFnData = AsyncReturnType<
     typeof gETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberCredits,
-    AxiosResponse<GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberCredits200>
+    GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberCredits200
   >,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
@@ -3937,9 +4163,9 @@ export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberCredits = <
   tvid: number,
   seasonnumber: number,
   episodenumber: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey =
     queryOptions?.queryKey ??
@@ -3952,7 +4178,7 @@ export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberCredits = <
         tvid,
         seasonnumber,
         episodenumber,
-        axiosOptions
+        requestOptions
       ),
     { enabled: !!(tvid && seasonnumber && episodenumber), ...queryOptions }
   );
@@ -3963,29 +4189,31 @@ export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberCredits = <
   };
 };
 
-export const gETPersonChanges = <TData = AxiosResponse<GETPersonChanges200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/person/changes`, options);
-};
+export const gETPersonChanges = <TData = GETPersonChanges200>(options?: SecondParameter<typeof customInstance>) =>
+  customInstance<TData>(
+    { url: `/person/changes`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETPersonChangesQueryKey = () => [`/person/changes`];
 
 export const useGETPersonChanges = <
-  TQueryFnData = AsyncReturnType<typeof gETPersonChanges, AxiosResponse<GETPersonChanges200>>,
+  TQueryFnData = AsyncReturnType<typeof gETPersonChanges, GETPersonChanges200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETPersonChangesQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETPersonChanges<TQueryFnData>(axiosOptions),
+    () => gETPersonChanges<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -3995,30 +4223,34 @@ export const useGETPersonChanges = <
   };
 };
 
-export const gETTvTvIdVideos = <TData = AxiosResponse<GETTvTvIdVideos200>>(
+export const gETTvTvIdVideos = <TData = GETTvTvIdVideos200>(
   tvid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/videos`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/videos`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdVideosQueryKey = (tvid: number) => [`/tv/${tvid}/videos`];
 
 export const useGETTvTvIdVideos = <
-  TQueryFnData = AsyncReturnType<typeof gETTvTvIdVideos, AxiosResponse<GETTvTvIdVideos200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvTvIdVideos, GETTvTvIdVideos200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdVideosQueryKey(tvid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdVideos<TQueryFnData>(tvid, axiosOptions),
+    () => gETTvTvIdVideos<TQueryFnData>(tvid, requestOptions),
     { enabled: !!tvid, ...queryOptions }
   );
 
@@ -4028,64 +4260,66 @@ export const useGETTvTvIdVideos = <
   };
 };
 
-export const pOSTList = <TData = AxiosResponse<POSTList201>>(
+export const pOSTList = <TData = POSTList201>(
   pOSTListBody: POSTListBody,
   params?: POSTListParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.post(`/list`, pOSTListBody, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/list`, method: 'post', data: pOSTListBody, params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const usePOSTList = <
-  TData = AsyncReturnType<typeof pOSTList, AxiosResponse<POSTList201>>,
+  TData = AsyncReturnType<typeof pOSTList, POSTList201>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<TData, TError, { data: POSTListBody; params?: POSTListParams }, TContext>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { mutation: mutationOptions, axios: axiosOptions } = options || {};
+  const { mutation: mutationOptions, request: requestOptions } = options || {};
 
   return useMutation<TData, TError, { data: POSTListBody; params?: POSTListParams }, TContext>(props => {
     const { data, params } = props || {};
 
-    return pOSTList<TData>(data, params, axiosOptions);
+    return pOSTList<TData>(data, params, requestOptions);
   }, mutationOptions);
 };
-export const gETTvTvIdSeasonSeasonNumberCredits = <TData = AxiosResponse<GETTvTvIdSeasonSeasonNumberCredits200>>(
+export const gETTvTvIdSeasonSeasonNumberCredits = <TData = GETTvTvIdSeasonSeasonNumberCredits200>(
   tvid: number,
   seasonnumber: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/season/${seasonnumber}/credits`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/season/${seasonnumber}/credits`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdSeasonSeasonNumberCreditsQueryKey = (tvid: number, seasonnumber: number) => [
   `/tv/${tvid}/season/${seasonnumber}/credits`,
 ];
 
 export const useGETTvTvIdSeasonSeasonNumberCredits = <
-  TQueryFnData = AsyncReturnType<
-    typeof gETTvTvIdSeasonSeasonNumberCredits,
-    AxiosResponse<GETTvTvIdSeasonSeasonNumberCredits200>
-  >,
+  TQueryFnData = AsyncReturnType<typeof gETTvTvIdSeasonSeasonNumberCredits, GETTvTvIdSeasonSeasonNumberCredits200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
   seasonnumber: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdSeasonSeasonNumberCreditsQueryKey(tvid, seasonnumber);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdSeasonSeasonNumberCredits<TQueryFnData>(tvid, seasonnumber, axiosOptions),
+    () => gETTvTvIdSeasonSeasonNumberCredits<TQueryFnData>(tvid, seasonnumber, requestOptions),
     { enabled: !!(tvid && seasonnumber), ...queryOptions }
   );
 
@@ -4095,30 +4329,34 @@ export const useGETTvTvIdSeasonSeasonNumberCredits = <
   };
 };
 
-export const gETTvTvIdKeywords = <TData = AxiosResponse<GETTvTvIdKeywords200>>(
+export const gETTvTvIdKeywords = <TData = GETTvTvIdKeywords200>(
   tvid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/keywords`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/keywords`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdKeywordsQueryKey = (tvid: number) => [`/tv/${tvid}/keywords`];
 
 export const useGETTvTvIdKeywords = <
-  TQueryFnData = AsyncReturnType<typeof gETTvTvIdKeywords, AxiosResponse<GETTvTvIdKeywords200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvTvIdKeywords, GETTvTvIdKeywords200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdKeywordsQueryKey(tvid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdKeywords<TQueryFnData>(tvid, axiosOptions),
+    () => gETTvTvIdKeywords<TQueryFnData>(tvid, requestOptions),
     { enabled: !!tvid, ...queryOptions }
   );
 
@@ -4128,16 +4366,17 @@ export const useGETTvTvIdKeywords = <
   };
 };
 
-export const gETAccountAccountIdRatedTvEpisodes = <TData = AxiosResponse<GETAccountAccountIdRatedTvEpisodes200>>(
+export const gETAccountAccountIdRatedTvEpisodes = <TData = GETAccountAccountIdRatedTvEpisodes200>(
   accountid: string,
   params?: GETAccountAccountIdRatedTvEpisodesParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/account/${accountid}/rated/tv/episodes`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/account/${accountid}/rated/tv/episodes`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETAccountAccountIdRatedTvEpisodesQueryKey = (
   accountid: string,
@@ -4145,24 +4384,21 @@ export const getGETAccountAccountIdRatedTvEpisodesQueryKey = (
 ) => [`/account/${accountid}/rated/tv/episodes`, ...(params ? [params] : [])];
 
 export const useGETAccountAccountIdRatedTvEpisodes = <
-  TQueryFnData = AsyncReturnType<
-    typeof gETAccountAccountIdRatedTvEpisodes,
-    AxiosResponse<GETAccountAccountIdRatedTvEpisodes200>
-  >,
+  TQueryFnData = AsyncReturnType<typeof gETAccountAccountIdRatedTvEpisodes, GETAccountAccountIdRatedTvEpisodes200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   accountid: string,
   params?: GETAccountAccountIdRatedTvEpisodesParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETAccountAccountIdRatedTvEpisodesQueryKey(accountid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETAccountAccountIdRatedTvEpisodes<TQueryFnData>(accountid, params, axiosOptions),
+    () => gETAccountAccountIdRatedTvEpisodes<TQueryFnData>(accountid, params, requestOptions),
     { enabled: !!accountid, ...queryOptions }
   );
 
@@ -4172,35 +4408,36 @@ export const useGETAccountAccountIdRatedTvEpisodes = <
   };
 };
 
-export const gETCompanyCompanyIdAlternativeNames = <TData = AxiosResponse<GETCompanyCompanyIdAlternativeNames200>>(
+export const gETCompanyCompanyIdAlternativeNames = <TData = GETCompanyCompanyIdAlternativeNames200>(
   companyid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/company/${companyid}/alternative_names`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/company/${companyid}/alternative_names`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETCompanyCompanyIdAlternativeNamesQueryKey = (companyid: number) => [
   `/company/${companyid}/alternative_names`,
 ];
 
 export const useGETCompanyCompanyIdAlternativeNames = <
-  TQueryFnData = AsyncReturnType<
-    typeof gETCompanyCompanyIdAlternativeNames,
-    AxiosResponse<GETCompanyCompanyIdAlternativeNames200>
-  >,
+  TQueryFnData = AsyncReturnType<typeof gETCompanyCompanyIdAlternativeNames, GETCompanyCompanyIdAlternativeNames200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   companyid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETCompanyCompanyIdAlternativeNamesQueryKey(companyid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETCompanyCompanyIdAlternativeNames<TQueryFnData>(companyid, axiosOptions),
+    () => gETCompanyCompanyIdAlternativeNames<TQueryFnData>(companyid, requestOptions),
     { enabled: !!companyid, ...queryOptions }
   );
 
@@ -4210,30 +4447,34 @@ export const useGETCompanyCompanyIdAlternativeNames = <
   };
 };
 
-export const gETPersonPersonIdTaggedImages = <TData = AxiosResponse<GETPersonPersonIdTaggedImages200>>(
+export const gETPersonPersonIdTaggedImages = <TData = GETPersonPersonIdTaggedImages200>(
   personid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/person/${personid}/tagged_images`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/person/${personid}/tagged_images`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETPersonPersonIdTaggedImagesQueryKey = (personid: number) => [`/person/${personid}/tagged_images`];
 
 export const useGETPersonPersonIdTaggedImages = <
-  TQueryFnData = AsyncReturnType<typeof gETPersonPersonIdTaggedImages, AxiosResponse<GETPersonPersonIdTaggedImages200>>,
+  TQueryFnData = AsyncReturnType<typeof gETPersonPersonIdTaggedImages, GETPersonPersonIdTaggedImages200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   personid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETPersonPersonIdTaggedImagesQueryKey(personid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETPersonPersonIdTaggedImages<TQueryFnData>(personid, axiosOptions),
+    () => gETPersonPersonIdTaggedImages<TQueryFnData>(personid, requestOptions),
     { enabled: !!personid, ...queryOptions }
   );
 
@@ -4243,30 +4484,34 @@ export const useGETPersonPersonIdTaggedImages = <
   };
 };
 
-export const gETKeywordKeywordIdMovies = <TData = AxiosResponse<GETKeywordKeywordIdMovies200>>(
+export const gETKeywordKeywordIdMovies = <TData = GETKeywordKeywordIdMovies200>(
   keywordid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/keyword/${keywordid}/movies`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/keyword/${keywordid}/movies`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETKeywordKeywordIdMoviesQueryKey = (keywordid: number) => [`/keyword/${keywordid}/movies`];
 
 export const useGETKeywordKeywordIdMovies = <
-  TQueryFnData = AsyncReturnType<typeof gETKeywordKeywordIdMovies, AxiosResponse<GETKeywordKeywordIdMovies200>>,
+  TQueryFnData = AsyncReturnType<typeof gETKeywordKeywordIdMovies, GETKeywordKeywordIdMovies200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   keywordid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETKeywordKeywordIdMoviesQueryKey(keywordid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETKeywordKeywordIdMovies<TQueryFnData>(keywordid, axiosOptions),
+    () => gETKeywordKeywordIdMovies<TQueryFnData>(keywordid, requestOptions),
     { enabled: !!keywordid, ...queryOptions }
   );
 
@@ -4276,16 +4521,17 @@ export const useGETKeywordKeywordIdMovies = <
   };
 };
 
-export const gETMovieMovieIdWatchProviders = <TData = AxiosResponse<GETMovieMovieIdWatchProviders200>>(
+export const gETMovieMovieIdWatchProviders = <TData = GETMovieMovieIdWatchProviders200>(
   movieid: number,
   params?: GETMovieMovieIdWatchProvidersParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/movie/${movieid}/watch/providers`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/movie/${movieid}/watch/providers`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETMovieMovieIdWatchProvidersQueryKey = (
   movieid: number,
@@ -4293,21 +4539,21 @@ export const getGETMovieMovieIdWatchProvidersQueryKey = (
 ) => [`/movie/${movieid}/watch/providers`, ...(params ? [params] : [])];
 
 export const useGETMovieMovieIdWatchProviders = <
-  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdWatchProviders, AxiosResponse<GETMovieMovieIdWatchProviders200>>,
+  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdWatchProviders, GETMovieMovieIdWatchProviders200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   movieid: number,
   params?: GETMovieMovieIdWatchProvidersParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETMovieMovieIdWatchProvidersQueryKey(movieid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieMovieIdWatchProviders<TQueryFnData>(movieid, params, axiosOptions),
+    () => gETMovieMovieIdWatchProviders<TQueryFnData>(movieid, params, requestOptions),
     { enabled: !!movieid, ...queryOptions }
   );
 
@@ -4317,15 +4563,16 @@ export const useGETMovieMovieIdWatchProviders = <
   };
 };
 
-export const gETSearchMovie = <TData = AxiosResponse<GETSearchMovie200>>(
+export const gETSearchMovie = <TData = GETSearchMovie200>(
   params?: GETSearchMovieParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/search/movie`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/search/movie`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETSearchMovieQueryKey = (params?: GETSearchMovieParams) => [
   `/search/movie`,
@@ -4333,20 +4580,20 @@ export const getGETSearchMovieQueryKey = (params?: GETSearchMovieParams) => [
 ];
 
 export const useGETSearchMovie = <
-  TQueryFnData = AsyncReturnType<typeof gETSearchMovie, AxiosResponse<GETSearchMovie200>>,
+  TQueryFnData = AsyncReturnType<typeof gETSearchMovie, GETSearchMovie200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   params?: GETSearchMovieParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETSearchMovieQueryKey(params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETSearchMovie<TQueryFnData>(params, axiosOptions),
+    () => gETSearchMovie<TQueryFnData>(params, requestOptions),
     queryOptions
   );
 
@@ -4356,30 +4603,34 @@ export const useGETSearchMovie = <
   };
 };
 
-export const gETNetworkNetworkIdImages = <TData = AxiosResponse<GETNetworkNetworkIdImages200>>(
+export const gETNetworkNetworkIdImages = <TData = GETNetworkNetworkIdImages200>(
   networkid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/network/${networkid}/images`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/network/${networkid}/images`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETNetworkNetworkIdImagesQueryKey = (networkid: number) => [`/network/${networkid}/images`];
 
 export const useGETNetworkNetworkIdImages = <
-  TQueryFnData = AsyncReturnType<typeof gETNetworkNetworkIdImages, AxiosResponse<GETNetworkNetworkIdImages200>>,
+  TQueryFnData = AsyncReturnType<typeof gETNetworkNetworkIdImages, GETNetworkNetworkIdImages200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   networkid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETNetworkNetworkIdImagesQueryKey(networkid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETNetworkNetworkIdImages<TQueryFnData>(networkid, axiosOptions),
+    () => gETNetworkNetworkIdImages<TQueryFnData>(networkid, requestOptions),
     { enabled: !!networkid, ...queryOptions }
   );
 
@@ -4389,16 +4640,17 @@ export const useGETNetworkNetworkIdImages = <
   };
 };
 
-export const gETAccountAccountIdWatchlistMovies = <TData = AxiosResponse<GETAccountAccountIdWatchlistMovies200>>(
+export const gETAccountAccountIdWatchlistMovies = <TData = GETAccountAccountIdWatchlistMovies200>(
   accountid: number,
   params?: GETAccountAccountIdWatchlistMoviesParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/account/${accountid}/watchlist/movies`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/account/${accountid}/watchlist/movies`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETAccountAccountIdWatchlistMoviesQueryKey = (
   accountid: number,
@@ -4406,24 +4658,21 @@ export const getGETAccountAccountIdWatchlistMoviesQueryKey = (
 ) => [`/account/${accountid}/watchlist/movies`, ...(params ? [params] : [])];
 
 export const useGETAccountAccountIdWatchlistMovies = <
-  TQueryFnData = AsyncReturnType<
-    typeof gETAccountAccountIdWatchlistMovies,
-    AxiosResponse<GETAccountAccountIdWatchlistMovies200>
-  >,
+  TQueryFnData = AsyncReturnType<typeof gETAccountAccountIdWatchlistMovies, GETAccountAccountIdWatchlistMovies200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   accountid: number,
   params?: GETAccountAccountIdWatchlistMoviesParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETAccountAccountIdWatchlistMoviesQueryKey(accountid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETAccountAccountIdWatchlistMovies<TQueryFnData>(accountid, params, axiosOptions),
+    () => gETAccountAccountIdWatchlistMovies<TQueryFnData>(accountid, params, requestOptions),
     { enabled: !!accountid, ...queryOptions }
   );
 
@@ -4433,30 +4682,34 @@ export const useGETAccountAccountIdWatchlistMovies = <
   };
 };
 
-export const gETTvTvIdExternalIds = <TData = AxiosResponse<GETTvTvIdExternalIds200>>(
+export const gETTvTvIdExternalIds = <TData = GETTvTvIdExternalIds200>(
   tvid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/external_ids`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/external_ids`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdExternalIdsQueryKey = (tvid: number) => [`/tv/${tvid}/external_ids`];
 
 export const useGETTvTvIdExternalIds = <
-  TQueryFnData = AsyncReturnType<typeof gETTvTvIdExternalIds, AxiosResponse<GETTvTvIdExternalIds200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvTvIdExternalIds, GETTvTvIdExternalIds200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdExternalIdsQueryKey(tvid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdExternalIds<TQueryFnData>(tvid, axiosOptions),
+    () => gETTvTvIdExternalIds<TQueryFnData>(tvid, requestOptions),
     { enabled: !!tvid, ...queryOptions }
   );
 
@@ -4466,16 +4719,17 @@ export const useGETTvTvIdExternalIds = <
   };
 };
 
-export const gETMovieMovieIdKeywords = <TData = AxiosResponse<GETMovieMovieIdKeywords200>>(
+export const gETMovieMovieIdKeywords = <TData = GETMovieMovieIdKeywords200>(
   movieid: number,
   params?: GETMovieMovieIdKeywordsParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/movie/${movieid}/keywords`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/movie/${movieid}/keywords`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETMovieMovieIdKeywordsQueryKey = (movieid: number, params?: GETMovieMovieIdKeywordsParams) => [
   `/movie/${movieid}/keywords`,
@@ -4483,21 +4737,21 @@ export const getGETMovieMovieIdKeywordsQueryKey = (movieid: number, params?: GET
 ];
 
 export const useGETMovieMovieIdKeywords = <
-  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdKeywords, AxiosResponse<GETMovieMovieIdKeywords200>>,
+  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdKeywords, GETMovieMovieIdKeywords200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   movieid: number,
   params?: GETMovieMovieIdKeywordsParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETMovieMovieIdKeywordsQueryKey(movieid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieMovieIdKeywords<TQueryFnData>(movieid, params, axiosOptions),
+    () => gETMovieMovieIdKeywords<TQueryFnData>(movieid, params, requestOptions),
     { enabled: !!movieid, ...queryOptions }
   );
 
@@ -4507,37 +4761,38 @@ export const useGETMovieMovieIdKeywords = <
   };
 };
 
-export const gETTvTvIdSeasonSeasonNumberImages = <TData = AxiosResponse<GETTvTvIdSeasonSeasonNumberImages200>>(
+export const gETTvTvIdSeasonSeasonNumberImages = <TData = GETTvTvIdSeasonSeasonNumberImages200>(
   tvid: number,
   seasonnumber: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/season/${seasonnumber}/images`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/season/${seasonnumber}/images`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdSeasonSeasonNumberImagesQueryKey = (tvid: number, seasonnumber: number) => [
   `/tv/${tvid}/season/${seasonnumber}/images`,
 ];
 
 export const useGETTvTvIdSeasonSeasonNumberImages = <
-  TQueryFnData = AsyncReturnType<
-    typeof gETTvTvIdSeasonSeasonNumberImages,
-    AxiosResponse<GETTvTvIdSeasonSeasonNumberImages200>
-  >,
+  TQueryFnData = AsyncReturnType<typeof gETTvTvIdSeasonSeasonNumberImages, GETTvTvIdSeasonSeasonNumberImages200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
   seasonnumber: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdSeasonSeasonNumberImagesQueryKey(tvid, seasonnumber);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdSeasonSeasonNumberImages<TQueryFnData>(tvid, seasonnumber, axiosOptions),
+    () => gETTvTvIdSeasonSeasonNumberImages<TQueryFnData>(tvid, seasonnumber, requestOptions),
     { enabled: !!(tvid && seasonnumber), ...queryOptions }
   );
 
@@ -4547,16 +4802,17 @@ export const useGETTvTvIdSeasonSeasonNumberImages = <
   };
 };
 
-export const gETMovieMovieIdReleaseDates = <TData = AxiosResponse<GETMovieMovieIdReleaseDates200>>(
+export const gETMovieMovieIdReleaseDates = <TData = GETMovieMovieIdReleaseDates200>(
   movieid: number,
   params?: GETMovieMovieIdReleaseDatesParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/movie/${movieid}/release_dates`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/movie/${movieid}/release_dates`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETMovieMovieIdReleaseDatesQueryKey = (movieid: number, params?: GETMovieMovieIdReleaseDatesParams) => [
   `/movie/${movieid}/release_dates`,
@@ -4564,21 +4820,21 @@ export const getGETMovieMovieIdReleaseDatesQueryKey = (movieid: number, params?:
 ];
 
 export const useGETMovieMovieIdReleaseDates = <
-  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdReleaseDates, AxiosResponse<GETMovieMovieIdReleaseDates200>>,
+  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdReleaseDates, GETMovieMovieIdReleaseDates200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   movieid: number,
   params?: GETMovieMovieIdReleaseDatesParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETMovieMovieIdReleaseDatesQueryKey(movieid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieMovieIdReleaseDates<TQueryFnData>(movieid, params, axiosOptions),
+    () => gETMovieMovieIdReleaseDates<TQueryFnData>(movieid, params, requestOptions),
     { enabled: !!movieid, ...queryOptions }
   );
 
@@ -4588,30 +4844,34 @@ export const useGETMovieMovieIdReleaseDates = <
   };
 };
 
-export const gETPersonPersonIdImages = <TData = AxiosResponse<GETPersonPersonIdImages200>>(
+export const gETPersonPersonIdImages = <TData = GETPersonPersonIdImages200>(
   personid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/person/${personid}/images`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/person/${personid}/images`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETPersonPersonIdImagesQueryKey = (personid: number) => [`/person/${personid}/images`];
 
 export const useGETPersonPersonIdImages = <
-  TQueryFnData = AsyncReturnType<typeof gETPersonPersonIdImages, AxiosResponse<GETPersonPersonIdImages200>>,
+  TQueryFnData = AsyncReturnType<typeof gETPersonPersonIdImages, GETPersonPersonIdImages200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   personid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETPersonPersonIdImagesQueryKey(personid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETPersonPersonIdImages<TQueryFnData>(personid, axiosOptions),
+    () => gETPersonPersonIdImages<TQueryFnData>(personid, requestOptions),
     { enabled: !!personid, ...queryOptions }
   );
 
@@ -4621,30 +4881,34 @@ export const useGETPersonPersonIdImages = <
   };
 };
 
-export const gETMovieMovieId = <TData = AxiosResponse<GETMovieMovieId200>>(
+export const gETMovieMovieId = <TData = GETMovieMovieId200>(
   movieid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/movie/${movieid}`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/movie/${movieid}`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETMovieMovieIdQueryKey = (movieid: number) => [`/movie/${movieid}`];
 
 export const useGETMovieMovieId = <
-  TQueryFnData = AsyncReturnType<typeof gETMovieMovieId, AxiosResponse<GETMovieMovieId200>>,
+  TQueryFnData = AsyncReturnType<typeof gETMovieMovieId, GETMovieMovieId200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   movieid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETMovieMovieIdQueryKey(movieid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieMovieId<TQueryFnData>(movieid, axiosOptions),
+    () => gETMovieMovieId<TQueryFnData>(movieid, requestOptions),
     { enabled: !!movieid, ...queryOptions }
   );
 
@@ -4655,15 +4919,19 @@ export const useGETMovieMovieId = <
 };
 
 export const gETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumber = <
-  TData = AxiosResponse<GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumber200>
+  TData = GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumber200
 >(
   tvid: number,
   seasonnumber: number,
   episodenumber: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/season/${seasonnumber}/episode/${episodenumber}`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/season/${seasonnumber}/episode/${episodenumber}`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberQueryKey = (
   tvid: number,
@@ -4674,7 +4942,7 @@ export const getGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberQueryKey = (
 export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumber = <
   TQueryFnData = AsyncReturnType<
     typeof gETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumber,
-    AxiosResponse<GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumber200>
+    GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumber200
   >,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
@@ -4682,9 +4950,9 @@ export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumber = <
   tvid: number,
   seasonnumber: number,
   episodenumber: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey =
     queryOptions?.queryKey ??
@@ -4693,7 +4961,7 @@ export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumber = <
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
     () =>
-      gETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumber<TQueryFnData>(tvid, seasonnumber, episodenumber, axiosOptions),
+      gETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumber<TQueryFnData>(tvid, seasonnumber, episodenumber, requestOptions),
     { enabled: !!(tvid && seasonnumber && episodenumber), ...queryOptions }
   );
 
@@ -4704,15 +4972,19 @@ export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumber = <
 };
 
 export const gETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberImages = <
-  TData = AxiosResponse<GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberImages200>
+  TData = GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberImages200
 >(
   tvid: number,
   seasonnumber: number,
   episodenumber: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/season/${seasonnumber}/episode/${episodenumber}/images`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/season/${seasonnumber}/episode/${episodenumber}/images`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberImagesQueryKey = (
   tvid: number,
@@ -4723,7 +4995,7 @@ export const getGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberImagesQueryKey = 
 export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberImages = <
   TQueryFnData = AsyncReturnType<
     typeof gETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberImages,
-    AxiosResponse<GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberImages200>
+    GETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberImages200
   >,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
@@ -4731,9 +5003,9 @@ export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberImages = <
   tvid: number,
   seasonnumber: number,
   episodenumber: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey =
     queryOptions?.queryKey ??
@@ -4746,7 +5018,7 @@ export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberImages = <
         tvid,
         seasonnumber,
         episodenumber,
-        axiosOptions
+        requestOptions
       ),
     { enabled: !!(tvid && seasonnumber && episodenumber), ...queryOptions }
   );
@@ -4757,53 +5029,61 @@ export const useGETTvTvIdSeasonSeasonNumberEpisodeEpisodeNumberImages = <
   };
 };
 
-export const dELETEAuthenticationSession = <TData = AxiosResponse<DELETEAuthenticationSession200>>(
+export const dELETEAuthenticationSession = <TData = DELETEAuthenticationSession200>(
   dELETEAuthenticationSessionBody: DELETEAuthenticationSessionBody,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.delete(`/authentication/session`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/authentication/session`, method: 'delete' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const useDELETEAuthenticationSession = <
-  TData = AsyncReturnType<typeof dELETEAuthenticationSession, AxiosResponse<DELETEAuthenticationSession200>>,
+  TData = AsyncReturnType<typeof dELETEAuthenticationSession, DELETEAuthenticationSession200>,
   TError = TraitSessionErrors401Response | TraitStandardErrors404Response,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<TData, TError, { data: DELETEAuthenticationSessionBody }, TContext>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { mutation: mutationOptions, axios: axiosOptions } = options || {};
+  const { mutation: mutationOptions, request: requestOptions } = options || {};
 
   return useMutation<TData, TError, { data: DELETEAuthenticationSessionBody }, TContext>(props => {
     const { data } = props || {};
 
-    return dELETEAuthenticationSession<TData>(data, axiosOptions);
+    return dELETEAuthenticationSession<TData>(data, requestOptions);
   }, mutationOptions);
 };
-export const gETPersonPersonId = <TData = AxiosResponse<GETPersonPersonId200>>(
+export const gETPersonPersonId = <TData = GETPersonPersonId200>(
   personid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/person/${personid}`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/person/${personid}`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETPersonPersonIdQueryKey = (personid: number) => [`/person/${personid}`];
 
 export const useGETPersonPersonId = <
-  TQueryFnData = AsyncReturnType<typeof gETPersonPersonId, AxiosResponse<GETPersonPersonId200>>,
+  TQueryFnData = AsyncReturnType<typeof gETPersonPersonId, GETPersonPersonId200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   personid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETPersonPersonIdQueryKey(personid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETPersonPersonId<TQueryFnData>(personid, axiosOptions),
+    () => gETPersonPersonId<TQueryFnData>(personid, requestOptions),
     { enabled: !!personid, ...queryOptions }
   );
 
@@ -4813,35 +5093,36 @@ export const useGETPersonPersonId = <
   };
 };
 
-export const gETGuestSessionGuestSessionIdRatedTv = <TData = AxiosResponse<GETGuestSessionGuestSessionIdRatedTv200>>(
+export const gETGuestSessionGuestSessionIdRatedTv = <TData = GETGuestSessionGuestSessionIdRatedTv200>(
   guestsessionid: string,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/guest_session/${guestsessionid}/rated/tv`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/guest_session/${guestsessionid}/rated/tv`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETGuestSessionGuestSessionIdRatedTvQueryKey = (guestsessionid: string) => [
   `/guest_session/${guestsessionid}/rated/tv`,
 ];
 
 export const useGETGuestSessionGuestSessionIdRatedTv = <
-  TQueryFnData = AsyncReturnType<
-    typeof gETGuestSessionGuestSessionIdRatedTv,
-    AxiosResponse<GETGuestSessionGuestSessionIdRatedTv200>
-  >,
+  TQueryFnData = AsyncReturnType<typeof gETGuestSessionGuestSessionIdRatedTv, GETGuestSessionGuestSessionIdRatedTv200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   guestsessionid: string,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETGuestSessionGuestSessionIdRatedTvQueryKey(guestsessionid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETGuestSessionGuestSessionIdRatedTv<TQueryFnData>(guestsessionid, axiosOptions),
+    () => gETGuestSessionGuestSessionIdRatedTv<TQueryFnData>(guestsessionid, requestOptions),
     { enabled: !!guestsessionid, ...queryOptions }
   );
 
@@ -4851,16 +5132,17 @@ export const useGETGuestSessionGuestSessionIdRatedTv = <
   };
 };
 
-export const gETMovieMovieIdReviews = <TData = AxiosResponse<GETMovieMovieIdReviews200>>(
+export const gETMovieMovieIdReviews = <TData = GETMovieMovieIdReviews200>(
   movieid: number,
   params?: GETMovieMovieIdReviewsParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/movie/${movieid}/reviews`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/movie/${movieid}/reviews`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETMovieMovieIdReviewsQueryKey = (movieid: number, params?: GETMovieMovieIdReviewsParams) => [
   `/movie/${movieid}/reviews`,
@@ -4868,21 +5150,21 @@ export const getGETMovieMovieIdReviewsQueryKey = (movieid: number, params?: GETM
 ];
 
 export const useGETMovieMovieIdReviews = <
-  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdReviews, AxiosResponse<GETMovieMovieIdReviews200>>,
+  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdReviews, GETMovieMovieIdReviews200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   movieid: number,
   params?: GETMovieMovieIdReviewsParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETMovieMovieIdReviewsQueryKey(movieid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieMovieIdReviews<TQueryFnData>(movieid, params, axiosOptions),
+    () => gETMovieMovieIdReviews<TQueryFnData>(movieid, params, requestOptions),
     { enabled: !!movieid, ...queryOptions }
   );
 
@@ -4892,30 +5174,34 @@ export const useGETMovieMovieIdReviews = <
   };
 };
 
-export const gETTvTvIdChanges = <TData = AxiosResponse<GETTvTvIdChanges200>>(
+export const gETTvTvIdChanges = <TData = GETTvTvIdChanges200>(
   tvid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/changes`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/changes`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdChangesQueryKey = (tvid: number) => [`/tv/${tvid}/changes`];
 
 export const useGETTvTvIdChanges = <
-  TQueryFnData = AsyncReturnType<typeof gETTvTvIdChanges, AxiosResponse<GETTvTvIdChanges200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvTvIdChanges, GETTvTvIdChanges200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdChangesQueryKey(tvid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdChanges<TQueryFnData>(tvid, axiosOptions),
+    () => gETTvTvIdChanges<TQueryFnData>(tvid, requestOptions),
     { enabled: !!tvid, ...queryOptions }
   );
 
@@ -4925,30 +5211,34 @@ export const useGETTvTvIdChanges = <
   };
 };
 
-export const gETCreditCreditId = <TData = AxiosResponse<GETCreditCreditId200>>(
+export const gETCreditCreditId = <TData = GETCreditCreditId200>(
   creditid: string,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/credit/${creditid}`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/credit/${creditid}`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETCreditCreditIdQueryKey = (creditid: string) => [`/credit/${creditid}`];
 
 export const useGETCreditCreditId = <
-  TQueryFnData = AsyncReturnType<typeof gETCreditCreditId, AxiosResponse<GETCreditCreditId200>>,
+  TQueryFnData = AsyncReturnType<typeof gETCreditCreditId, GETCreditCreditId200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   creditid: string,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETCreditCreditIdQueryKey(creditid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETCreditCreditId<TQueryFnData>(creditid, axiosOptions),
+    () => gETCreditCreditId<TQueryFnData>(creditid, requestOptions),
     { enabled: !!creditid, ...queryOptions }
   );
 
@@ -4958,15 +5248,16 @@ export const useGETCreditCreditId = <
   };
 };
 
-export const gETConfigurationLanguages = <TData = AxiosResponse<GETConfigurationLanguages200Item[]>>(
+export const gETConfigurationLanguages = <TData = GETConfigurationLanguages200Item[]>(
   params?: GETConfigurationLanguagesParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/configuration/languages`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/configuration/languages`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETConfigurationLanguagesQueryKey = (params?: GETConfigurationLanguagesParams) => [
   `/configuration/languages`,
@@ -4974,20 +5265,20 @@ export const getGETConfigurationLanguagesQueryKey = (params?: GETConfigurationLa
 ];
 
 export const useGETConfigurationLanguages = <
-  TQueryFnData = AsyncReturnType<typeof gETConfigurationLanguages, AxiosResponse<GETConfigurationLanguages200Item[]>>,
+  TQueryFnData = AsyncReturnType<typeof gETConfigurationLanguages, GETConfigurationLanguages200Item[]>,
   TError = unknown,
   TData = TQueryFnData
 >(
   params?: GETConfigurationLanguagesParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETConfigurationLanguagesQueryKey(params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETConfigurationLanguages<TQueryFnData>(params, axiosOptions),
+    () => gETConfigurationLanguages<TQueryFnData>(params, requestOptions),
     queryOptions
   );
 
@@ -4997,15 +5288,16 @@ export const useGETConfigurationLanguages = <
   };
 };
 
-export const gETGenreMovieList = <TData = AxiosResponse<GETGenreMovieList200>>(
+export const gETGenreMovieList = <TData = GETGenreMovieList200>(
   params?: GETGenreMovieListParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/genre/movie/list`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/genre/movie/list`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETGenreMovieListQueryKey = (params?: GETGenreMovieListParams) => [
   `/genre/movie/list`,
@@ -5013,20 +5305,20 @@ export const getGETGenreMovieListQueryKey = (params?: GETGenreMovieListParams) =
 ];
 
 export const useGETGenreMovieList = <
-  TQueryFnData = AsyncReturnType<typeof gETGenreMovieList, AxiosResponse<GETGenreMovieList200>>,
+  TQueryFnData = AsyncReturnType<typeof gETGenreMovieList, GETGenreMovieList200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   params?: GETGenreMovieListParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETGenreMovieListQueryKey(params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETGenreMovieList<TQueryFnData>(params, axiosOptions),
+    () => gETGenreMovieList<TQueryFnData>(params, requestOptions),
     queryOptions
   );
 
@@ -5036,30 +5328,34 @@ export const useGETGenreMovieList = <
   };
 };
 
-export const gETTvTvIdCredits = <TData = AxiosResponse<GETTvTvIdCredits200>>(
+export const gETTvTvIdCredits = <TData = GETTvTvIdCredits200>(
   tvid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/credits`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/credits`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdCreditsQueryKey = (tvid: number) => [`/tv/${tvid}/credits`];
 
 export const useGETTvTvIdCredits = <
-  TQueryFnData = AsyncReturnType<typeof gETTvTvIdCredits, AxiosResponse<GETTvTvIdCredits200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvTvIdCredits, GETTvTvIdCredits200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdCreditsQueryKey(tvid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdCredits<TQueryFnData>(tvid, axiosOptions),
+    () => gETTvTvIdCredits<TQueryFnData>(tvid, requestOptions),
     { enabled: !!tvid, ...queryOptions }
   );
 
@@ -5069,16 +5365,17 @@ export const useGETTvTvIdCredits = <
   };
 };
 
-export const gETAccountAccountIdRatedTv = <TData = AxiosResponse<GETAccountAccountIdRatedTv200>>(
+export const gETAccountAccountIdRatedTv = <TData = GETAccountAccountIdRatedTv200>(
   accountid: number,
   params?: GETAccountAccountIdRatedTvParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/account/${accountid}/rated/tv`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/account/${accountid}/rated/tv`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETAccountAccountIdRatedTvQueryKey = (accountid: number, params?: GETAccountAccountIdRatedTvParams) => [
   `/account/${accountid}/rated/tv`,
@@ -5086,21 +5383,21 @@ export const getGETAccountAccountIdRatedTvQueryKey = (accountid: number, params?
 ];
 
 export const useGETAccountAccountIdRatedTv = <
-  TQueryFnData = AsyncReturnType<typeof gETAccountAccountIdRatedTv, AxiosResponse<GETAccountAccountIdRatedTv200>>,
+  TQueryFnData = AsyncReturnType<typeof gETAccountAccountIdRatedTv, GETAccountAccountIdRatedTv200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   accountid: number,
   params?: GETAccountAccountIdRatedTvParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETAccountAccountIdRatedTvQueryKey(accountid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETAccountAccountIdRatedTv<TQueryFnData>(accountid, params, axiosOptions),
+    () => gETAccountAccountIdRatedTv<TQueryFnData>(accountid, params, requestOptions),
     { enabled: !!accountid, ...queryOptions }
   );
 
@@ -5110,30 +5407,34 @@ export const useGETAccountAccountIdRatedTv = <
   };
 };
 
-export const gETMovieMovieIdCredits = <TData = AxiosResponse<GETMovieMovieIdCredits200>>(
+export const gETMovieMovieIdCredits = <TData = GETMovieMovieIdCredits200>(
   movieid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/movie/${movieid}/credits`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/movie/${movieid}/credits`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETMovieMovieIdCreditsQueryKey = (movieid: number) => [`/movie/${movieid}/credits`];
 
 export const useGETMovieMovieIdCredits = <
-  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdCredits, AxiosResponse<GETMovieMovieIdCredits200>>,
+  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdCredits, GETMovieMovieIdCredits200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   movieid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETMovieMovieIdCreditsQueryKey(movieid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieMovieIdCredits<TQueryFnData>(movieid, axiosOptions),
+    () => gETMovieMovieIdCredits<TQueryFnData>(movieid, requestOptions),
     { enabled: !!movieid, ...queryOptions }
   );
 
@@ -5143,29 +5444,31 @@ export const useGETMovieMovieIdCredits = <
   };
 };
 
-export const gETGenreTvList = <TData = AxiosResponse<GETGenreTvList200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/genre/tv/list`, options);
-};
+export const gETGenreTvList = <TData = GETGenreTvList200>(options?: SecondParameter<typeof customInstance>) =>
+  customInstance<TData>(
+    { url: `/genre/tv/list`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETGenreTvListQueryKey = () => [`/genre/tv/list`];
 
 export const useGETGenreTvList = <
-  TQueryFnData = AsyncReturnType<typeof gETGenreTvList, AxiosResponse<GETGenreTvList200>>,
+  TQueryFnData = AsyncReturnType<typeof gETGenreTvList, GETGenreTvList200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETGenreTvListQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETGenreTvList<TQueryFnData>(axiosOptions),
+    () => gETGenreTvList<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -5175,30 +5478,34 @@ export const useGETGenreTvList = <
   };
 };
 
-export const gETTvEpisodeEpisodeIdChanges = <TData = AxiosResponse<GETTvEpisodeEpisodeIdChanges200>>(
+export const gETTvEpisodeEpisodeIdChanges = <TData = GETTvEpisodeEpisodeIdChanges200>(
   episodeid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/episode/${episodeid}/changes`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/episode/${episodeid}/changes`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvEpisodeEpisodeIdChangesQueryKey = (episodeid: number) => [`/tv/episode/${episodeid}/changes`];
 
 export const useGETTvEpisodeEpisodeIdChanges = <
-  TQueryFnData = AsyncReturnType<typeof gETTvEpisodeEpisodeIdChanges, AxiosResponse<GETTvEpisodeEpisodeIdChanges200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvEpisodeEpisodeIdChanges, GETTvEpisodeEpisodeIdChanges200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   episodeid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvEpisodeEpisodeIdChangesQueryKey(episodeid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvEpisodeEpisodeIdChanges<TQueryFnData>(episodeid, axiosOptions),
+    () => gETTvEpisodeEpisodeIdChanges<TQueryFnData>(episodeid, requestOptions),
     { enabled: !!episodeid, ...queryOptions }
   );
 
@@ -5208,16 +5515,17 @@ export const useGETTvEpisodeEpisodeIdChanges = <
   };
 };
 
-export const gETAccountAccountIdLists = <TData = AxiosResponse<GETAccountAccountIdLists200>>(
+export const gETAccountAccountIdLists = <TData = GETAccountAccountIdLists200>(
   accountid: number,
   params?: GETAccountAccountIdListsParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/account/${accountid}/lists`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/account/${accountid}/lists`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETAccountAccountIdListsQueryKey = (accountid: number, params?: GETAccountAccountIdListsParams) => [
   `/account/${accountid}/lists`,
@@ -5225,21 +5533,21 @@ export const getGETAccountAccountIdListsQueryKey = (accountid: number, params?: 
 ];
 
 export const useGETAccountAccountIdLists = <
-  TQueryFnData = AsyncReturnType<typeof gETAccountAccountIdLists, AxiosResponse<GETAccountAccountIdLists200>>,
+  TQueryFnData = AsyncReturnType<typeof gETAccountAccountIdLists, GETAccountAccountIdLists200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   accountid: number,
   params?: GETAccountAccountIdListsParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETAccountAccountIdListsQueryKey(accountid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETAccountAccountIdLists<TQueryFnData>(accountid, params, axiosOptions),
+    () => gETAccountAccountIdLists<TQueryFnData>(accountid, params, requestOptions),
     { enabled: !!accountid, ...queryOptions }
   );
 
@@ -5249,14 +5557,16 @@ export const useGETAccountAccountIdLists = <
   };
 };
 
-export const gETGuestSessionGuestSessionIdRatedMovies = <
-  TData = AxiosResponse<GETGuestSessionGuestSessionIdRatedMovies200>
->(
+export const gETGuestSessionGuestSessionIdRatedMovies = <TData = GETGuestSessionGuestSessionIdRatedMovies200>(
   guestsessionid: string,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/guest_session/${guestsessionid}/rated/movies`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/guest_session/${guestsessionid}/rated/movies`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETGuestSessionGuestSessionIdRatedMoviesQueryKey = (guestsessionid: string) => [
   `/guest_session/${guestsessionid}/rated/movies`,
@@ -5265,21 +5575,21 @@ export const getGETGuestSessionGuestSessionIdRatedMoviesQueryKey = (guestsession
 export const useGETGuestSessionGuestSessionIdRatedMovies = <
   TQueryFnData = AsyncReturnType<
     typeof gETGuestSessionGuestSessionIdRatedMovies,
-    AxiosResponse<GETGuestSessionGuestSessionIdRatedMovies200>
+    GETGuestSessionGuestSessionIdRatedMovies200
   >,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   guestsessionid: string,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETGuestSessionGuestSessionIdRatedMoviesQueryKey(guestsessionid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETGuestSessionGuestSessionIdRatedMovies<TQueryFnData>(guestsessionid, axiosOptions),
+    () => gETGuestSessionGuestSessionIdRatedMovies<TQueryFnData>(guestsessionid, requestOptions),
     { enabled: !!guestsessionid, ...queryOptions }
   );
 
@@ -5289,15 +5599,17 @@ export const useGETGuestSessionGuestSessionIdRatedMovies = <
   };
 };
 
-export const gETTvTvIdSeasonSeasonNumberTranslations = <
-  TData = AxiosResponse<GETTvTvIdSeasonSeasonNumberTranslations200>
->(
+export const gETTvTvIdSeasonSeasonNumberTranslations = <TData = GETTvTvIdSeasonSeasonNumberTranslations200>(
   tvid: number,
   seasonnumber: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/season/${seasonnumber}/translations`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/season/${seasonnumber}/translations`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdSeasonSeasonNumberTranslationsQueryKey = (tvid: number, seasonnumber: number) => [
   `/tv/${tvid}/season/${seasonnumber}/translations`,
@@ -5306,22 +5618,22 @@ export const getGETTvTvIdSeasonSeasonNumberTranslationsQueryKey = (tvid: number,
 export const useGETTvTvIdSeasonSeasonNumberTranslations = <
   TQueryFnData = AsyncReturnType<
     typeof gETTvTvIdSeasonSeasonNumberTranslations,
-    AxiosResponse<GETTvTvIdSeasonSeasonNumberTranslations200>
+    GETTvTvIdSeasonSeasonNumberTranslations200
   >,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
   seasonnumber: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdSeasonSeasonNumberTranslationsQueryKey(tvid, seasonnumber);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdSeasonSeasonNumberTranslations<TQueryFnData>(tvid, seasonnumber, axiosOptions),
+    () => gETTvTvIdSeasonSeasonNumberTranslations<TQueryFnData>(tvid, seasonnumber, requestOptions),
     { enabled: !!(tvid && seasonnumber), ...queryOptions }
   );
 
@@ -5331,30 +5643,34 @@ export const useGETTvTvIdSeasonSeasonNumberTranslations = <
   };
 };
 
-export const gETTvTvIdScreenedTheatrically = <TData = AxiosResponse<GETTvTvIdScreenedTheatrically200>>(
+export const gETTvTvIdScreenedTheatrically = <TData = GETTvTvIdScreenedTheatrically200>(
   tvid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/screened_theatrically`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/screened_theatrically`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdScreenedTheatricallyQueryKey = (tvid: number) => [`/tv/${tvid}/screened_theatrically`];
 
 export const useGETTvTvIdScreenedTheatrically = <
-  TQueryFnData = AsyncReturnType<typeof gETTvTvIdScreenedTheatrically, AxiosResponse<GETTvTvIdScreenedTheatrically200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvTvIdScreenedTheatrically, GETTvTvIdScreenedTheatrically200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdScreenedTheatricallyQueryKey(tvid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdScreenedTheatrically<TQueryFnData>(tvid, axiosOptions),
+    () => gETTvTvIdScreenedTheatrically<TQueryFnData>(tvid, requestOptions),
     { enabled: !!tvid, ...queryOptions }
   );
 
@@ -5364,29 +5680,31 @@ export const useGETTvTvIdScreenedTheatrically = <
   };
 };
 
-export const gETPersonPopular = <TData = AxiosResponse<GETPersonPopular200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/person/popular`, options);
-};
+export const gETPersonPopular = <TData = GETPersonPopular200>(options?: SecondParameter<typeof customInstance>) =>
+  customInstance<TData>(
+    { url: `/person/popular`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETPersonPopularQueryKey = () => [`/person/popular`];
 
 export const useGETPersonPopular = <
-  TQueryFnData = AsyncReturnType<typeof gETPersonPopular, AxiosResponse<GETPersonPopular200>>,
+  TQueryFnData = AsyncReturnType<typeof gETPersonPopular, GETPersonPopular200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETPersonPopularQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETPersonPopular<TQueryFnData>(axiosOptions),
+    () => gETPersonPopular<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -5396,30 +5714,34 @@ export const useGETPersonPopular = <
   };
 };
 
-export const gETTvTvIdRecommendations = <TData = AxiosResponse<GETTvTvIdRecommendations200>>(
+export const gETTvTvIdRecommendations = <TData = GETTvTvIdRecommendations200>(
   tvid: number,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/tv/${tvid}/recommendations`, options);
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/tv/${tvid}/recommendations`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETTvTvIdRecommendationsQueryKey = (tvid: number) => [`/tv/${tvid}/recommendations`];
 
 export const useGETTvTvIdRecommendations = <
-  TQueryFnData = AsyncReturnType<typeof gETTvTvIdRecommendations, AxiosResponse<GETTvTvIdRecommendations200>>,
+  TQueryFnData = AsyncReturnType<typeof gETTvTvIdRecommendations, GETTvTvIdRecommendations200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   tvid: number,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETTvTvIdRecommendationsQueryKey(tvid);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETTvTvIdRecommendations<TQueryFnData>(tvid, axiosOptions),
+    () => gETTvTvIdRecommendations<TQueryFnData>(tvid, requestOptions),
     { enabled: !!tvid, ...queryOptions }
   );
 
@@ -5429,16 +5751,17 @@ export const useGETTvTvIdRecommendations = <
   };
 };
 
-export const gETFindExternalId = <TData = AxiosResponse<GETFindExternalId200>>(
+export const gETFindExternalId = <TData = GETFindExternalId200>(
   externalid: string,
   params?: GETFindExternalIdParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/find/${externalid}`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/find/${externalid}`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETFindExternalIdQueryKey = (externalid: string, params?: GETFindExternalIdParams) => [
   `/find/${externalid}`,
@@ -5446,21 +5769,21 @@ export const getGETFindExternalIdQueryKey = (externalid: string, params?: GETFin
 ];
 
 export const useGETFindExternalId = <
-  TQueryFnData = AsyncReturnType<typeof gETFindExternalId, AxiosResponse<GETFindExternalId200>>,
+  TQueryFnData = AsyncReturnType<typeof gETFindExternalId, GETFindExternalId200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   externalid: string,
   params?: GETFindExternalIdParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETFindExternalIdQueryKey(externalid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETFindExternalId<TQueryFnData>(externalid, params, axiosOptions),
+    () => gETFindExternalId<TQueryFnData>(externalid, params, requestOptions),
     { enabled: !!externalid, ...queryOptions }
   );
 
@@ -5470,29 +5793,33 @@ export const useGETFindExternalId = <
   };
 };
 
-export const gETCertificationTvList = <TData = AxiosResponse<GETCertificationTvList200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/certification/tv/list`, options);
-};
+export const gETCertificationTvList = <TData = GETCertificationTvList200>(
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/certification/tv/list`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETCertificationTvListQueryKey = () => [`/certification/tv/list`];
 
 export const useGETCertificationTvList = <
-  TQueryFnData = AsyncReturnType<typeof gETCertificationTvList, AxiosResponse<GETCertificationTvList200>>,
+  TQueryFnData = AsyncReturnType<typeof gETCertificationTvList, GETCertificationTvList200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETCertificationTvListQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETCertificationTvList<TQueryFnData>(axiosOptions),
+    () => gETCertificationTvList<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -5502,16 +5829,17 @@ export const useGETCertificationTvList = <
   };
 };
 
-export const gETMovieMovieIdImages = <TData = AxiosResponse<GETMovieMovieIdImages200>>(
+export const gETMovieMovieIdImages = <TData = GETMovieMovieIdImages200>(
   movieid: number,
   params?: GETMovieMovieIdImagesParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/movie/${movieid}/images`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/movie/${movieid}/images`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETMovieMovieIdImagesQueryKey = (movieid: number, params?: GETMovieMovieIdImagesParams) => [
   `/movie/${movieid}/images`,
@@ -5519,21 +5847,21 @@ export const getGETMovieMovieIdImagesQueryKey = (movieid: number, params?: GETMo
 ];
 
 export const useGETMovieMovieIdImages = <
-  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdImages, AxiosResponse<GETMovieMovieIdImages200>>,
+  TQueryFnData = AsyncReturnType<typeof gETMovieMovieIdImages, GETMovieMovieIdImages200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   movieid: number,
   params?: GETMovieMovieIdImagesParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETMovieMovieIdImagesQueryKey(movieid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieMovieIdImages<TQueryFnData>(movieid, params, axiosOptions),
+    () => gETMovieMovieIdImages<TQueryFnData>(movieid, params, requestOptions),
     { enabled: !!movieid, ...queryOptions }
   );
 
@@ -5543,29 +5871,31 @@ export const useGETMovieMovieIdImages = <
   };
 };
 
-export const gETSearchMulti = <TData = AxiosResponse<GETSearchMulti200>>(
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/search/multi`, options);
-};
+export const gETSearchMulti = <TData = GETSearchMulti200>(options?: SecondParameter<typeof customInstance>) =>
+  customInstance<TData>(
+    { url: `/search/multi`, method: 'get' },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETSearchMultiQueryKey = () => [`/search/multi`];
 
 export const useGETSearchMulti = <
-  TQueryFnData = AsyncReturnType<typeof gETSearchMulti, AxiosResponse<GETSearchMulti200>>,
+  TQueryFnData = AsyncReturnType<typeof gETSearchMulti, GETSearchMulti200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(options?: {
   query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETSearchMultiQueryKey();
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETSearchMulti<TQueryFnData>(axiosOptions),
+    () => gETSearchMulti<TQueryFnData>(requestOptions),
     queryOptions
   );
 
@@ -5575,16 +5905,17 @@ export const useGETSearchMulti = <
   };
 };
 
-export const gETAccountAccountIdFavoriteMovies = <TData = AxiosResponse<GETAccountAccountIdFavoriteMovies200>>(
+export const gETAccountAccountIdFavoriteMovies = <TData = GETAccountAccountIdFavoriteMovies200>(
   accountid: number,
   params?: GETAccountAccountIdFavoriteMoviesParams,
-  options?: AxiosRequestConfig
-): Promise<TData> => {
-  return axios.get(`/account/${accountid}/favorite/movies`, {
-    params,
-    ...options,
-  });
-};
+  options?: SecondParameter<typeof customInstance>
+) =>
+  customInstance<TData>(
+    { url: `/account/${accountid}/favorite/movies`, method: 'get', params },
+    // eslint-disable-next-line
+    // @ts-ignore
+    options
+  );
 
 export const getGETAccountAccountIdFavoriteMoviesQueryKey = (
   accountid: number,
@@ -5592,24 +5923,21 @@ export const getGETAccountAccountIdFavoriteMoviesQueryKey = (
 ) => [`/account/${accountid}/favorite/movies`, ...(params ? [params] : [])];
 
 export const useGETAccountAccountIdFavoriteMovies = <
-  TQueryFnData = AsyncReturnType<
-    typeof gETAccountAccountIdFavoriteMovies,
-    AxiosResponse<GETAccountAccountIdFavoriteMovies200>
-  >,
+  TQueryFnData = AsyncReturnType<typeof gETAccountAccountIdFavoriteMovies, GETAccountAccountIdFavoriteMovies200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
 >(
   accountid: number,
   params?: GETAccountAccountIdFavoriteMoviesParams,
-  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; axios?: AxiosRequestConfig }
+  options?: { query?: UseQueryOptions<TQueryFnData, TError, TData>; request?: SecondParameter<typeof customInstance> }
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options || {};
+  const { query: queryOptions, request: requestOptions } = options || {};
 
   const queryKey = queryOptions?.queryKey ?? getGETAccountAccountIdFavoriteMoviesQueryKey(accountid, params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETAccountAccountIdFavoriteMovies<TQueryFnData>(accountid, params, axiosOptions),
+    () => gETAccountAccountIdFavoriteMovies<TQueryFnData>(accountid, params, requestOptions),
     { enabled: !!accountid, ...queryOptions }
   );
 
