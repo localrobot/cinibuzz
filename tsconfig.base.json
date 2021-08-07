@@ -9,7 +9,9 @@
     "lib": ["esnext", "dom"],
     "module": "esnext",
     "moduleResolution": "node",
-    "paths": {},
+    "paths": {
+      "@cinibuzz/tmdb": ["libs/tmdb/src/index.ts"]
+    },
     "rootDir": ".",
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,

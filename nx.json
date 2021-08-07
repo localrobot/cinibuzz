@@ -29,6 +29,9 @@
   "projects": {
     "cinibuzz": {
       "tags": []
+    },
+    "tmdb": {
+      "tags": []
     }
   }
 }

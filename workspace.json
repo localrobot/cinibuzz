@@ -95,6 +95,38 @@
           }
         }
       }
+    },
+    "tmdb": {
+      "root": "libs/tmdb",
+      "sourceRoot": "libs/tmdb/src",
+      "projectType": "library",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/tmdb",
+            "tsConfig": "libs/tmdb/tsconfig.lib.json",
+            "project": "libs/tmdb/package.json",
+            "entryFile": "libs/tmdb/src/index.ts",
+            "external": ["react/jsx-runtime"],
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+            "assets": [
+              {
+                "glob": "libs/tmdb/README.md",
+                "input": ".",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/tmdb/**/*.{ts,tsx,js,jsx}"]
+          }
+        }
+      }
     }
   }
 }
