@@ -1,0 +1,47 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nrwl/nx", "unused-imports", "simple-simport-sort", "import"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@nrwl/nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "*",
+                "onlyDependOnLibsWithTags": ["*"]
+              }
+            ]
+          }
+        ],
+        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/no-implicit-any-catch": "warn",
+        "prefer-arrow-callback": "error",
+        "arrow-body-style": "error",
+        "object-shorthand": "warn",
+        "unused-imports/no-unused-imports": "warn",
+        "simple-import-sort/imports": "warn",
+        "simple-import-sort/exports": "warn",
+        "import/first": "error",
+        "import/newline-after-import": "error",
+        "import/no-duplicates": "error",
+        "react/self-closing-comp": "error"
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nrwl/nx/typescript"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nrwl/nx/javascript"],
+      "rules": {}
+    }
+  ]
+}
