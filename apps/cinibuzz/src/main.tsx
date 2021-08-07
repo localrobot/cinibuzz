@@ -6,10 +6,11 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from './app/app';
 import { environment } from './environments/environment';
+import theme from './theme';
 
 ReactDOM.render(
   <StrictMode>
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <BrowserRouter>
         <TMDBProvider {...environment.tmdb}>
           <App />

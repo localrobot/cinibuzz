@@ -1,26 +1,28 @@
-import { Button } from '@chakra-ui/react';
-import { GETMovieNowPlaying200, useGETMovieNowPlaying } from '@cinibuzz/tmdb';
+import { MovieListObject, useGETMovieNowPlaying } from '@cinibuzz/tmdb';
 import { useState } from 'react';
 
+import ToggleButton from './toggle-button';
+
 export interface NewReleaseButtonProps {
-  onAfterData: (newReleases: GETMovieNowPlaying200) => void;
+  selected: boolean;
+  onSelect: (movies: MovieListObject[]) => void;
 }
 
 export function NewReleaseButton(props: NewReleaseButtonProps) {
-  const [enabled, setEnabled] = useState(false);
+  const [enabled, setEnabled] = useState(props.selected);
 
   useGETMovieNowPlaying({
     query: {
       enabled,
       onSettled: () => setEnabled(false),
-      onSuccess: data => props.onAfterData(data),
+      onSuccess: data => props.onSelect(data.results ?? []),
     },
   });
 
   return (
-    <Button variant="ghost" onClick={() => setEnabled(true)}>
+    <ToggleButton selected={props.selected} onClick={() => setEnabled(true)}>
       New Release
-    </Button>
+    </ToggleButton>
   );
 }
 

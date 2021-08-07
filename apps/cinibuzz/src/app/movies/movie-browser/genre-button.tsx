@@ -1,29 +1,31 @@
-import { Button } from '@chakra-ui/react';
-import { GETDiscoverMovie200, GETGenreMovieList200GenresItem, useGETDiscoverMovie } from '@cinibuzz/tmdb';
+import { GETGenreMovieList200GenresItem, MovieListObject, useGETDiscoverMovie } from '@cinibuzz/tmdb';
 import { useState } from 'react';
 
+import ToggleButton from './toggle-button';
+
 export interface GenreButtonProps extends GETGenreMovieList200GenresItem {
-  onAfterData: (data: GETDiscoverMovie200) => void;
+  selected: boolean;
+  onSelect: (data: MovieListObject[]) => void;
 }
 
 export function GenreButton(props: GenreButtonProps) {
-  const [enabled, setEnabled] = useState(false);
+  const [enabled, setEnabled] = useState(props.selected);
 
   useGETDiscoverMovie(
-    { with_genres: props.name },
+    { with_genres: `${props.id}` },
     {
       query: {
         enabled,
         onSettled: () => setEnabled(false),
-        onSuccess: data => props.onAfterData(data),
+        onSuccess: data => props.onSelect(data.results ?? []),
       },
     }
   );
 
   return (
-    <Button variant="ghost" onClick={() => setEnabled(true)}>
+    <ToggleButton selected={props.selected} onClick={() => setEnabled(true)}>
       {props.name}
-    </Button>
+    </ToggleButton>
   );
 }
 

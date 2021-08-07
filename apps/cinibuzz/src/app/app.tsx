@@ -8,7 +8,7 @@ export function App() {
   return (
     <>
       <Header />
-      <Container maxW="90vw">
+      <Container as="main" px="44" minW="100vw">
         <Routes>
           <Route path="/" element={<Navigate to="/movies" replace />} />
           <Route path="movies/*" element={<Movies />} />

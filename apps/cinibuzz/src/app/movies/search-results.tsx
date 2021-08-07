@@ -13,8 +13,8 @@ export function SearchResults(props: SearchResultsProps) {
   const { data: movies } = useGETSearchMovie({ query: searchTerm }, { query: { enabled: !!searchTerm } });
 
   return (
-    <Flex direction="column" my="6">
-      <Heading>
+    <Flex as="section" direction="column" my="12">
+      <Heading fontWeight="light" my="8">
         Showing results for '<strong>{searchTerm}</strong>'
       </Heading>
       <MovieList movies={movies?.results ?? []} />

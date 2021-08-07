@@ -9,7 +9,7 @@ export interface MovieListProps {
 
 export function MovieList(props: MovieListProps) {
   return (
-    <SimpleGrid columns={4} gap={6}>
+    <SimpleGrid as="section" columns={4} gap={6}>
       {props.movies.map(movie => (
         <MovieCard key={movie.id} {...movie} />
       ))}

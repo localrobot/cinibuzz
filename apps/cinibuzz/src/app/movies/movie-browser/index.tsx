@@ -12,11 +12,11 @@ export function MovieBrowser(props: MovieBrowserProps) {
   const [movies, setMovies] = useState<MovieListObject[]>([]);
 
   return (
-    <Flex direction="column" my="6">
+    <Flex as="section" direction="column" my="12">
       <Heading fontWeight="light" my="8">
         Browse movies by category
       </Heading>
-      <GenreButtonGroup onAfterData={setMovies} />
+      <GenreButtonGroup onSelect={setMovies} />
       <MovieList movies={movies} />
     </Flex>
   );
