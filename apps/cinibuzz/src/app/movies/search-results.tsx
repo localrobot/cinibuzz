@@ -2,7 +2,7 @@ import { Flex, Heading } from '@chakra-ui/react';
 import { useGETSearchMovie } from '@cinibuzz/tmdb';
 import { useSearchParams } from 'react-router-dom';
 
-import MovieList from './movie-list';
+import MovieList from './shared/movie-list';
 
 /* eslint-disable-next-line */
 export interface SearchResultsProps {}

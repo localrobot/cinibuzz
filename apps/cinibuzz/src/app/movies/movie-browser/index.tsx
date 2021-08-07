@@ -2,8 +2,8 @@ import { Flex, Heading } from '@chakra-ui/react';
 import { MovieListObject } from '@cinibuzz/tmdb';
 import { useState } from 'react';
 
+import MovieList from '../shared/movie-list';
 import GenreButtonGroup from './genre-button-group';
-import MovieList from './movie-list';
 
 /* eslint-disable-next-line */
 export interface MovieBrowserProps {}

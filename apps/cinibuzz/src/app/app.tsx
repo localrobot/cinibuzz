@@ -1,18 +1,8 @@
 import { Container } from '@chakra-ui/react';
-import { Outlet, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-import Header from './header';
-import MovieBrowser from './movie-browser';
-import MovieDetail from './movie-detail';
-import SearchBox from './search-box';
-import SearchResults from './search-results';
-
-const SearchablePageContainer = () => (
-  <>
-    <SearchBox />
-    <Outlet />
-  </>
-);
+import Header from './common/header';
+import Movies from './movies';
 
 export function App() {
   return (
@@ -20,11 +10,8 @@ export function App() {
       <Header />
       <Container maxW="90vw">
         <Routes>
-          <Route path="/" element={<SearchablePageContainer />}>
-            <Route path="/" element={<MovieBrowser />} />
-            <Route path="/results" element={<SearchResults />} />
-          </Route>
-          <Route path="/movies/:movieId" element={<MovieDetail />} />
+          <Route path="/" element={<Navigate to="/movies" replace />} />
+          <Route path="movies/*" element={<Movies />} />
         </Routes>
       </Container>
     </>
