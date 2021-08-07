@@ -11,4 +11,4 @@ No Description
  * OpenAPI spec version: 3
  */
 
-export type GETSearchMovieParams = { year?: number; primary_release_year?: number };
+export type GETSearchMovieParams = { year?: number; primary_release_year?: number; query: string };
