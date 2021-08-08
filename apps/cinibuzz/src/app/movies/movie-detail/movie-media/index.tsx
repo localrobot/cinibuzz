@@ -33,7 +33,7 @@ export function MovieMedia(props: MovieMediaProps) {
   return (
     <Flex direction="column" width="75%">
       <Heading fontSize="xl" fontWeight="600" mb="4">
-        Cast
+        Media
       </Heading>
 
       <Tabs variant="unstyled" isLazy>

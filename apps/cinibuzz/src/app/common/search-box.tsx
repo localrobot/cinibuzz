@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 function Hero(props: FlexProps) {
   return (
@@ -34,12 +34,13 @@ function HeroHeading(props: HeadingProps) {
 }
 
 interface SearchFieldProps extends FlexProps {
+  initialValue?: string;
   placeholder?: string;
   onSearch: (term: string) => void;
 }
 
-function SearchField({ onSearch, placeholder, ...flexProps }: SearchFieldProps) {
-  const [searchTerm, setSearchTerm] = useState('');
+function SearchField({ onSearch, placeholder, initialValue = '', ...flexProps }: SearchFieldProps) {
+  const [searchTerm, setSearchTerm] = useState(initialValue);
 
   return (
     <Flex align="center" gridGap="6" my="8" {...flexProps}>
@@ -71,6 +72,7 @@ export interface SearchBoxProps {}
 
 export function SearchBox(props: SearchBoxProps) {
   const navigate = useNavigate();
+  const [params] = useSearchParams();
 
   return (
     <Hero>
@@ -79,6 +81,7 @@ export function SearchBox(props: SearchBoxProps) {
       </HeroHeading>
 
       <SearchField
+        initialValue={params.get('q') ?? ''}
         placeholder="Search movies"
         onSearch={searchTerm => {
           const query = new URLSearchParams();

@@ -3,7 +3,7 @@ import { ReactElement, useState } from 'react';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 
 function CarouselContainer(props: FlexProps) {
-  return <Flex align="center" justify="space-between" position="relative" height="320px" width="full" {...props} />;
+  return <Flex align="center" justify="space-between" position="relative" height="540px" width="full" {...props} />;
 }
 
 function CarouselIconButton(props: IconButtonProps) {

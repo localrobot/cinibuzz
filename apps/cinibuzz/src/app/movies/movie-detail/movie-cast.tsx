@@ -24,7 +24,7 @@ export function MovieCast(props: MovieCastProps) {
             imgSrc={`${config?.images?.base_url}${config?.images?.profile_sizes?.[3]}${actor.profile_path}`}
             title={actor.name ?? ''}
             subTitle={actor.character ?? ''}
-            linkTo={`results?${new URLSearchParams([['q', actor.name ?? '']]).toString()}`}
+            linkTo={`../results?${new URLSearchParams([['q', actor.name ?? '']]).toString()}`}
           />
         ))}
       </Grid>

@@ -1,3 +1,4 @@
+import { AspectRatio } from '@chakra-ui/react';
 import { GETMovieMovieIdVideos200ResultsItem } from '@cinibuzz/tmdb';
 import { useMemo } from 'react';
 
@@ -20,15 +21,17 @@ export function VideosPanel(props: VideosPanelProps) {
   return (
     <Carousel itemsCount={supportedVideos.length}>
       {({ currentIndex }) => (
-        <iframe
-          height="100%"
-          width="100%"
-          src={`${VIDEO_SOURCE_MAP[supportedVideos[currentIndex].site ?? '']}${supportedVideos[currentIndex].key}`}
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          title={supportedVideos[currentIndex].name}
-        />
+        <AspectRatio ratio={16 / 9}>
+          <iframe
+            height="100%"
+            width="100%"
+            src={`${VIDEO_SOURCE_MAP[supportedVideos[currentIndex].site ?? '']}${supportedVideos[currentIndex].key}`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title={supportedVideos[currentIndex].name}
+          />
+        </AspectRatio>
       )}
     </Carousel>
   );

@@ -1,6 +1,6 @@
 import { Flex, Heading, Tag } from '@chakra-ui/react';
 import { useGETMovieMovieIdKeywords } from '@cinibuzz/tmdb';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 /* eslint-disable-next-line */
 export interface MovieKeywordsProps {}
@@ -16,7 +16,13 @@ export function MovieKeywords(props: MovieKeywordsProps) {
       </Heading>
       <Flex wrap="wrap" gridGap="2" align="flex-start" alignContent="flex-start">
         {data?.keywords?.map(keyword => (
-          <Tag key={keyword.id}>{keyword.name}</Tag>
+          <Tag
+            as={Link}
+            key={keyword.id}
+            to={`../results?${new URLSearchParams([['q', keyword.name ?? '']]).toString()}`}
+          >
+            {keyword.name}
+          </Tag>
         ))}
       </Flex>
     </Flex>
