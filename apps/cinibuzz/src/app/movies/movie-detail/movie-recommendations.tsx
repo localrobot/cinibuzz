@@ -36,7 +36,7 @@ export function MovieRecommendations(props: MovieRecommendationsProps) {
             <Text isTruncated fontSize="lg" mb="1">
               <LinkOverlay
                 as={Link}
-                to={`movies/${movieId}`}
+                to={`../${movie.id}`}
                 d="flex"
                 justifyContent="space-between"
                 fontWeight="semibold"
