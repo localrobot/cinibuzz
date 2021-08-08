@@ -1571,31 +1571,40 @@ export const useGETMovieMovieIdChanges = <
   };
 };
 
-export const gETMovieNowPlaying = <TData = GETMovieNowPlaying200>(options?: SecondParameter<typeof customInstance>) =>
+export const gETMovieNowPlaying = <TData = GETMovieNowPlaying200>(
+  params?: { page?: number },
+  options?: SecondParameter<typeof customInstance>
+) =>
   customInstance<TData>(
-    { url: `/movie/now_playing`, method: 'get' },
+    { url: `/movie/now_playing`, method: 'get', params },
     // eslint-disable-next-line
     // @ts-ignore
     options
   );
 
-export const getGETMovieNowPlayingQueryKey = () => [`/movie/now_playing`];
+export const getGETMovieNowPlayingQueryKey = (params?: { page?: number }) => [
+  `/movie/now_playing`,
+  ...(params ? [params] : []),
+];
 
 export const useGETMovieNowPlaying = <
   TQueryFnData = AsyncReturnType<typeof gETMovieNowPlaying, GETMovieNowPlaying200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
->(options?: {
-  query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  request?: SecondParameter<typeof customInstance>;
-}) => {
+>(
+  params?: { page?: number },
+  options?: {
+    query?: UseQueryOptions<TQueryFnData, TError, TData>;
+    request?: SecondParameter<typeof customInstance>;
+  }
+) => {
   const { query: queryOptions, request: requestOptions } = options || {};
 
-  const queryKey = queryOptions?.queryKey ?? getGETMovieNowPlayingQueryKey();
+  const queryKey = queryOptions?.queryKey ?? getGETMovieNowPlayingQueryKey(params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieNowPlaying<TQueryFnData>(requestOptions),
+    () => gETMovieNowPlaying<TQueryFnData>(params, requestOptions),
     queryOptions
   );
 
@@ -2170,31 +2179,40 @@ export const useGETMovieMovieIdAccountStates = <
   };
 };
 
-export const gETMovieUpcoming = <TData = GETMovieUpcoming200>(options?: SecondParameter<typeof customInstance>) =>
+export const gETMovieUpcoming = <TData = GETMovieUpcoming200>(
+  params?: { page?: number },
+  options?: SecondParameter<typeof customInstance>
+) =>
   customInstance<TData>(
-    { url: `/movie/upcoming`, method: 'get' },
+    { url: `/movie/upcoming`, method: 'get', params },
     // eslint-disable-next-line
     // @ts-ignore
     options
   );
 
-export const getGETMovieUpcomingQueryKey = () => [`/movie/upcoming`];
+export const getGETMovieUpcomingQueryKey = (params?: { page?: number }) => [
+  `/movie/upcoming`,
+  ...(params ? [params] : []),
+];
 
 export const useGETMovieUpcoming = <
   TQueryFnData = AsyncReturnType<typeof gETMovieUpcoming, GETMovieUpcoming200>,
   TError = TraitStandardErrors401Response | TraitStandardErrors404Response,
   TData = TQueryFnData
->(options?: {
-  query?: UseQueryOptions<TQueryFnData, TError, TData>;
-  request?: SecondParameter<typeof customInstance>;
-}) => {
+>(
+  params?: { page?: number },
+  options?: {
+    query?: UseQueryOptions<TQueryFnData, TError, TData>;
+    request?: SecondParameter<typeof customInstance>;
+  }
+) => {
   const { query: queryOptions, request: requestOptions } = options || {};
 
-  const queryKey = queryOptions?.queryKey ?? getGETMovieUpcomingQueryKey();
+  const queryKey = queryOptions?.queryKey ?? getGETMovieUpcomingQueryKey(params);
 
   const query = useQuery<TQueryFnData, TError, TData>(
     queryKey,
-    () => gETMovieUpcoming<TQueryFnData>(requestOptions),
+    () => gETMovieUpcoming<TQueryFnData>(params, requestOptions),
     queryOptions
   );
 

@@ -7,7 +7,7 @@ import NewReleaseButton from './new-release-button';
 import UpcomingReleaseButton from './upcoming-release-button';
 
 export interface GenreButtonGroupProps {
-  onSelect: (movies: MovieListObject[]) => void;
+  onSelect: (data: [movies: MovieListObject[], totalPages: number]) => void;
 }
 
 export function GenreButtonGroup(props: GenreButtonGroupProps) {
@@ -15,17 +15,17 @@ export function GenreButtonGroup(props: GenreButtonGroupProps) {
   const [selectedGenre, setSelectedGenre] = useState(-1);
 
   const handleSelection = useCallback(
-    (id: number, movies: MovieListObject[]) => {
+    (id: number, result: [movies: MovieListObject[], totalPages: number]) => {
       setSelectedGenre(id);
-      props.onSelect(movies);
+      props.onSelect(result);
     },
     [props]
   );
 
   return (
     <Flex gridGap="2" py="4" overflow="auto" mb="8">
-      <NewReleaseButton selected={selectedGenre === -1} onSelect={movies => handleSelection(-1, movies)} />
-      <UpcomingReleaseButton selected={selectedGenre === -2} onSelect={movies => handleSelection(-2, movies)} />
+      <NewReleaseButton selected={selectedGenre === -1} onSelect={result => handleSelection(-1, result)} />
+      <UpcomingReleaseButton selected={selectedGenre === -2} onSelect={result => handleSelection(-2, result)} />
 
       {data?.genres?.map(genre => (
         <GenreButton
