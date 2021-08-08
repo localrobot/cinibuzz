@@ -1,4 +1,4 @@
-import { Flex, Tag } from '@chakra-ui/react';
+import { Flex, Heading, Tag } from '@chakra-ui/react';
 import { useGETMovieMovieIdKeywords } from '@cinibuzz/tmdb';
 import { useParams } from 'react-router-dom';
 
@@ -10,10 +10,15 @@ export function MovieKeywords(props: MovieKeywordsProps) {
   const { data } = useGETMovieMovieIdKeywords(+movieId);
 
   return (
-    <Flex width="25%" wrap="wrap" gridGap="2" align="flex-start" alignContent="flex-start">
-      {data?.keywords?.map(keyword => (
-        <Tag key={keyword.id}>{keyword.name}</Tag>
-      ))}
+    <Flex direction="column" width="25%">
+      <Heading fontSize="xl" fontWeight="600" mb="4">
+        Keywords
+      </Heading>
+      <Flex wrap="wrap" gridGap="2" align="flex-start" alignContent="flex-start">
+        {data?.keywords?.map(keyword => (
+          <Tag key={keyword.id}>{keyword.name}</Tag>
+        ))}
+      </Flex>
     </Flex>
   );
 }

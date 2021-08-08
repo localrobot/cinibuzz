@@ -22,8 +22,8 @@ export function MovieDetail(props: MovieDetailProps) {
       <MovieHeader {...movie} />
       <MovieOverview movie={movie} crew={credits?.crew ?? []} />
       <MovieCast cast={credits?.cast ?? []} />
-      <Flex>
-        <MovieMedia />
+      <Flex gridGap="8">
+        <MovieMedia mostPopulalarImageSrc={movie?.backdrop_path ?? ''} />
         <MovieKeywords />
       </Flex>
       <MovieRecommendations />
