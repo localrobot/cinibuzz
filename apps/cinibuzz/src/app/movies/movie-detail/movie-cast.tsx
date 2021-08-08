@@ -1,4 +1,4 @@
-import { Box, Grid, Heading } from '@chakra-ui/react';
+import { Box, Grid, Heading, Text } from '@chakra-ui/react';
 import { GETMovieMovieIdCredits200CastItem, useGETConfiguration } from '@cinibuzz/tmdb';
 
 import ImageCard from '../shared/image-card';
@@ -9,6 +9,10 @@ export interface MovieCastProps {
 
 export function MovieCast(props: MovieCastProps) {
   const { data: config } = useGETConfiguration();
+
+  if (!props.cast.length) {
+    return <Text>No Cast Members information available.</Text>;
+  }
 
   return (
     <Box>

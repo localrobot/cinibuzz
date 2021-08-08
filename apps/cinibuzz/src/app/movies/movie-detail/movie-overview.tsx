@@ -37,17 +37,26 @@ export function MovieOverview(props: MovieOverviewProps) {
         Overview
       </Heading>
 
-      <MovieOverviewText>{props.movie?.overview}</MovieOverviewText>
+      <MovieOverviewText>{props.movie?.overview ?? 'No Overview is available'}</MovieOverviewText>
 
       {props.crew.slice(0, 4).map(item => (
         <MovieDetailItem key={item.id} gridRow="3" primaryText={item.name} secondaryText={item.job} />
       ))}
 
       <Flex direction="column" gridGap="4" gridRow="1/4" gridColumn="5/7" ml="24">
-        <MovieDetailItem primaryText="Status" secondaryText={props.movie?.status} />
-        <MovieDetailItem primaryText="Original Language" secondaryText={language ?? props.movie?.original_language} />
-        <MovieDetailItem primaryText="Budget" secondaryText={formatCurrency(props.movie?.budget)} />
-        <MovieDetailItem primaryText="Revenue" secondaryText={formatCurrency(props.movie?.revenue)} />
+        <MovieDetailItem primaryText="Status" secondaryText={props.movie?.status ?? 'No Status Available'} />
+        <MovieDetailItem
+          primaryText="Original Language"
+          secondaryText={language ?? props.movie?.original_language ?? 'No Language Available'}
+        />
+        <MovieDetailItem
+          primaryText="Budget"
+          secondaryText={props.movie?.budget ? formatCurrency(props.movie.budget) : 'No Budget Available'}
+        />
+        <MovieDetailItem
+          primaryText="Revenue"
+          secondaryText={props.movie?.revenue ? formatCurrency(props.movie?.revenue) : 'No Revenue Available'}
+        />
       </Flex>
     </Grid>
   );

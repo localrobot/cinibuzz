@@ -15,7 +15,7 @@ export function SearchResults(props: SearchResultsProps) {
   return (
     <Flex as="section" direction="column" my="12">
       <Heading fontWeight="light" my="8">
-        Showing results for '<strong>{searchTerm}</strong>'
+        {movies?.results?.length ? 'Showing results for' : 'No results for'} '<strong>{searchTerm}</strong>'
       </Heading>
       <MovieList movies={movies?.results ?? []} />
     </Flex>

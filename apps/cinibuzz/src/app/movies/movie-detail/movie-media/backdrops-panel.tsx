@@ -1,4 +1,4 @@
-import { AspectRatio, Image } from '@chakra-ui/react';
+import { AspectRatio, Image, Text } from '@chakra-ui/react';
 import { GETMovieMovieIdImages200BackdropsItem, useGETConfiguration } from '@cinibuzz/tmdb';
 
 import Carousel from '../../../common/carousel';
@@ -9,6 +9,10 @@ export interface BackdropsPanelProps {
 
 export function BackdropsPanel(props: BackdropsPanelProps) {
   const { data: config } = useGETConfiguration();
+
+  if (!props.backdrops.length) {
+    return <Text>No Backdrops available</Text>;
+  }
 
   return (
     <Carousel itemsCount={props.backdrops.length}>

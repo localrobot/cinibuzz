@@ -1,4 +1,4 @@
-import { Flex, Heading, Tag } from '@chakra-ui/react';
+import { Flex, Heading, Tag, Text } from '@chakra-ui/react';
 import { useGETMovieMovieIdKeywords } from '@cinibuzz/tmdb';
 import { Link, useParams } from 'react-router-dom';
 
@@ -8,6 +8,10 @@ export interface MovieKeywordsProps {}
 export function MovieKeywords(props: MovieKeywordsProps) {
   const { movieId } = useParams();
   const { data } = useGETMovieMovieIdKeywords(+movieId);
+
+  if (!data?.keywords?.length) {
+    return <Text>No Keywords are associated with this movie.</Text>;
+  }
 
   return (
     <Flex direction="column" width="25%">

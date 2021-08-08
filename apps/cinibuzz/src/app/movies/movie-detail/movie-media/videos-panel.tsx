@@ -1,4 +1,4 @@
-import { AspectRatio } from '@chakra-ui/react';
+import { AspectRatio, Text } from '@chakra-ui/react';
 import { GETMovieMovieIdVideos200ResultsItem } from '@cinibuzz/tmdb';
 import { useMemo } from 'react';
 
@@ -17,6 +17,10 @@ export interface VideosPanelProps {
 
 export function VideosPanel(props: VideosPanelProps) {
   const supportedVideos = useMemo(() => props.videos.filter(v => SUPPORTED_SITES.has(v.site ?? '')), [props.videos]);
+
+  if (!supportedVideos.length) {
+    return <Text>No Videos available</Text>;
+  }
 
   return (
     <Carousel itemsCount={supportedVideos.length}>

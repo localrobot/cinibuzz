@@ -1,4 +1,4 @@
-import { Flex, Heading } from '@chakra-ui/react';
+import { Flex, Heading, Text } from '@chakra-ui/react';
 import { MovieListObject } from '@cinibuzz/tmdb';
 import { useState } from 'react';
 
@@ -17,7 +17,7 @@ export function MovieBrowser(props: MovieBrowserProps) {
         Browse movies by category
       </Heading>
       <GenreButtonGroup onSelect={setMovies} />
-      <MovieList movies={movies} />
+      {movies.length ? <MovieList movies={movies} /> : <Text>No Movies Available</Text>}
     </Flex>
   );
 }

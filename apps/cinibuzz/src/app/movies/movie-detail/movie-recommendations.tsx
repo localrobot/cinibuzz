@@ -10,6 +10,10 @@ export function MovieRecommendations(props: MovieRecommendationsProps) {
   const { data } = useGETMovieMovieIdRecommendations(+movieId);
   const { data: config } = useGETConfiguration();
 
+  if (!data?.results?.length) {
+    return <Text>No Recommendations are available</Text>;
+  }
+
   return (
     <Box>
       <Heading gridColumn="span 4" fontSize="xl" fontWeight="600" mb="4">

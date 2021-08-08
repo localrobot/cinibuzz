@@ -1,4 +1,4 @@
-import { Image } from '@chakra-ui/react';
+import { Image, Text } from '@chakra-ui/react';
 import { GETMovieMovieIdImages200PostersItem, useGETConfiguration } from '@cinibuzz/tmdb';
 
 import Carousel from '../../../common/carousel';
@@ -9,6 +9,10 @@ export interface PostersPanelProps {
 
 export function PostersPanel(props: PostersPanelProps) {
   const { data: config } = useGETConfiguration();
+
+  if (!props.posters.length) {
+    return <Text>No Posters available.</Text>;
+  }
 
   return (
     <Carousel itemsCount={props.posters.length}>
